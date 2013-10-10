@@ -1,0 +1,4 @@
+spotted_home:
+    resource: "@SpottedHomeBundle/Resources/config/routing.yml"
+    prefix:   /
+
