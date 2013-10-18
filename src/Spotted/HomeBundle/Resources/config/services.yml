@@ -1,7 +1,0 @@
-parameters:
-#    spotted_home.example.class: Spotted\HomeBundle\Example
-
-services:
-#    spotted_home.example:
-#        class: %spotted_home.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
