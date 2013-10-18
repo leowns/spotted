@@ -17,6 +17,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Oryzone\Bundle\BoilerplateBundle\OryzoneBoilerplateBundle(),
+            new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
             new Spotted\HomeBundle\SpottedHomeBundle(),
         );
 

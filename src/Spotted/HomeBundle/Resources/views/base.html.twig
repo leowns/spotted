@@ -1,5 +1,18 @@
 {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
 
+{% block head_css %}
+    {{ parent() }}
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+{% endblock %}
+
 {% block body_container %}
-    {% block content %} {% endblock %}
+    <div class="container">
+        {% block content %} {% endblock %}
+    </div>
+{% endblock %}
+
+{% block body_js %}
+    {{ parent() }}
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
 {% endblock %}
