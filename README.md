@@ -1,62 +1,64 @@
 Installationsanleitung XAMP
 ========================
 
-1. http://localhost/spotted/web/config.php aufrufen und Fehler beheben
+1. Install and enable the intl extension (used for validators).
 
-1.1 Install and enable the intl extension (used for validators).
-
-Open C:/xampp/php/php.ini to edit.
-
-Search for
-
-    ;extension=php_intl.dll
-
-and uncomment the line by removing semicolon.
-   
-In [intl] section, uncomment and define default_local and error_level values.
-
-    [intl]
-    intl.default_locale = de-CH
-    intl.error_level = E_WARNING
-
-Save and exit the editior.
-In XAMPP control panel, restart the apache.
-
-
-1.2 Install and enable a PHP accelerator like APC (highly recommended).
-
-Download the follwing file on http://dev.freshsite.pl/php-accelerators/apc.html
+	Open C:/xampp/php/php.ini to edit.
 	
-	APC 3.1.14 beta for PHP 5.4 (Win7/2008)
-
-Important: Use the one without "nts" in its name.
-
-Copy the downloaded file into C:/xampp/php/ext
-
-Open C:/xampp/php/php.ini to edit.
-
-Add the following line in the "Dynamic Extensions" section 
+	Search for
 	
-	extension=php_apc_3114_beta_php54_win7-2008.dll
+	    ;extension=php_intl.dll
+	
+	and uncomment the line by removing semicolon.
+	   
+	In [intl] section, uncomment and define default_local and error_level values.
+	
+	    [intl]
+	    intl.default_locale = de-CH
+	    intl.error_level = E_WARNING
+	
+	Save and exit the editior.
+	In XAMPP control panel, restart the apache.
 
-Then at the bottom of the php.ini file, add
-
-[APC]
-apc.enabled = 1
-;apc.shm_segments = 1
-;apc.shm_size = 64
-;apc.max_file_size = 10M
-apc.stat=1
-
-Save and exit the editior.
-In XAMPP control panel, restart the apache.
 
 
-2. Open cmd and go into your spotted folder (ex. C:\xampp\htdocs\spotted)
 
-Run the following command 
+2. Install and enable a PHP accelerator like APC (highly recommended).
 
-	php composer.phar install
+	Download the follwing file on http://dev.freshsite.pl/php-accelerators/apc.html
+		
+		APC 3.1.14 beta for PHP 5.4 (Win7/2008)
+	
+	Important: Use the one without "nts" in its name.
+	
+	Copy the downloaded file into C:/xampp/php/ext
+	
+	Open C:/xampp/php/php.ini to edit.
+	
+	Add the following line in the "Dynamic Extensions" section 
+		
+		extension=php_apc_3114_beta_php54_win7-2008.dll
+	
+	Then at the bottom of the php.ini file, add
+	
+		[APC]
+		apc.enabled = 1
+		;apc.shm_segments = 1
+		;apc.shm_size = 64
+		;apc.max_file_size = 10M
+		apc.stat=1
+	
+	Save and exit the editior.
+	In XAMPP control panel, restart the apache.
+
+
+
+
+3. Open cmd and go into your spotted folder (ex. C:\xampp\htdocs\spotted)
+
+	Run the following command 
+	
+		php composer.phar install
 
 
 
