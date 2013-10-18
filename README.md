@@ -59,6 +59,23 @@ Installationsanleitung XAMP
 	Run the following command 
 	
 		php composer.phar install
+		
+
+4. Check if your "parameters.yml" file in your spotted app/config folder exists (ex.C:\xampp\htdocs\spotted\app\config)
+
+	If not rename the following file in your spotted app/config folder (ex.C:\xampp\htdocs\spotted\app\config)
+	
+	from
+	
+		parameters.yml.dist
+	
+	to
+	
+		parameters.yml
+
+5. Run http://localhost/spotted/web/app_dev.php/_configurator 
+	Set all parameters as mentioned in our "hosting.txt" on dropbox ITPM folder and complete all steps.
+
 
 
 
