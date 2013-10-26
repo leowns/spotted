@@ -1,0 +1,179 @@
+body {
+    background-attachment: fixed;
+    background-color: #F2F2F2;
+    background-image: url("http://static.tumblr.com/70d92089993cff5fbf6a89638b287863/ky1rrhj/iLBmtlqn9/tumblr_static_image.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Open Sans','helvetica';
+    height: 100%;
+    padding: 0;
+    font-size: 16px;
+}
+
+a:hover, a:focus {
+    text-decoration: none;
+}
+
+#menu_wrapper {
+    padding: 15px;
+}
+
+#menu {
+    background-color: #222222;
+    border-radius: 5px 5px 5px 5px;
+    color: #FFFFFF;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+#menu #logo {
+    background-image: url("../images/logo_white_red.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top center;
+    display: block;
+    height: 30px;
+}
+
+#menu #search {
+    margin: 10px 0;
+}
+
+#canvas {
+    overflow: visible;
+    margin-top: 15px;
+}
+
+#canvas .item {
+    background-color: #FFFFFF;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 0 4px #999999;
+    margin-bottom: 20px;
+    opacity: 0.9;
+    overflow: auto;
+    transition: opacity 300ms ease-in 0s;
+    padding:0px;
+}
+
+@media (min-width: 768px) {
+    #canvas .item.col-sm-6 {
+         width: 47%;
+    }
+
+    #menu_wrapper {
+        padding: 0px;
+    }
+}
+
+@media (min-width: 992px) {
+    #canvas .item.col-md-6 {
+        width: 48%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#menu a.link {
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("http://static.tumblr.com/ky1rrhj/EPsmt25fq/arrow.png");
+    background-position: 10px 50%;
+    background-repeat: no-repeat;
+    background-size: 12px auto;
+    border-bottom: 1px solid #000000;
+    color: #FFFFFF;
+    display: block;
+    font-size: 0.7em;
+    font-weight: 400;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    text-decoration: none;
+    text-indent: 20px;
+    text-transform: uppercase;
+}
+
+
+
+
+.spotted-message {
+    font-family: 'Open Sans',sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 25px;
+}
+
+h2.spotted-title {
+    color: #E52222;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 20px;
+    margin-bottom: 4px;
+    margin-top: 0px;
+}
+
+h2.spotted-title a {
+    color: #E52222;
+}
+
+.spotted-message .datum {
+     font-size: 10px;
+     margin-bottom: 10px;
+     padding-left: 10px;
+}
+
+.spotted-message .gender {
+    height: 40px;
+    margin-right: 10px;
+    width: 40px;
+    float: left;
+}
+
+.spotted-message .gender img {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.spotted-details {
+    background: none repeat scroll 0 0 #F2F2F2;
+    border-radius: 0 0 5px 5px;
+    border-top: 1px solid #D8D8D8;
+    height: 50px;
+    line-height: 50px;
+    overflow: hidden;
+}
+
+.spotted-details .box {
+    border-right: 1px solid #D8D8D8;
+    cursor: pointer;
+    text-align: center;
+
+ }
+
+.spotted-details .box:hover {
+    background-color: #D8D8D8;
+}
+
+.spotted-details .box i {
+    font-size: 22px;
+    line-height: 45px;
+}
+
+.spotted-details .box.box-spotted {
+    text-align: right;
+    border-left: 1px solid #D8D8D8;
+ }
+
+.spotted-details .box.box-spotted img {
+    width: 40px;
+    margin-left: 5px;
+    margin-top: -5px;
+}

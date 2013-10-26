@@ -4,6 +4,13 @@
     {{ parent() }}
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" />
+    {% stylesheets 'bundles/spottedhome/css/*' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700">
+
 {% endblock %}
 
 {% block body_container %}
@@ -15,4 +22,7 @@
 {% block body_js %}
     {{ parent() }}
     <script src="{{ asset('js/bootstrap.js') }}"></script>
+    {% javascripts '@SpottedHomeBundle/Resources/public/js/*' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

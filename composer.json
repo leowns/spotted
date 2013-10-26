@@ -36,7 +36,8 @@
         "braincrafted/bootstrap-bundle": "dev-develop",
         "twbs/bootstrap": "3.0.*",
         "leafo/lessphp": "dev-master#85bd4557920d5f4fcbf41beb621e91b842e3621b",
-        "jquery/jquery": "1.9.*"
+        "jquery/jquery": "1.9.*",
+        "bmatzner/fontawesome-bundle": "*"
     },
     "scripts": {
         "post-install-cmd": [

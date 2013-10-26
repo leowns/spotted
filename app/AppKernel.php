@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Oryzone\Bundle\BoilerplateBundle\OryzoneBoilerplateBundle(),
             new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
             new Spotted\HomeBundle\SpottedHomeBundle(),
+            new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

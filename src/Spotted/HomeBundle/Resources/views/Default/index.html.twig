@@ -3,6 +3,228 @@
 {% block head_title %}My cool HTML5 website!!{% endblock %}
 
 {% block content %}
-Hello {{ name }}!
+
+    <div class="row">
+        <div id="menu_wrapper">
+            <div id="menu" class="col-xs-12 col-sm-2 col-md-2">
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-12" style="padding:20px;">
+                        <div id="logo">
+                            <a href="/"  style="width: 100%; height: 100%; display: block;">
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="link" href="/">HOME</a>
+
+                <a class="link" href="/ask">Ask</a>
+
+                <a class="link" href="/random">RANDOM</a>
+
+                <div id="search">
+                    <form id="search" action="/search" method="get">
+                        <input type="text" placeholder="search..." size="40" value="" name="q" class="form-control">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="canvas" class="col-xs-12 col-sm-10 col-md-10">
+            <div style="padding: 0 15px">
+                <div id="item_wrapper" class="row">
+                    
+                    <div class="item col-xs-12 col-sm-6 col-md-6">
+                        <div class="spotted-message">
+                            <h2 class="spotted-title">
+                                <a href="#">
+                                    <strong>SW (Winterthur)</strong>, 3. Stock
+                                </a>
+                            </h2>
+                            <div class="datum">
+                                <i class="glyphicon glyphicon-time"></i> vor 8 Stunden
+                            </div>
+                            <div class="gender">
+                                <img src="{{ asset('bundles/spottedhome/images/female.png') }}" />
+                            </div>
+                            <div style="cursor:pointer;" link="/M%C3%BCnchen/Richard%20Strau%C3%9F%20Stra%C3%9Fe/49882" class="text-main">
+                                <font color="#C42EAF"><strong>Sie:</strong></font>
+                                Du (m) rote Augen und grüne Haare im gelben Neoprenanzug. Habe dich heute im 3. Stock gesehen. Du bist mir sofort aufgefallen ;) Bitte melde dich bei mir 4>
+                            </div>
+
+                        </div>
+                        <div class="spotted-details container">
+                            <div class="row">
+                                <div class="box col-xs-2 col-sm-2 col-md-2">
+                                    <i class="glyphicon glyphicon-comment"></i>
+                                </div>
+                                <div class="box box-spotted col-xs-offset-5 col-sm-offset-5 col-md-offset-5 col-xs-5 col-sm-5 col-md-5">
+                                    Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item col-xs-12 col-sm-6 col-md-6">
+                        <div class="spotted-message">
+                            <h2 class="spotted-title">
+                                <a href="#">
+                                    <strong>TECH (Winterthur)</strong>, Mensa
+                                </a>
+                            </h2>
+                            <div class="datum">
+                                <i class="glyphicon glyphicon-time"></i> vor 2 Stunden
+                            </div>
+                            <div class="gender">
+                                <img src="{{ asset('bundles/spottedhome/images/male.png') }}" />
+                            </div>
+                            <div style="cursor:pointer;" link="/M%C3%BCnchen/Richard%20Strau%C3%9F%20Stra%C3%9Fe/49882" class="text-main">
+                                <font color="#587fd8"><strong>Er:</strong></font>
+                                Du (w) Scharze Haare, Schwarze Lederjacke, Chucks und Leggins warst heute in der U4 Richtung Arabellapark und bist an der Richard Strauß Straße ausgestiegen. Du warst in Begleitung der Mutter sie trug eine Pinke Plüschweste und zog einen Rollwagen hinter sich her. Bitte melde dich, es würde mich sehr freuen!!!
+                            </div>
+
+                        </div>
+                        <div class="spotted-details container">
+                            <div class="row">
+                                <div class="box col-xs-2 col-sm-2 col-md-2">
+                                    <i class="glyphicon glyphicon-comment"></i>
+                                </div>
+                                <div class="box box-spotted col-xs-offset-5 col-sm-offset-5 col-md-offset-5 col-xs-5 col-sm-5 col-md-5">
+                                    Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item col-xs-12 col-sm-6 col-md-6">
+                        <div class="spotted-message">
+                            <h2 class="spotted-title">
+                                <a href="#">
+                                    <strong>TECH (Winterthur)</strong>, Mensa
+                                </a>
+                            </h2>
+                            <div class="datum">
+                                <i class="glyphicon glyphicon-time"></i> vor 2 Stunden
+                            </div>
+                            <div class="gender">
+                                <img src="{{ asset('bundles/spottedhome/images/male.png') }}" />
+                            </div>
+                            <div style="cursor:pointer;" link="/M%C3%BCnchen/Richard%20Strau%C3%9F%20Stra%C3%9Fe/49882" class="text-main">
+                                <font color="#587fd8"><strong>Er:</strong></font>
+                                Du (w) Scharze Haare, Schwarze Lederjacke, Chucks und Leggins warst heute in der U4 Richtung Arabellapark und bist an der Richard Strauß Straße ausgestiegen. Du warst in Begleitung der Mutter sie trug eine Pinke Plüschweste und zog einen Rollwagen hinter sich her. Bitte melde dich, es würde mich sehr freuen!!!
+                            </div>
+
+                        </div>
+                        <div class="spotted-details container">
+                            <div class="row">
+                                <div class="box col-xs-2 col-sm-2 col-md-2">
+                                    <i class="glyphicon glyphicon-comment"></i>
+                                </div>
+                                <div class="box box-spotted col-xs-offset-5 col-sm-offset-5 col-md-offset-5 col-xs-5 col-sm-5 col-md-5">
+                                    Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item col-xs-12 col-sm-6 col-md-6">
+                        <div class="spotted-message">
+                            <h2 class="spotted-title">
+                                <a href="#">
+                                    <strong>TECH (Winterthur)</strong>, Mensa
+                                </a>
+                            </h2>
+                            <div class="datum">
+                                <i class="glyphicon glyphicon-time"></i> vor 2 Stunden
+                            </div>
+                            <div class="gender">
+                                <img src="{{ asset('bundles/spottedhome/images/male.png') }}" />
+                            </div>
+                            <div style="cursor:pointer;" link="/M%C3%BCnchen/Richard%20Strau%C3%9F%20Stra%C3%9Fe/49882" class="text-main">
+                                <font color="#587fd8"><strong>Er:</strong></font>
+                                Du (w) Scharze Haare, Schwarze Lederjacke, Chucks und Leggins warst heute in der U4 Richtung Arabellapark und bist an der Richard Strauß Straße ausgestiegen. Du warst in Begleitung der Mutter sie trug eine Pinke Plüschweste und zog einen Rollwagen hinter sich her. Bitte melde dich, es würde mich sehr freuen!!!
+                            </div>
+
+                        </div>
+                        <div class="spotted-details container">
+                            <div class="row">
+                                <div class="box col-xs-2 col-sm-2 col-md-2">
+                                    <i class="glyphicon glyphicon-comment"></i>
+                                </div>
+                                <div class="box box-spotted col-xs-offset-5 col-sm-offset-5 col-md-offset-5 col-xs-5 col-sm-5 col-md-5">
+                                    Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item col-xs-12 col-sm-6 col-md-6">
+                        <div class="spotted-message">
+                            <h2 class="spotted-title">
+                                <a href="#">
+                                    <strong>TECH (Winterthur)</strong>, Mensa
+                                </a>
+                            </h2>
+                            <div class="datum">
+                                <i class="glyphicon glyphicon-time"></i> vor 2 Stunden
+                            </div>
+                            <div class="gender">
+                                <img src="{{ asset('bundles/spottedhome/images/male.png') }}" />
+                            </div>
+                            <div style="cursor:pointer;" link="/M%C3%BCnchen/Richard%20Strau%C3%9F%20Stra%C3%9Fe/49882" class="text-main">
+                                <font color="#587fd8"><strong>Er:</strong></font>
+                                Du (w) Scharze Haare, Schwarze Lederjacke, Chucks und Leggins warst heute in der U4 Richtung Arabellapark und bist an der Richard Strauß Straße ausgestiegen. Du warst in Begleitung der Mutter sie trug eine Pinke Plüschweste und zog einen Rollwagen hinter sich her. Bitte melde dich, es würde mich sehr freuen!!!
+                            </div>
+
+                        </div>
+                        <div class="spotted-details container">
+                            <div class="row">
+                                <div class="box col-xs-2 col-sm-2 col-md-2">
+                                    <i class="glyphicon glyphicon-comment"></i>
+                                </div>
+                                <div class="box box-spotted col-xs-offset-5 col-sm-offset-5 col-md-offset-5 col-xs-5 col-sm-5 col-md-5">
+                                    Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item col-xs-12 col-sm-6 col-md-6">
+                        <div class="spotted-message">
+                            <h2 class="spotted-title">
+                                <a href="#">
+                                    <strong>TECH (Winterthur)</strong>, Mensa
+                                </a>
+                            </h2>
+                            <div class="datum">
+                                <i class="glyphicon glyphicon-time"></i> vor 2 Stunden
+                            </div>
+                            <div class="gender">
+                                <img src="{{ asset('bundles/spottedhome/images/male.png') }}" />
+                            </div>
+                            <div style="cursor:pointer;" link="/M%C3%BCnchen/Richard%20Strau%C3%9F%20Stra%C3%9Fe/49882" class="text-main">
+                                <font color="#587fd8"><strong>Er:</strong></font>
+                                Du (w) Scharze Haare, Schwarze Lederjacke, Chucks und Leggins warst heute in der U4 Richtung Arabellapark und bist an der Richard Strauß Straße ausgestiegen. Du warst in Begleitung der Mutter sie trug eine Pinke Plüschweste und zog einen Rollwagen hinter sich her. Bitte melde dich, es würde mich sehr freuen!!!
+                            </div>
+
+                        </div>
+                        <div class="spotted-details container">
+                            <div class="row">
+                                <div class="box col-xs-2 col-sm-2 col-md-2">
+                                    <i class="glyphicon glyphicon-comment"></i>
+                                </div>
+                                <div class="box box-spotted col-xs-offset-5 col-sm-offset-5 col-md-offset-5 col-xs-5 col-sm-5 col-md-5">
+                                    Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </dvi>
+    </div>
 
 {% endblock %}

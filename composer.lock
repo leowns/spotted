@@ -3,8 +3,55 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "c29b2cd088743d5b9e796448d372d18c",
+    "hash": "257de7aeec7f0a8010bceefeb3ddd62c",
     "packages": [
+        {
+            "name": "bmatzner/fontawesome-bundle",
+            "version": "3.2.1",
+            "target-dir": "Bmatzner/FontAwesomeBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bmatzner/BmatznerFontAwesomeBundle.git",
+                "reference": "d8779a09ce1988c841f6c8ed2a44d2613b7f7dc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bmatzner/BmatznerFontAwesomeBundle/zipball/d8779a09ce1988c841f6c8ed2a44d2613b7f7dc1",
+                "reference": "d8779a09ce1988c841f6c8ed2a44d2613b7f7dc1",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/framework-bundle": ">=2.1"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Bmatzner\\FontAwesomeBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT",
+                "CC BY 3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Bernd Matzner",
+                    "email": "bernd@matznermatzner.de",
+                    "homepage": "http://berndmatzner.de"
+                }
+            ],
+            "description": "FontAwesome Bundle for Symfony2",
+            "homepage": "http://fortawesome.github.com/Font-Awesome/",
+            "keywords": [
+                "css",
+                "graphics",
+                "symfony",
+                "typography",
+                "webfonts"
+            ],
+            "time": "2013-06-19 14:25:44"
+        },
         {
             "name": "braincrafted/bootstrap-bundle",
             "version": "dev-develop",
