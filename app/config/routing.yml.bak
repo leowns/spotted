@@ -1,0 +1,8 @@
+spotted_fb_login:
+    resource: "@SpottedFBLoginBundle/Resources/config/routing.yml"
+    prefix:   /
+
+spotted_home:
+    resource: "@SpottedHomeBundle/Resources/config/routing.yml"
+    prefix:   /
+
