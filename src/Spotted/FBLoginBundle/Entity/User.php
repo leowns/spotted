@@ -2,7 +2,8 @@
 
 namespace Spotted\FBLoginBundle\Entity;
 
-use Spotted\FBLoginBundle\Entity\User as BaseUser;
+//use Spotted\FBLoginBundle\Entity\User as BaseUser;
+use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
