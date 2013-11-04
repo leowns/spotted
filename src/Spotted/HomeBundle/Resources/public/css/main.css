@@ -1,3 +1,7 @@
+html {
+    min-height: 100%;
+}
+
 body {
     background-attachment: fixed;
     background-color: #F2F2F2;
@@ -12,6 +16,37 @@ body {
 
 a:hover, a:focus {
     text-decoration: none;
+}
+
+input[type="radio"] {
+    margin-left: -23px;
+    margin-top: -5px;
+    overflow: visible;
+    position: relative;
+    z-index: 9998;
+}
+
+#category-div label {
+    background-color: #F2F2F2;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 18px;
+    margin-right: 4px;
+    margin-top: 3px;
+    padding: 5px 15px 2px 4px;
+    position: relative;
+    z-index: 9999;
+}
+
+#category-div label:hover,
+#category-div label.selected{
+    background-color: #83C50F;
+    color: #FFFFFF;
+}
+
+#category-div label i {
+    position: relative;
+    z-index: 9999;
 }
 
 #menu_wrapper {
@@ -35,53 +70,6 @@ a:hover, a:focus {
     height: 30px;
 }
 
-#menu #search {
-    margin: 10px 0;
-}
-
-#canvas {
-    overflow: visible;
-    margin-top: 15px;
-}
-
-#canvas .item {
-    background-color: #FFFFFF;
-    border-radius: 5px 5px 5px 5px;
-    box-shadow: 0 0 4px #999999;
-    margin-bottom: 20px;
-    opacity: 0.9;
-    overflow: auto;
-    transition: opacity 300ms ease-in 0s;
-    padding:0px;
-}
-
-@media (min-width: 768px) {
-    #canvas .item.col-sm-6 {
-         width: 47%;
-    }
-
-    #menu_wrapper {
-        padding: 0px;
-    }
-}
-
-@media (min-width: 992px) {
-    #canvas .item.col-md-6 {
-        width: 48%;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
 #menu a.link {
     background-color: rgba(0, 0, 0, 0);
     background-image: url("http://static.tumblr.com/ky1rrhj/EPsmt25fq/arrow.png");
@@ -101,6 +89,98 @@ a:hover, a:focus {
     text-transform: uppercase;
 }
 
+#menu #search {
+    margin: 10px 0;
+}
+
+.new_item {
+    margin-bottom: 40px;
+}
+
+.new_item > .head h1 {
+    color: #FFFFFF;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 25px;
+    margin-bottom: 20px;
+    margin-top: 0;
+    text-shadow: 0 0 5px #FFFFFF;
+}
+
+
+.new_item .message_text {
+    -moz-box-sizing: border-box;
+    border: 0 none;
+    border-radius: 0 0 0 0;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    height: 40px;
+    margin: 0;
+    outline: 0 none;
+    padding: 10px;
+    resize: none;
+    width: 100%;
+}
+
+#new_item_form {
+    display:none;
+    padding: 20px;
+}
+
+
+#canvas {
+    overflow: visible;
+    margin-top: 15px;
+}
+
+#canvas .item {
+    background-color: #FFFFFF;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 0 4px #999999;
+    margin-bottom: 20px;
+    opacity: 0.9;
+    overflow: auto;
+    transition: opacity 300ms ease-in 0s;
+    padding:0px;
+}
+
+html.no-js #canvas .item {
+    margin-right: 18px;
+}
+
+
+
+#canvas .item.col-xs-12 {
+    width: 95%
+}
+
+@media (min-width: 768px) {
+    #canvas .item.col-sm-6 {
+         width: 44.9%;
+    }
+
+    #menu_wrapper {
+        padding: 0px;
+    }
+}
+
+@media (min-width: 992px) {
+    #canvas .item.col-md-6 {
+        width: 46%;
+    }
+}
+
+@media (min-width: 1170px) {
+    #canvas .item.col-md-6 {
+        width: 46.8%;
+    }
+}
+
+
+#item_wrapper {
+
+}
 
 
 
@@ -142,20 +222,29 @@ h2.spotted-title a {
     margin-top: 5px;
 }
 
-.spotted-details {
+.spotted-details,
+#new_item_form {
     background: none repeat scroll 0 0 #F2F2F2;
     border-radius: 0 0 5px 5px;
     border-top: 1px solid #D8D8D8;
-    height: 50px;
-    line-height: 50px;
     overflow: hidden;
 }
+
+.spotted-details {
+    height: 50px;
+    line-height: 50px;
+}
+
+#new_item_form {
+    box-shadow: 0 0 4px #999999;
+    height: 200px;
+}
+
 
 .spotted-details .box {
     border-right: 1px solid #D8D8D8;
     cursor: pointer;
     text-align: center;
-
  }
 
 .spotted-details .box:hover {
@@ -167,9 +256,17 @@ h2.spotted-title a {
     line-height: 45px;
 }
 
+.spotted-details .box.comment {
+    width: 60px;
+    float:left;
+}
+
+
 .spotted-details .box.box-spotted {
-    text-align: right;
+    text-align: center;
     border-left: 1px solid #D8D8D8;
+    float: right;
+    width: 160px;
  }
 
 .spotted-details .box.box-spotted img {

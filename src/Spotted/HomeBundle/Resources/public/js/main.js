@@ -15,4 +15,31 @@ $( document ).ready(function() {
         columnWidth: '.item'
     });
 
+
+    $('textarea').autosize();
+
+    $(document).click(function () {
+        var $el = $("#new_item_form");
+        if ($el.is(":visible")) {
+            $("#new_item_form").slideUp("slow");
+            $("#form_message").animate({ height: "50px" }, 1000);
+            $("#form_message").css("min-height", "0");
+        }
+    });
+
+    $("#form_message").click(function(event) {
+        event.stopPropagation();
+
+        $("#form_message").animate({
+            "min-height": "200px"
+        }, {
+            duration: 500,
+            complete: function() {
+                $("#new_item_form").slideDown("slow");
+                $("#form_message").css("min-height", "200px");
+            }
+        });
+    })
+
+
 });
