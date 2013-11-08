@@ -1,0 +1,19 @@
+Spotted\HomeBundle\Entity\Tags:
+    type: entity
+    table: Tags
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: ID
+            generator:
+                strategy: IDENTITY
+        bezeichnung:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+            column: Bezeichnung
+    lifecycleCallbacks: {  }

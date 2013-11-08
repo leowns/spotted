@@ -1,0 +1,29 @@
+Spotted\HomeBundle\Entity\Comments:
+    type: entity
+    table: Comments
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: ID
+            generator:
+                strategy: IDENTITY
+        text:
+            type: text
+            nullable: true
+        datum:
+            type: datetime
+            nullable: true
+    manyToOne:
+        post:
+            targetEntity: Post
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Post_ID:
+                    referencedColumnName: ID
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

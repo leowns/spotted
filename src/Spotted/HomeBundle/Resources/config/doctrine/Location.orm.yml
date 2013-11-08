@@ -1,0 +1,29 @@
+Spotted\HomeBundle\Entity\Location:
+    type: entity
+    table: Location
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: ID
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+            column: Name
+    manyToOne:
+        ort:
+            targetEntity: Ort
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Ort_ID:
+                    referencedColumnName: ID
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

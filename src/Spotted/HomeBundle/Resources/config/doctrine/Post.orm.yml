@@ -1,0 +1,38 @@
+Spotted\HomeBundle\Entity\Post:
+    type: entity
+    table: Post
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: ID
+            generator:
+                strategy: IDENTITY
+        text:
+            type: text
+            nullable: true
+        date:
+            type: datetime
+            nullable: true
+    manyToOne:
+        user:
+            targetEntity: User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                User_ID:
+                    referencedColumnName: ID
+            orphanRemoval: false
+        location:
+            targetEntity: Location
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Location_ID:
+                    referencedColumnName: ID
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

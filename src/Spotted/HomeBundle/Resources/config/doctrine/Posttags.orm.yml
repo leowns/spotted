@@ -1,0 +1,32 @@
+Spotted\HomeBundle\Entity\Posttags:
+    type: entity
+    table: PostTags
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: ID
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        tags:
+            targetEntity: Tags
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Tags_ID:
+                    referencedColumnName: ID
+            orphanRemoval: false
+        post:
+            targetEntity: Post
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Post_ID:
+                    referencedColumnName: ID
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
