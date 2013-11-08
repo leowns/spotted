@@ -11,15 +11,6 @@ Spotted\HomeBundle\Entity\Posttags:
             generator:
                 strategy: IDENTITY
     manyToOne:
-        tags:
-            targetEntity: Tags
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                Tags_ID:
-                    referencedColumnName: ID
-            orphanRemoval: false
         post:
             targetEntity: Post
             cascade: {  }
@@ -27,6 +18,15 @@ Spotted\HomeBundle\Entity\Posttags:
             inversedBy: null
             joinColumns:
                 Post_ID:
+                    referencedColumnName: ID
+            orphanRemoval: false
+        tags:
+            targetEntity: Tags
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Tags_ID:
                     referencedColumnName: ID
             orphanRemoval: false
     lifecycleCallbacks: {  }

@@ -17,15 +17,6 @@ Spotted\HomeBundle\Entity\Post:
             type: datetime
             nullable: true
     manyToOne:
-        user:
-            targetEntity: User
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                User_ID:
-                    referencedColumnName: ID
-            orphanRemoval: false
         location:
             targetEntity: Location
             cascade: {  }
@@ -33,6 +24,15 @@ Spotted\HomeBundle\Entity\Post:
             inversedBy: null
             joinColumns:
                 Location_ID:
+                    referencedColumnName: ID
+            orphanRemoval: false
+        user:
+            targetEntity: User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                User_ID:
                     referencedColumnName: ID
             orphanRemoval: false
     lifecycleCallbacks: {  }
