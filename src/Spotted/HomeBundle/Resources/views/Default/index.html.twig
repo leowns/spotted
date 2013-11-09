@@ -18,11 +18,9 @@
                     </div>
                 </div>
 
-                <a class="link" href="/">HOME</a>
+                <a class="link" href="{{ path('spotted_home_homepage') }}">Home</a>
 
-                <a class="link" href="/ask">Ask</a>
-
-                <a class="link" href="/random">RANDOM</a>
+                <a class="link" href="{{ path('user_logout') }}">Logout</a>
 
                 <div id="search">
                     <form id="search" action="/search" method="get">

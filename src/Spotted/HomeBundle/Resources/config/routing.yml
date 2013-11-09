@@ -1,3 +1,10 @@
 spotted_home_homepage:
-    pattern:  /hello/{name}
+    pattern:  /home
     defaults: { _controller: SpottedHomeBundle:Default:index }
+
+spotted_home_single_comment:
+    pattern:  /comment/{id}
+    defaults: { _controller: SpottedHomeBundle:Default:comment }
+
+user_logout:
+       pattern:   /logout
