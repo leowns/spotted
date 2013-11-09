@@ -1,25 +1,26 @@
+
 html {
-    background: none;
+
 }
 
-body {
-    background-attachment: fixed;
-    background-color: #F2F2F2;
-    background-image: url("http://static.tumblr.com/70d92089993cff5fbf6a89638b287863/ky1rrhj/iLBmtlqn9/tumblr_static_image.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    font-family: 'Open Sans','helvetica';
-    height: 100%;
-    padding: 0;
-    font-size: 15px;
-}
-
-/*html.login-page body {*/
+/*body {*/
+    /*background-attachment: fixed;*/
     /*background-color: #F2F2F2;*/
+    /*background-image: url("http://static.tumblr.com/70d92089993cff5fbf6a89638b287863/ky1rrhj/iLBmtlqn9/tumblr_static_image.jpg");*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: cover;*/
     /*font-family: 'Open Sans','helvetica';*/
     /*height: 100%;*/
+    /*padding: 0;*/
     /*font-size: 16px;*/
 /*}*/
+
+body {
+    background-color: #F2F2F2;
+    font-family: 'Open Sans','helvetica';
+    height: 100%;
+    font-size: 16px;
+}
 
 a:hover, a:focus {
     text-decoration: none;
@@ -58,10 +59,6 @@ input[type="radio"] {
     position: absolute;
 }
 
-label {
-    font-weight: normal;
-}
-
 /**
 Login Page
 **/
@@ -73,23 +70,22 @@ Login Page
     position: absolute;
     right: 0;
     top: 100px;
-    width: 350px;
-    opacity: 0.9;
+    width: 400px;
 }
 
 .login-box .login-header {
     height: 100px;
-    padding: 0 40px;
+    padding: 0 50px;
 }
 
 .login-box #logo {
-    background-image: url("../images/logo.png");
+    background-image: url("../../bundles/spottedhome/images/logo.png");
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: center center;
+    background-position: top center;
     display: block;
     height: 90px;
-    margin-top: 40px;
+    margin-top: 50px;
 }
 
 .login-box .login-title {
@@ -98,26 +94,8 @@ Login Page
 }
 
 .login-box .login-form {
-    margin-bottom: 80px;
+    margin-bottom: 20px;
 }
-
-.login-box .login-form .form-group {
-    margin: 5px 0;
-}
-
-.login-box .login-form .row {
-    padding: 0 15px;
-    margin-bottom: 15px;
-}
-
-.login-box .hover-left:hover {
-    border-left-color: #E41F1F;
-    border-image: none;
-    border-style: solid;
-    border-width: 0 0 0 3px;
-    padding-left: 12px;
-}
-
 
 .login-box .login-footer {
     background-color: #FAFAFA;
@@ -133,6 +111,31 @@ Login Page
 
 
 
+
+
+#category-div label {
+    background-color: #F2F2F2;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 18px;
+    margin-right: 4px;
+    margin-top: 3px;
+    padding: 5px 15px 2px 4px;
+    position: relative;
+    z-index: 9999;
+}
+
+#category-div label:hover,
+#category-div label.selected{
+    background-color: #83C50F;
+    color: #FFFFFF;
+}
+
+#category-div label i {
+    position: relative;
+    z-index: 9999;
+}
+
 #menu_wrapper {
     padding: 15px;
 }
@@ -146,7 +149,7 @@ Login Page
 }
 
 #menu #logo {
-    background-image: url("../images/logo_white_red.png");
+    background-image: url("../../bundles/spottedhome/images/logo_white_red.png");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: top center;
@@ -177,40 +180,8 @@ Login Page
     margin: 10px 0;
 }
 
-
-#message_filter {
-    margin-bottom: 8px;
-}
-
-#filter_location {
-    background-color: rgba(255,255,255,0.25);
-    color:    #333333;
-}
-
-#filter_location::-webkit-input-placeholder { /* WebKit browsers */
-    color:    #000000;
-}
-#filter_location:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color:    #000000;
-}
-#filter_location::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color:    #000000;
-}
-#filter_location:-ms-input-placeholder { /* Internet Explorer 10+ */
-    color:    #000000;
-}
-
-#message_filter .btn:active, #message_filter .btn.active {
-    background-image: none;
-    box-shadow: none;
-    outline: 0 none;
-    color: #D9534F;
-
-    font-weight: 700;
-}
-
 .new_item {
-    margin-bottom: 0px;
+    margin-bottom: 40px;
 }
 
 .new_item > .head h1 {
@@ -228,6 +199,8 @@ Login Page
     -moz-box-sizing: border-box;
     border: 0 none;
     border-radius: 0 0 0 0;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 16px;
     font-weight: 300;
     height: 40px;
     margin: 0;
@@ -237,10 +210,9 @@ Login Page
     width: 100%;
 }
 
-#new_item_div {
+#new_item_form {
     display:none;
-    padding: 15px 30px 20px;
-    box-shadow: 0 0 4px #999999;
+    padding: 20px;
 }
 
 
@@ -253,7 +225,6 @@ Login Page
     background-color: #FFFFFF;
     border-radius: 5px 5px 5px 5px;
     box-shadow: 0 0 4px #999999;
-    border: 1px solid #DDDDDD;
     margin-bottom: 20px;
     opacity: 0.9;
     overflow: auto;
@@ -339,7 +310,7 @@ h2.spotted-title a {
 }
 
 .spotted-details,
-#new_item_div {
+#new_item_form {
     background: none repeat scroll 0 0 #F2F2F2;
     border-radius: 0 0 5px 5px;
     border-top: 1px solid #D8D8D8;
@@ -350,6 +321,12 @@ h2.spotted-title a {
     height: 50px;
     line-height: 50px;
 }
+
+#new_item_form {
+    box-shadow: 0 0 4px #999999;
+    height: 200px;
+}
+
 
 .spotted-details .box {
     border-right: 1px solid #D8D8D8;

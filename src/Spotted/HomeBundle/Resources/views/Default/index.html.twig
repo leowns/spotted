@@ -41,65 +41,123 @@
                             </div>
                             <div class="row">
                                 <div class="content container">
-                                    <form>
+                                    <form id="new_item_form">
                                         <div class="row">
-                                            <textarea placeholder="BRICH DAS EIS, SCHREIBE DEINEM FLIRT!" class="message_text" required="required" name="form[message]" id="form_message"></textarea>
+                                            <textarea placeholder="TRAU DICH, SCHREIBE DEINEM FLIRT!" class="message_text" required="required" id="form_message"></textarea>
                                         </div>
                                         <div class="row">
-                                            <div id="new_item_form">
-                                                <div class="col-xs-6">
-                                                    <div class="form-group">
-                                                        <label for="Location">Location</label>
-                                                        <input type="text" class="form-control" id="Location" placeholder="Location">
+                                            <div id="new_item_div" class="container">
+                                                <div class="row">
+                                                    <div class="col-xs-2">
+                                                        <label>Dein Geschlecht</label>
+                                                        <div class="form-group">
+                                                            <div class="btn-group" data-toggle="buttons">
+                                                                <label class="btn btn-default" data-placement="bottom" data-toggle="tooltip" data-original-title="weiblich" data-container="body">
+                                                                    <input type="radio" name="options" id="option1"> <i class="icon icon-female"></i>
+                                                                </label>
+                                                                <label class="btn btn-default" data-placement="bottom" data-toggle="tooltip" data-original-title="männlich" data-container="body">
+                                                                    <input type="radio" name="options" id="option2"> <i class="icon icon-male"></i>
+                                                                </label>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <div class="form-group">
-                                                        <label>Tags</label>
-                                                        <div id="category-div" class="controls">
-                                                            <label for="form_category_0" id="label-form_category_0" class="required" data-placement="bottom" data-title="Campus" data-toggle="tooltip" data-original-title="">
-                                                                <i class="glyphicon glyphicon-cutlery"></i>
-                                                            </label>
-                                                            <input type="radio" value="Campus" required="required" name="form[category]" id="form_category_0" class="input_hidden">
-                                                            <label for="form_category_1" id="label-form_category_1" class="required" data-placement="bottom" data-title="Nightlife" data-toggle="tooltip" data-original-title="">
-                                                                <i class="glyphicon glyphicon-cutlery"></i>
-                                                            </label>
-                                                            <input type="radio" value="Nightlife" required="required" name="form[category]" id="form_category_1" class="input_hidden">
-                                                            <label for="form_category_2" id="label-form_category_2" class="required" data-placement="bottom" data-title="Bus &amp; Bahn" data-toggle="tooltip" data-original-title="">
-                                                                <i class="glyphicon glyphicon-cutlery"></i>
-                                                            </label>
-                                                            <input type="radio" value="Bus &amp; Bahn" required="required" name="form[category]" id="form_category_2" class="input_hidden">
-                                                            <label for="form_category_3" id="label-form_category_3" class="required" data-placement="bottom" data-title="Café &amp; Restaurant" data-toggle="tooltip" data-original-title="">
-                                                                <i class="glyphicon glyphicon-cutlery"></i>
-                                                            </label>
-                                                            <input type="radio" value="Café &amp; Restaurant" required="required" name="form[category]" id="form_category_3" class="input_hidden">
-                                                            <label for="form_category_4" id="label-form_category_4" class="required" data-placement="bottom" data-title="Sport" data-toggle="tooltip" data-original-title="">
-                                                                <i class="glyphicon glyphicon-cutlery"></i>
-                                                            </label>
-                                                            <input type="radio" value="Sport" required="required" name="form[category]" id="form_category_4" class="input_hidden">
-                                                            <label for="form_category_5" id="label-form_category_5" class="required" data-placement="bottom" data-title="City" data-toggle="tooltip" data-original-title="">
-                                                                <i class="glyphicon glyphicon-cutlery"></i>
-                                                            </label>
-                                                            <input type="radio" value="City" required="required" name="form[category]" id="form_category_5" class="input_hidden">
-                                                            <label for="form_category_6" id="label-form_category_6" class="required" data-placement="bottom" data-title="Sonstiges" data-toggle="tooltip" data-original-title="">
-                                                                <i class="glyphicon glyphicon-cutlery"></i>
-                                                            </label>
-                                                            <input type="radio" value="Sonstiges" required="required" name="form[category]" id="form_category_6" class="input_hidden">
+                                                    <div class="col-xs-6">
+                                                        <div class="form-group">
+                                                            <label for="Location">Location</label>
+                                                            <input type="text" class="form-control" id="Location" placeholder="Location">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-4">
+                                                        <div class="pull-right">
+                                                            <label>Tags</label>
+                                                            <div class="form-group">
+                                                                <div class="btn-group" data-toggle="buttons">
+                                                                    <label class="btn btn-danger" data-placement="bottom" data-toggle="tooltip" data-original-title="Mensa" data-container="body">
+                                                                        <input type="radio" name="options" id="option1"> <i class="glyphicon glyphicon-cutlery"></i>
+                                                                    </label>
+                                                                    <label class="btn btn-danger" data-placement="bottom" data-toggle="tooltip" data-original-title="Party" data-container="body">
+                                                                        <input type="radio" name="options" id="option2"> <i class="icon icon-glass"></i>
+                                                                    </label>
+                                                                    <label class="btn btn-danger" data-placement="bottom" data-toggle="tooltip" data-original-title="Auf dem Weg" data-container="body">
+                                                                        <input type="radio" name="options" id="option3"> <i class="icon icon-road"></i>
+                                                                    </label>
+                                                                    <label class="btn btn-danger" data-placement="bottom" data-toggle="tooltip" data-original-title="Pausenraum" data-container="body">
+                                                                        <input type="radio" name="options" id="option2"> <i class="icon icon-coffee"></i>
+                                                                    </label>
+                                                                    <label class="btn btn-danger" data-placement="bottom" data-toggle="tooltip" data-original-title="Klassenzimmer" data-container="body">
+                                                                        <input type="radio" name="options" id="option2"> <i class="icon icon-superscript"></i>
+                                                                    </label>
+                                                                    <label class="btn btn-danger" data-placement="bottom" data-toggle="tooltip" data-original-title="Irgendwo sonst im Gebäude" data-container="body">
+                                                                        <input type="radio" name="options" id="option3"> <i class="icon icon-building"></i>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
-
-                                                <button type="submit" class="btn btn-default">Submit</button>
+                                                <div class="row">
+                                                    <div class="col-xs-12" style="margin-top: 20px">
+                                                        <button type="submit" class="btn btn-default btn-block pull-right">Finde deinen Flirt!</button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <hr>
+                <div id="message_filter" class="row">
+                    <div class="container">
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-xs-12">
+                                <input type="text" class="form-control" id="filter_location" placeholder="Location">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <div class="btn-group-vertical" data-toggle="buttons">
+                                    <label class="btn">
+                                        <input type="radio" name="options" id="option1"> <i class="icon icon-female"></i> Sie sucht
+                                    </label>
+                                    <label class="btn">
+                                        <input type="radio" name="options" id="option2"> <i class="icon icon-male"></i> Er sucht
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn">
+                                        <input type="radio" name="options" id="option1"> <i class="icon icon-heart"></i> Alle
+                                    </label>
+                                    <label class="btn">
+                                        <input type="radio" name="options" id="option1"> <i class="glyphicon glyphicon-cutlery"></i> Mensa
+                                    </label>
+                                    <label class="btn">
+                                        <input type="radio" name="options" id="option2"> <i class="icon icon-glass"></i> Party
+                                    </label>
+                                    <label class="btn">
+                                        <input type="radio" name="options" id="option3"> <i class="icon icon-road"></i> Auf dem Weg
+                                    </label>
+                                    <label class="btn">
+                                        <input type="radio" name="options" id="option2"> <i class="icon icon-coffee"></i> Pausenraum
+                                    </label>
+                                    <label class="btn">
+                                        <input type="radio" name="options" id="option2"> <i class="icon icon-superscript"></i> Im Klassenzimmer
+                                    </label>
+                                    <label class="btn">
+                                        <input type="radio" name="options" id="option3"> <i class="icon icon-building"></i> Irgendwo sonst im Gebäude
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
+
                 <div  class="row">
                     <div id="item_wrapper" class="container">
                         <div class="item col-xs-12 col-sm-6 col-md-6">

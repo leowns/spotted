@@ -18,12 +18,15 @@ $( document ).ready(function() {
 
     $('textarea').autosize();
 
-    $(document).click(function () {
-        var $el = $("#new_item_form");
-        if ($el.is(":visible")) {
-            $("#new_item_form").slideUp("slow");
-            $("#form_message").animate({ height: "50px" }, 1000);
-            $("#form_message").css("min-height", "0");
+    $(document).click(function (event) {
+
+        if (!$("#new_item_form").has(event.target).length > 0) {
+            var $el = $("#new_item_div");
+            if ($el.is(":visible")) {
+                $("#new_item_div").slideUp("slow");
+                $("#form_message").animate({ height: "43px" }, 1000);
+                $("#form_message").css("min-height", "0");
+            }
         }
     });
 
@@ -31,15 +34,24 @@ $( document ).ready(function() {
         event.stopPropagation();
 
         $("#form_message").animate({
-            "min-height": "200px"
-        }, {
-            duration: 500,
-            complete: function() {
-                $("#new_item_form").slideDown("slow");
-                $("#form_message").css("min-height", "200px");
-            }
-        });
+            "min-height": "140px"
+        }, 600);
+        $("#new_item_div").slideDown("slow");
+
+
+//        $("#form_message").animate({
+//            "min-height": "200px"
+//        }, {
+//            duration: 500,
+//            complete: function() {
+//                $("#new_item_div").slideDown("slow");
+//                $("#form_message").css("min-height", "200px");
+//            }
+//        });
     })
+
+    $('*[data-toggle="tooltip"]').tooltip();
+
 
 
 });
