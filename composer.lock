@@ -7,17 +7,17 @@
     "packages": [
         {
             "name": "bmatzner/fontawesome-bundle",
-            "version": "3.2.1",
+            "version": "4.0.0",
             "target-dir": "Bmatzner/FontAwesomeBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bmatzner/BmatznerFontAwesomeBundle.git",
-                "reference": "d8779a09ce1988c841f6c8ed2a44d2613b7f7dc1"
+                "reference": "8005c344e144e6565bc2c9b58932f4e6f2730209"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bmatzner/BmatznerFontAwesomeBundle/zipball/d8779a09ce1988c841f6c8ed2a44d2613b7f7dc1",
-                "reference": "d8779a09ce1988c841f6c8ed2a44d2613b7f7dc1",
+                "url": "https://api.github.com/repos/bmatzner/BmatznerFontAwesomeBundle/zipball/8005c344e144e6565bc2c9b58932f4e6f2730209",
+                "reference": "8005c344e144e6565bc2c9b58932f4e6f2730209",
                 "shasum": ""
             },
             "require": {
@@ -50,36 +50,32 @@
                 "typography",
                 "webfonts"
             ],
-            "time": "2013-06-19 14:25:44"
+            "time": "2013-10-26 14:23:05"
         },
         {
             "name": "braincrafted/bootstrap-bundle",
             "version": "dev-develop",
-            "target-dir": "Bc/Bundle/BootstrapBundle",
+            "target-dir": "Braincrafted/Bundle/BootstrapBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/braincrafted/bootstrap-bundle.git",
-                "reference": "283d48c74c59276c423c6d43ce63382f1cf058ee"
+                "reference": "4fc10d5567da6ace668ccdc7b597b419530000d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/braincrafted/bootstrap-bundle/zipball/283d48c74c59276c423c6d43ce63382f1cf058ee",
-                "reference": "283d48c74c59276c423c6d43ce63382f1cf058ee",
+                "url": "https://api.github.com/repos/braincrafted/bootstrap-bundle/zipball/4fc10d5567da6ace668ccdc7b597b419530000d5",
+                "reference": "4fc10d5567da6ace668ccdc7b597b419530000d5",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.3.3",
+                "symfony/symfony": ">=2.3"
             },
             "require-dev": {
-                "instaclick/php-code-sniffer": "dev-master",
-                "instaclick/symfony2-coding-standard": "dev-master",
-                "knplabs/knp-markdown-bundle": "dev-master",
-                "knplabs/knp-menu": "dev-master",
-                "knplabs/knp-menu-bundle": "dev-master",
+                "knplabs/knp-menu": "~2.0@alpha",
+                "knplabs/knp-menu-bundle": "~2.0@alpha",
                 "knplabs/knp-paginator-bundle": "dev-master",
-                "mockery/mockery": "dev-master@dev",
-                "nikic/php-parser": "dev-master",
-                "phpmd/phpmd": "1.4.*",
+                "mockery/mockery": "0.8.*",
                 "phpunit/phpunit": "3.7.*"
             },
             "suggest": {
@@ -91,7 +87,7 @@
             "type": "symfony-bundle",
             "autoload": {
                 "psr-0": {
-                    "Bc\\Bundle\\BootstrapBundle": ""
+                    "Braincrafted\\Bundle\\BootstrapBundle": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -106,11 +102,11 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Twitter Bootstrap for Symfony2",
+            "description": "BraincraftedBootstrapBundle integrates Bootstrap into Symfony2 by providing templates, Twig extensions, services and commands.",
             "keywords": [
                 "bootstrap"
             ],
-            "time": "2013-10-12 22:48:49"
+            "time": "2013-11-11 11:44:46"
         },
         {
             "name": "components/html5-boilerplate",
@@ -267,16 +263,16 @@
         },
         {
             "name": "components/normalize.css",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/components/normalize.css.git",
-                "reference": "3fa50cf6e0e69af0c491927d010b40b8646bb51f"
+                "reference": "979bb1d1710554f8c298544d39d985310c2f5070"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/normalize.css/zipball/3fa50cf6e0e69af0c491927d010b40b8646bb51f",
-                "reference": "3fa50cf6e0e69af0c491927d010b40b8646bb51f",
+                "url": "https://api.github.com/repos/components/normalize.css/zipball/979bb1d1710554f8c298544d39d985310c2f5070",
+                "reference": "979bb1d1710554f8c298544d39d985310c2f5070",
                 "shasum": ""
             },
             "require": {
@@ -285,6 +281,7 @@
             "type": "component",
             "extra": {
                 "component": {
+                    "name": "normalize-css",
                     "styles": [
                         "normalize.css"
                     ]
@@ -296,7 +293,7 @@
             ],
             "description": "Normalize.css is a customisable CSS file that makes browsers render all elements more consistently and in line with modern standards.",
             "homepage": "http://necolas.github.com/normalize.css/",
-            "time": "2013-04-13 19:46:11"
+            "time": "2013-10-24 03:37:49"
         },
         {
             "name": "doctrine/annotations",
@@ -371,16 +368,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "d0e4447707a064a5814b18cb0dcc2f24185f6179"
+                "reference": "e16d7adf45664a50fa86f515b6d5e7f670130449"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/d0e4447707a064a5814b18cb0dcc2f24185f6179",
-                "reference": "d0e4447707a064a5814b18cb0dcc2f24185f6179",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/e16d7adf45664a50fa86f515b6d5e7f670130449",
+                "reference": "e16d7adf45664a50fa86f515b6d5e7f670130449",
                 "shasum": ""
             },
             "require": {
@@ -388,6 +385,10 @@
             },
             "conflict": {
                 "doctrine/common": ">2.2,<2.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=3.7",
+                "satooshi/php-coveralls": "~0.6"
             },
             "type": "library",
             "extra": {
@@ -408,7 +409,8 @@
                 {
                     "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
                 },
                 {
                     "name": "Guilherme Blanco",
@@ -436,7 +438,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2013-09-26 19:23:25"
+            "time": "2013-10-25 19:04:14"
         },
         {
             "name": "doctrine/collections",
@@ -1917,31 +1919,36 @@
         },
         {
             "name": "twbs/bootstrap",
-            "version": "v3.0.0",
+            "version": "v3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "e8a1df5f060bf7e6631554648e0abde150aedbe4"
+                "reference": "3887f540b978d593f433bfef15888bc2d103de72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/e8a1df5f060bf7e6631554648e0abde150aedbe4",
-                "reference": "e8a1df5f060bf7e6631554648e0abde150aedbe4",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/3887f540b978d593f433bfef15888bc2d103de72",
+                "reference": "3887f540b978d593f433bfef15888bc2d103de72",
                 "shasum": ""
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "Apache-2.0"
             ],
             "authors": [
                 {
-                    "name": "sugeng tigefa",
-                    "email": "tigefa@gmail.com"
-                },
-                {
                     "name": "Jacob Thornton",
                     "email": "jacobthornton@gmail.com"
+                },
+                {
+                    "name": "Mark Otto",
+                    "email": "markdotto@gmail.com"
                 }
             ],
             "description": "Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.",
@@ -1950,24 +1957,24 @@
                 "bootstrap",
                 "css"
             ],
-            "time": "2013-08-19 21:18:20"
+            "time": "2013-11-06 21:19:18"
         },
         {
             "name": "twig/extensions",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig-extensions.git",
-                "reference": "921799aaf05f88af749d72912d6b154dfeb9a03e"
+                "reference": "f91a82ec225e5bb108e01a0f93c9be04f84dcfa0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig-extensions/zipball/921799aaf05f88af749d72912d6b154dfeb9a03e",
-                "reference": "921799aaf05f88af749d72912d6b154dfeb9a03e",
+                "url": "https://api.github.com/repos/fabpot/Twig-extensions/zipball/f91a82ec225e5bb108e01a0f93c9be04f84dcfa0",
+                "reference": "f91a82ec225e5bb108e01a0f93c9be04f84dcfa0",
                 "shasum": ""
             },
             "require": {
-                "twig/twig": "1.*"
+                "twig/twig": "~1.0"
             },
             "type": "library",
             "extra": {
@@ -1997,20 +2004,20 @@
                 "i18n",
                 "text"
             ],
-            "time": "2013-02-28 14:21:30"
+            "time": "2013-10-18 19:37:15"
         },
         {
             "name": "twig/twig",
-            "version": "v1.14.1",
+            "version": "v1.14.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "8873d7593ad7c120004f177c0fd01459b383c9cb"
+                "reference": "ca445842fcea4f844d68203ffa2d00f5e3cdea64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/8873d7593ad7c120004f177c0fd01459b383c9cb",
-                "reference": "8873d7593ad7c120004f177c0fd01459b383c9cb",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/ca445842fcea4f844d68203ffa2d00f5e3cdea64",
+                "reference": "ca445842fcea4f844d68203ffa2d00f5e3cdea64",
                 "shasum": ""
             },
             "require": {
@@ -2046,7 +2053,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-10-15 19:17:38"
+            "time": "2013-10-30 08:20:53"
         }
     ],
     "packages-dev": [

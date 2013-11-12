@@ -26,7 +26,7 @@ twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
 
-bc_bootstrap:
+braincrafted_bootstrap:
     less_filter: lessphp
 
 # Assetic Configuration
