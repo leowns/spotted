@@ -5,3 +5,10 @@ services:
 #    spotted_home.example:
 #        class: %spotted_home.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    fos_facebook.user.login:
+        class: Spotted\HomeBundle\Security\User\Provider\FacebookProvider
+        arguments:
+            facebook: "@fos_facebook.api"
+            userManager: "@fos_user.user_manager"
+            validator: "@validator"
+            container: "@service_container"
