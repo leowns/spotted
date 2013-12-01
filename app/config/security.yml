@@ -25,7 +25,7 @@ security:
         main:
             pattern: ^/
             fos_facebook:
-                app_url: "http://apps.facebook.com/spotted-zhaw/"
+                app_url: "http://apps.facebook.com/ZHAW-Spotted/"
                 server_url: "http://localhost/facebookApp/"
                 login_path: /user/login
                 check_path: /facebook/login_check
