@@ -125,4 +125,60 @@ class Comments
     {
         return $this->post;
     }
+    /**
+     * @var string
+     */
+    private $notread;
+
+    /**
+     * @var \Spotted\HomeBundle\Entity\Post
+     */
+    private $post1;
+
+
+    /**
+     * Set notread
+     *
+     * @param string $notread
+     * @return Comments
+     */
+    public function setNotread($notread)
+    {
+        $this->notread = $notread;
+    
+        return $this;
+    }
+
+    /**
+     * Get notread
+     *
+     * @return string 
+     */
+    public function getNotread()
+    {
+        return $this->notread;
+    }
+
+    /**
+     * Set post1
+     *
+     * @param \Spotted\HomeBundle\Entity\Post $post1
+     * @return Comments
+     */
+    public function setPost1(\Spotted\HomeBundle\Entity\Post $post1 = null)
+    {
+        $this->post1 = $post1;
+    
+        return $this;
+    }
+
+    /**
+     * Get post1
+     *
+     * @return \Spotted\HomeBundle\Entity\Post 
+     */
+    public function getPost1()
+    {
+        return $this->post1;
+    }
 }

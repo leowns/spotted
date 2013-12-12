@@ -1,6 +1,9 @@
 spotted_home_homepage:
     pattern:  /home
     defaults: { _controller: SpottedHomeBundle:Default:index }
+spotted_homeform_submission:
+    pattern:  /post
+    defaults: { _controller: SpottedHomeBundle:Default:create }
 
 spotted_home_single_comment:
     pattern:  /comment/{id}

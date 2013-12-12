@@ -1,6 +1,6 @@
 {% extends "SpottedHomeBundle::base.html.twig" %}
 
-{% block head_title %}My cool HTML5 website!!{% endblock %}
+{% block head_title %}ZHAW Spotted{% endblock %}
 
 {% block content %}
 
@@ -41,9 +41,10 @@
                             </div>
                             <div class="row">
                                 <div class="content container">
-                                    <form id="new_item_form">
+								
+                                     <form id="new_item_form" action="{{ path('spotted_homeform_submission') }}" name="form" method="post">
                                         <div class="row">
-                                            <textarea placeholder="TRAU DICH, SCHREIBE DEINEM FLIRT!" class="message_text" required="required" id="form_message"></textarea>
+                                            <textarea placeholder="TRAU DICH, SCHREIBE DEINEM FLIRT!" name="text" class="message_text" required="required" id="form_message"></textarea>
                                         </div>
                                         <div class="row">
                                             <div id="new_item_div" class="container">
@@ -53,10 +54,10 @@
                                                         <div class="form-group">
                                                             <div class="btn-group" data-toggle="buttons">
                                                                 <label class="btn btn-default" data-placement="bottom" data-toggle="tooltip" data-original-title="weiblich" data-container="body">
-                                                                    <input type="radio" name="options" id="option1"> <i class="fa fa-female"></i>
+                                                                    <input type="radio" name="geschlecht" value="f" id="option1"> <i class="fa fa-female"></i>
                                                                 </label>
                                                                 <label class="btn btn-default" data-placement="bottom" data-toggle="tooltip" data-original-title="männlich" data-container="body">
-                                                                    <input type="radio" name="options" id="option2"> <i class="fa fa-male"></i>
+                                                                    <input type="radio" name="geschlecht" value="m" id="option2"> <i class="fa fa-male"></i>
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -64,7 +65,7 @@
                                                     <div class="col-xs-6">
                                                         <div class="form-group">
                                                             <label for="Location">Location</label>
-                                                            <input type="text" class="form-control" id="Location" placeholder="Location">
+                                                            <input type="text" class="typeahead form-control" name="location" id="Location" placeholder="Location">
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-4">
@@ -72,24 +73,11 @@
                                                             <label>Tags</label>
                                                             <div class="form-group">
                                                                 <div class="btn-group" data-toggle="buttons">
-                                                                    <label class="btn btn-danger" data-placement="bottom" data-toggle="tooltip" data-original-title="Mensa" data-container="body">
-                                                                        <input type="radio" name="options" id="option1"> <i class="glyphicon glyphicon-cutlery"></i>
-                                                                    </label>
-                                                                    <label class="btn btn-danger" data-placement="bottom" data-toggle="tooltip" data-original-title="Party" data-container="body">
-                                                                        <input type="radio" name="options" id="option2"> <i class="fa fa-glass"></i>
-                                                                    </label>
-                                                                    <label class="btn btn-danger" data-placement="bottom" data-toggle="tooltip" data-original-title="Auf dem Weg" data-container="body">
-                                                                        <input type="radio" name="options" id="option3"> <i class="fa fa-road"></i>
-                                                                    </label>
-                                                                    <label class="btn btn-danger" data-placement="bottom" data-toggle="tooltip" data-original-title="Pausenraum" data-container="body">
-                                                                        <input type="radio" name="options" id="option2"> <i class="fa fa-coffee"></i>
-                                                                    </label>
-                                                                    <label class="btn btn-danger" data-placement="bottom" data-toggle="tooltip" data-original-title="Klassenzimmer" data-container="body">
-                                                                        <input type="radio" name="options" id="option2"> <i class="fa fa-superscript"></i>
-                                                                    </label>
-                                                                    <label class="btn btn-danger" data-placement="bottom" data-toggle="tooltip" data-original-title="Irgendwo sonst im Gebäude" data-container="body">
-                                                                        <input type="radio" name="options" id="option3"> <i class="fa fa-building"></i>
-                                                                    </label>
+																{% for tag in tags %}
+																	<label class="btn btn-danger" data-placement="bottom" data-toggle="tooltip" data-original-title="{{ tag.bezeichnung }}" data-container="body">
+                                                                        <input type="radio" required="required" value="{{ tag.id }}" name="tags" id="option{{ tag.id }}"> <i class="{{ tag.iconclass }}"></i>
+                                                                    </label>  
+																{% endfor %}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -157,56 +145,36 @@
 
                     </div>
                 </div>
-
+				{% for entity in entities %}
                 <div  class="row">
                     <div id="item_wrapper" class="container">
                         <div class="item col-xs-12 col-sm-6 col-md-6">
                             <div class="spotted-message">
                                 <h2 class="spotted-title">
                                     <a href="#">
-                                        <strong>SW (Winterthur)</strong>, 3. Stock
+                                        <strong>{{ entity.name }}</strong>, {{ entity.bezeichnung }}
                                     </a>
                                 </h2>
                                 <div class="datum">
-                                    <i class="glyphicon glyphicon-time"></i> vor 8 Stunden
+                                    <i class="glyphicon glyphicon-time"></i>{% if entity.date %}{{ entity.date|date('d.m.Y H:i') }}{% endif %}
                                 </div>
                                 <div class="gender">
+								{% if entity.geschlecht =='w' %}
                                     <img src="{{ asset('bundles/spottedhome/images/female.png') }}" />
-                                </div>
-                                <div style="cursor:pointer;" link="/M%C3%BCnchen/Richard%20Strau%C3%9F%20Stra%C3%9Fe/49882" class="text-main">
-                                    <font color="#C42EAF"><strong>Sie:</strong></font>
-                                    Du (m) rote Augen und grüne Haare im gelben Neoprenanzug. Habe dich heute im 3. Stock gesehen. Du bist mir sofort aufgefallen ;) Bitte melde dich bei mir 4>
-                                </div>
-
-                            </div>
-                            <div class="spotted-details container">
-                                <div class="row">
-                                    <div class="box comment">
-                                        <i class="glyphicon glyphicon-comment"></i>
-                                    </div>
-                                    <div class="box box-spotted">
-                                        Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item col-xs-12 col-sm-6 col-md-6">
-                            <div class="spotted-message">
-                                <h2 class="spotted-title">
-                                    <a href="#">
-                                        <strong>TECH (Winterthur)</strong>, Mensa
-                                    </a>
-                                </h2>
-                                <div class="datum">
-                                    <i class="glyphicon glyphicon-time"></i> vor 2 Stunden
-                                </div>
-                                <div class="gender">
+								{% endif %}
+								{% if entity.geschlecht =='m' %}
                                     <img src="{{ asset('bundles/spottedhome/images/male.png') }}" />
+								{% endif %}
                                 </div>
                                 <div style="cursor:pointer;" link="/M%C3%BCnchen/Richard%20Strau%C3%9F%20Stra%C3%9Fe/49882" class="text-main">
-                                    <font color="#587fd8"><strong>Er:</strong></font>
-                                    Du (w) Scharze Haare, Schwarze Lederjacke, Chucks und Leggins warst heute in der U4 Richtung Arabellapark und bist an der Richard Strauß Straße ausgestiegen. Du warst in Begleitung der Mutter sie trug eine Pinke Plüschweste und zog einen Rollwagen hinter sich her. Bitte melde dich, es würde mich sehr freuen!!!
+                                    {% if entity.geschlecht =='w' %}
+									<font color="#C42EAF"><strong>Sie:</strong></font>
+									{% endif %}
+									{% if entity.geschlecht =='m' %}
+									<font color="#587fd8"><strong>Er:</strong></font>
+									{% endif %}
+									
+                                    {{ entity.text }}
                                 </div>
 
                             </div>
@@ -221,135 +189,12 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="item col-xs-12 col-sm-6 col-md-6">
-                            <div class="spotted-message">
-                                <h2 class="spotted-title">
-                                    <a href="#">
-                                        <strong>TECH (Winterthur)</strong>, Mensa
-                                    </a>
-                                </h2>
-                                <div class="datum">
-                                    <i class="glyphicon glyphicon-time"></i> vor 2 Stunden
-                                </div>
-                                <div class="gender">
-                                    <img src="{{ asset('bundles/spottedhome/images/male.png') }}" />
-                                </div>
-                                <div style="cursor:pointer;" link="/M%C3%BCnchen/Richard%20Strau%C3%9F%20Stra%C3%9Fe/49882" class="text-main">
-                                    <font color="#587fd8"><strong>Er:</strong></font>
-                                    Du (w) Scharze Haare, Schwarze Lederjacke, Chucks und Leggins warst heute in der U4 Richtung Arabellapark und bist an der Richard Strauß Straße ausgestiegen. Du warst in Begleitung der Mutter sie trug eine Pinke Plüschweste und zog einen Rollwagen hinter sich her. Bitte melde dich, es würde mich sehr freuen!!!
-                                </div>
-
-                            </div>
-                            <div class="spotted-details container">
-                                <div class="row">
-                                    <div class="box comment">
-                                        <i class="glyphicon glyphicon-comment"></i>
-                                    </div>
-                                    <div class="box box-spotted">
-                                        Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item col-xs-12 col-sm-6 col-md-6">
-                            <div class="spotted-message">
-                                <h2 class="spotted-title">
-                                    <a href="#">
-                                        <strong>TECH (Winterthur)</strong>, Mensa
-                                    </a>
-                                </h2>
-                                <div class="datum">
-                                    <i class="glyphicon glyphicon-time"></i> vor 2 Stunden
-                                </div>
-                                <div class="gender">
-                                    <img src="{{ asset('bundles/spottedhome/images/male.png') }}" />
-                                </div>
-                                <div style="cursor:pointer;" link="/M%C3%BCnchen/Richard%20Strau%C3%9F%20Stra%C3%9Fe/49882" class="text-main">
-                                    <font color="#587fd8"><strong>Er:</strong></font>
-                                    Du (w) Scharze Haare, Schwarze Lederjacke, Chucks und Leggins warst heute in der U4 Richtung Arabellapark und bist an der Richard Strauß Straße ausgestiegen. Du warst in Begleitung der Mutter sie trug eine Pinke Plüschweste und zog einen Rollwagen hinter sich her. Bitte melde dich, es würde mich sehr freuen!!!
-                                </div>
-
-                            </div>
-                            <div class="spotted-details container">
-                                <div class="row">
-                                    <div class="box comment">
-                                        <i class="glyphicon glyphicon-comment"></i>
-                                    </div>
-                                    <div class="box box-spotted">
-                                        Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item col-xs-12 col-sm-6 col-md-6">
-                            <div class="spotted-message">
-                                <h2 class="spotted-title">
-                                    <a href="#">
-                                        <strong>TECH (Winterthur)</strong>, Mensa
-                                    </a>
-                                </h2>
-                                <div class="datum">
-                                    <i class="glyphicon glyphicon-time"></i> vor 2 Stunden
-                                </div>
-                                <div class="gender">
-                                    <img src="{{ asset('bundles/spottedhome/images/male.png') }}" />
-                                </div>
-                                <div style="cursor:pointer;" link="/M%C3%BCnchen/Richard%20Strau%C3%9F%20Stra%C3%9Fe/49882" class="text-main">
-                                    <font color="#587fd8"><strong>Er:</strong></font>
-                                    Du (w) Scharze Haare, Schwarze Lederjacke, Chucks und Leggins warst heute in der U4 Richtung Arabellapark und bist an der Richard Strauß Straße ausgestiegen. Du warst in Begleitung der Mutter sie trug eine Pinke Plüschweste und zog einen Rollwagen hinter sich her. Bitte melde dich, es würde mich sehr freuen!!!
-                                </div>
-
-                            </div>
-                            <div class="spotted-details container">
-                                <div class="row">
-                                    <div class="box comment">
-                                        <i class="glyphicon glyphicon-comment"></i>
-                                    </div>
-                                    <div class="box box-spotted">
-                                        Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item col-xs-12 col-sm-6 col-md-6">
-                            <div class="spotted-message">
-                                <h2 class="spotted-title">
-                                    <a href="#">
-                                        <strong>TECH (Winterthur)</strong>, Mensa
-                                    </a>
-                                </h2>
-                                <div class="datum">
-                                    <i class="glyphicon glyphicon-time"></i> vor 2 Stunden
-                                </div>
-                                <div class="gender">
-                                    <img src="{{ asset('bundles/spottedhome/images/male.png') }}" />
-                                </div>
-                                <div style="cursor:pointer;" link="/M%C3%BCnchen/Richard%20Strau%C3%9F%20Stra%C3%9Fe/49882" class="text-main">
-                                    <font color="#587fd8"><strong>Er:</strong></font>
-                                    Du (w) Scharze Haare, Schwarze Lederjacke, Chucks und Leggins warst heute in der U4 Richtung Arabellapark und bist an der Richard Strauß Straße ausgestiegen. Du warst in Begleitung der Mutter sie trug eine Pinke Plüschweste und zog einen Rollwagen hinter sich her. Bitte melde dich, es würde mich sehr freuen!!!
-                                </div>
-
-                            </div>
-                            <div class="spotted-details container">
-                                <div class="row">
-                                    <div class="box comment">
-                                        <i class="glyphicon glyphicon-comment"></i>
-                                    </div>
-                                    <div class="box box-spotted">
-                                        Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+						{% endfor %}
                     </div>
 
                 </div>
             </div>
-        </dvi>
+        </div>
     </div>
 
 {% endblock %}

@@ -95,4 +95,32 @@ class Location
     {
         return $this->ort;
     }
+    /**
+     * @var integer
+     */
+    private $ortId;
+
+
+    /**
+     * Set ortId
+     *
+     * @param integer $ortId
+     * @return Location
+     */
+    public function setOrtId($ortId)
+    {
+        $this->ortId = $ortId;
+    
+        return $this;
+    }
+
+    /**
+     * Get ortId
+     *
+     * @return integer 
+     */
+    public function getOrtId()
+    {
+        return $this->ortId;
+    }
 }

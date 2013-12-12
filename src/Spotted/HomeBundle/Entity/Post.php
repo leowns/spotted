@@ -6,55 +6,43 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Post
- *
- * @ORM\Table(name="Post")
- * @ORM\Entity
  */
 class Post
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="ID", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="text", type="text", nullable=true)
      */
     private $text;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
 
     /**
-     * @var \Spotted\HomeBundle\Entity\User
-     *
-     * @ORM\ManyToOne(targetEntity="Spotted\HomeBundle\Entity\User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="User_ID", referencedColumnName="ID")
-     * })
+     * @var string
      */
-    private $user;
+    private $geschlecht;
 
     /**
      * @var \Spotted\HomeBundle\Entity\Location
-     *
-     * @ORM\ManyToOne(targetEntity="Spotted\HomeBundle\Entity\Location")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Location_ID", referencedColumnName="ID")
-     * })
      */
     private $location;
 
+    /**
+     * @var \Spotted\HomeBundle\Entity\Tags
+     */
+    private $tags;
+
+    /**
+     * @var \Spotted\HomeBundle\Entity\User
+     */
+    private $user;
 
 
     /**
@@ -114,26 +102,26 @@ class Post
     }
 
     /**
-     * Set user
+     * Set geschlecht
      *
-     * @param \Spotted\HomeBundle\Entity\User $user
+     * @param string $geschlecht
      * @return Post
      */
-    public function setUser(\Spotted\HomeBundle\Entity\User $user = null)
+    public function setGeschlecht($geschlecht)
     {
-        $this->user = $user;
+        $this->geschlecht = $geschlecht;
     
         return $this;
     }
 
     /**
-     * Get user
+     * Get geschlecht
      *
-     * @return \Spotted\HomeBundle\Entity\User 
+     * @return string 
      */
-    public function getUser()
+    public function getGeschlecht()
     {
-        return $this->user;
+        return $this->geschlecht;
     }
 
     /**
@@ -157,5 +145,51 @@ class Post
     public function getLocation()
     {
         return $this->location;
+    }
+
+    /**
+     * Set tags
+     *
+     * @param \Spotted\HomeBundle\Entity\Tags $tags
+     * @return Post
+     */
+    public function setTags(\Spotted\HomeBundle\Entity\Tags $tags = null)
+    {
+        $this->tags = $tags;
+    
+        return $this;
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Spotted\HomeBundle\Entity\Tags 
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Spotted\HomeBundle\Entity\User $user
+     * @return Post
+     */
+    public function setUser(\Spotted\HomeBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Spotted\HomeBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
