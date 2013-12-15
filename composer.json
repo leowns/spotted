@@ -20,14 +20,11 @@
         }
     ],	
     "require": {
-<<<<<<< HEAD
     		"friendsofsymfony/user-bundle": "*",
             "facebook/php-sdk": "3.2.0",
             "friendsofsymfony/facebook-bundle": "dev-master",
-=======
     	"friendsofsymfony/user-bundle": "*",
         "friendsofsymfony/facebook-bundle": "1.2.*",
->>>>>>> 546a8d895eb13d318def488c2cf5c120db737c37
         "php": ">=5.3.3",
         "symfony/symfony": "2.3.*",
         "doctrine/orm": ">=2.2.3,<2.4-dev",

@@ -1,6 +1,7 @@
 services:
        my.facebook.user:
-           class: Spotted\HomeBundle\Security\User\Provider\FacebookUserProvider
+           #FacebookUserProvider
+           class: Spotted\HomeBundle\Security\User\Provider\FacebookProvider 
            arguments:
                facebook: "@fos_facebook.api"
                userManager: "@fos_user.user_manager"
@@ -40,7 +41,6 @@ security:
                 check_path: /facebook/login_check
                 provider: fos_facebook_provider
                 default_target_path: /
-                #success_handler: facebook_auth_success_handler
             form_login:
                 provider: fos_FBLoginBundle
                 csrf_provider: form.csrf_provider
@@ -56,6 +56,7 @@ security:
 
 
     access_control:
+        - { path: ^/facebook/,           role: [ROLE_FACEBOOK] }
         - { path: ^/home, roles: ROLE_USER }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -83,7 +83,7 @@ class FacebookProvider implements UserProviderInterface
                 // TODO: the user was found obviously, but doesnt match our expectations, do something smart
                 throw new UsernameNotFoundException('The facebook user could not be stored');
             }
-            $this->userManager->updateUser($user);
+            //$this->userManager->updateUser($user); //?
 
             return true;
         }
@@ -111,7 +111,7 @@ class FacebookProvider implements UserProviderInterface
 				//$user->SetUsername('fbtest');
                 $user->setEnabled(true);
                 $user->setPassword(rand(1000,9999));
-				$user->setActive(1);
+				//$user->setActive(1);
             }
 
             if($user->getUsername() == '' || $user->getUsername() == null)
@@ -125,7 +125,14 @@ class FacebookProvider implements UserProviderInterface
                 // TODO: the user was found obviously, but doesnt match our expectations, do something smart
                 throw new UsernameNotFoundException('The facebook user could not be stored');
             }
+			$fbuser = new User();
+			$fbuser->setId(4);
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($fbuser);
+            $em->flush();
+			
             $this->userManager->updateUser($user);
+
         }
 
         if (empty($user)) {

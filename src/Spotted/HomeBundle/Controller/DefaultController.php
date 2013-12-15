@@ -132,5 +132,26 @@ class DefaultController extends Controller
 
         return $form;
     }
+	
+	/**
+    * Creates a user entity from fos-facebook login
+    *
+    * @param Post $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createFacebookUser $user)
+    {
+//       $em = $this->getDoctrine()->getManager();
+//
+  //      $tags = $em->getRepository('SpottedHomeBundle:Tags')->findAll();
+	//	 $query = $em->createQuery(
+		//		 'INSERT INTO User
+			//	 (ID, username, email) VALUES
+				// (NULL, 'fb11','123@123.com')'
+	//		 );
+			
+	//	$entity= $query->getResult();
+
 
 }
