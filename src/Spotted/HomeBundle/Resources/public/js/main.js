@@ -18,21 +18,24 @@ $( document ).ready(function() {
 
     $('textarea').autosize();
 	
-	$('.typeahead').typeahead({
+	$('#Location').typeahead({
 	  name: 'accounts',
 	  local: ['timtrueman', 'JakeHarding', 'vskarich']
 	});
 	
-    $(document).click(function (event) {
+    $("#new_item_close").click(function (event) {
 
-        if (!$("#new_item_form").has(event.target).length > 0) {
+       // if (!$("#new_item_form").has(event.target).length > 0 && !$("#Location").has(event.target).length > 0) {
+
             var $el = $("#new_item_div");
             if ($el.is(":visible")) {
                 $("#new_item_div").slideUp("slow");
                 $("#form_message").animate({ height: "43px" }, 1000);
                 $("#form_message").css("min-height", "0");
             }
-        }
+
+            $("#new_item_close").hide();
+       // }
     });
 
     $("#form_message").click(function(event) {
@@ -42,6 +45,7 @@ $( document ).ready(function() {
             "min-height": "140px"
         }, 600);
         $("#new_item_div").slideDown("slow");
+        $("#new_item_close").show();
 
 
 //        $("#form_message").animate({
