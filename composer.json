@@ -21,7 +21,8 @@
     ],
     "require": {
     		"friendsofsymfony/user-bundle": "*",
-            "friendsofsymfony/facebook-bundle": "1.2.*",
+            "facebook/php-sdk": "3.2.0",
+            "friendsofsymfony/facebook-bundle": "dev-master",
         "php": ">=5.3.3",
         "symfony/symfony": "2.3.*",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
