@@ -16,7 +16,9 @@ class UserController extends Controller
     }
 
     public function loginFbAction() {
-        return $this->redirect($this->generateUrl("_homepage"));
+	    return $this->redirect($this->generateUrl('spotted_home_homepage'));
+        //return $this->redirect($this->generateUrl("_homepage"));
+		//return array();
     }
 
 }

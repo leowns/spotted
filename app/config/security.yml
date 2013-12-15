@@ -1,3 +1,12 @@
+services:
+       my.facebook.user:
+           class: Spotted\HomeBundle\Security\User\Provider\FacebookUserProvider
+           arguments:
+               facebook: "@fos_facebook.api"
+               userManager: "@fos_user.user_manager"
+               validator: "@validator"
+               container: "@service_container"
+
 security:
     encoders:
         FOS\UserBundle\Model\UserInterface: sha512
@@ -8,9 +17,9 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        #chainprovider:
-         #   chain:
-          #      providers: [fos_userbundle, fos_facebook_provider]
+        chainprovider:
+            chain:
+                providers: [fos_FBLoginBundle, fos_facebook_provider]
         fos_facebook_provider:
             id: fos_facebook.user.login
         fos_FBLoginBundle:
@@ -31,6 +40,7 @@ security:
                 check_path: /facebook/login_check
                 provider: fos_facebook_provider
                 default_target_path: /
+                #success_handler: facebook_auth_success_handler
             form_login:
                 provider: fos_FBLoginBundle
                 csrf_provider: form.csrf_provider

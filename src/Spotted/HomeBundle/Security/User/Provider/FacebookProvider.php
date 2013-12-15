@@ -70,11 +70,14 @@ class FacebookProvider implements UserProviderInterface
 
             $user = $this->findUserByUsername($currentUserObj->getUsername());
 
+
             if (empty($user)) {
                 return false;
             }
 
+			
             $user->setFBData($fbdata);
+			//$this->setEmail($fbdata['email']);
 
             if (count($this->validator->validate($user, 'Facebook'))) {
                 // TODO: the user was found obviously, but doesnt match our expectations, do something smart
@@ -92,6 +95,7 @@ class FacebookProvider implements UserProviderInterface
     public function loadUserByUsername($username)
     {
         $user = $this->findUserByFbId($username);
+		
 
         try {
             $fbdata = $this->facebook->api('/me');
@@ -101,9 +105,13 @@ class FacebookProvider implements UserProviderInterface
 
         if (!empty($fbdata)) {
             if (empty($user)) {
+			
                 $user = $this->userManager->createUser();
+				//$user->SetId('NULL');
+				//$user->SetUsername('fbtest');
                 $user->setEnabled(true);
-                $user->setPassword('');
+                $user->setPassword(rand(1000,9999));
+				$user->setActive(1);
             }
 
             if($user->getUsername() == '' || $user->getUsername() == null)
@@ -123,7 +131,7 @@ class FacebookProvider implements UserProviderInterface
         if (empty($user)) {
 
             // TODO: the user was found obviously, but doesnt match our expectations, do something smart
-            throw new UsernameNotFoundException('The facebook user could not be stored');
+            throw new UsernameNotFoundException('The facebook user information could not be retrieved');
 
         }
 

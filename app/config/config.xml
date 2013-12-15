@@ -5,5 +5,5 @@
     cookie="true"
 >
    <permission>email</permission>
-   
+   <permission>user_about_me</permission>
 </fos_facebook:api>
