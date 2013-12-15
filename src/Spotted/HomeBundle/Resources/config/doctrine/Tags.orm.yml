@@ -16,4 +16,9 @@ Spotted\HomeBundle\Entity\Tags:
             fixed: false
             nullable: true
             column: Bezeichnung
+        iconclass:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
     lifecycleCallbacks: {  }

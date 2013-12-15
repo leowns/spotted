@@ -16,6 +16,11 @@ Spotted\HomeBundle\Entity\Post:
         date:
             type: datetime
             nullable: true
+        geschlecht:
+            type: string
+            length: 45
+            fixed: false
+            nullable: false
     manyToOne:
         location:
             targetEntity: Location
@@ -24,6 +29,15 @@ Spotted\HomeBundle\Entity\Post:
             inversedBy: null
             joinColumns:
                 Location_ID:
+                    referencedColumnName: ID
+            orphanRemoval: false
+        tags:
+            targetEntity: Tags
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Tags_ID:
                     referencedColumnName: ID
             orphanRemoval: false
         user:
