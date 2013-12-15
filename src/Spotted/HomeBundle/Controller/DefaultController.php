@@ -46,7 +46,7 @@ class DefaultController extends Controller
 		);
 
 		$posts= $query2->getResult();
-		
+
 		//$user = $this->getUser();
 
 		// $entity = new Post();

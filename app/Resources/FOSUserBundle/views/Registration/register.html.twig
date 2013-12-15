@@ -1,0 +1,19 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+    <div class="login-box container">
+        <header class="login-header">
+            <div id="logo">
+                <a href="{{ path('spotted_home_homepage') }}"  style="width: 100%; height: 100%; display: block;">
+
+                </a>
+            </div>
+        </header>
+        <h4 class="login-title">Registrieren</h4>
+        {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+        <footer class="login-footer row">
+            Copyright &copy; 2013 ZHAW-Spotted.
+        </footer>
+    </div>
+
+{% endblock fos_user_content %}
