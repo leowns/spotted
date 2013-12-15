@@ -77,3 +77,10 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Spotted\HomeBundle\Entity\User
+
+fos_facebook:
+    alias:  facebook
+    app_id: 542881899137127
+    secret: 34029cef0267c18fc94163846a53c35d
+    cookie: true
+    permissions: [email]

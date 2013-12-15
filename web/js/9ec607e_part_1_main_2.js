@@ -17,7 +17,12 @@ $( document ).ready(function() {
 
 
     $('textarea').autosize();
-
+	
+	$('.typeahead').typeahead({
+	  name: 'accounts',
+	  local: ['timtrueman', 'JakeHarding', 'vskarich']
+	});
+	
     $(document).click(function (event) {
 
         if (!$("#new_item_form").has(event.target).length > 0) {
@@ -48,7 +53,7 @@ $( document ).ready(function() {
 //                $("#form_message").css("min-height", "200px");
 //            }
 //        });
-    })
+            }
 
     $('*[data-toggle="tooltip"]').tooltip();
 
@@ -66,11 +71,12 @@ $( document ).ready(function() {
     jQuery('#t-row-right-ss').click(function(){
         jQuery('#style-selector').show(300,function(){
             jQuery('#t-row-left-ss').show();
-        });
+//        });
     });
 
-    $('#bg-list').change(function () {
         $("body").css('background-image', 'url("' + $('option:selected', this).data('url') + '")');
     });
+
+
 
 });

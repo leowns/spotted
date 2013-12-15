@@ -6,7 +6,7 @@
     "autoload": {
         "psr-0": { "": "src/" }
     },
-    "repositories": [
+	"repositories": [
         {
             "type": "package",
             "package": {
@@ -18,9 +18,10 @@
                 }
             }
         }
-    ],
+    ],	
     "require": {
-        "friendsofsymfony/user-bundle": "*",
+    	"friendsofsymfony/user-bundle": "*",
+        "friendsofsymfony/facebook-bundle": "1.2.*",
         "php": ">=5.3.3",
         "symfony/symfony": "2.3.*",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
@@ -34,10 +35,11 @@
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "oryzone/boilerplate-bundle": "4.*",
-        "braincrafted/bootstrap-bundle": "~2.0@alpha",
+        "braincrafted/bootstrap-bundle": "dev-develop",
         "twbs/bootstrap": "3.0.0",
-        "leafo/lessphp": "0.4.0",
-        "jquery/jquery":  "1.10.*",
+        "leafo/lessphp": "dev-master#85bd4557920d5f4fcbf41beb621e91b842e3621b",
+        "jquery/jquery": "1.10.*",
+
         "bmatzner/fontawesome-bundle": "*"
     },
     "scripts": {

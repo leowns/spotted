@@ -1,6 +1,6 @@
-Spotted\HomeBundle\Entity\Comments:
+Spotted\HomeBundle\Entity\Watchlist:
     type: entity
-    table: Comments
+    table: Watchlist
     fields:
         id:
             id: true
@@ -10,24 +10,23 @@ Spotted\HomeBundle\Entity\Comments:
             column: ID
             generator:
                 strategy: IDENTITY
-        text:
-            type: text
-            nullable: true
-        datum:
-            type: datetime
-            nullable: true
-        notread:
-            type: blob
-            nullable: true
-            column: notRead
     manyToOne:
-        post1:
+        user:
+            targetEntity: User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                User_ID:
+                    referencedColumnName: ID
+            orphanRemoval: false
+        post:
             targetEntity: Post
             cascade: {  }
             mappedBy: null
             inversedBy: null
             joinColumns:
-                Post_ID1:
+                Post_ID:
                     referencedColumnName: ID
             orphanRemoval: false
     lifecycleCallbacks: {  }

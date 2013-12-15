@@ -134,15 +134,14 @@ Login Page
 /**
 ** Style Configurator
 **/
-
-#style-selector {
-    background: none repeat scroll 0 0 #FFFFFF;
+#category-div label {
+    background-color: #F2F2F2;
     border-radius: 0 5px 5px 0;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     display: none;
     font-size: 13px;
     left: 0;
-    position: fixed;
+    cursor: pointer;
     top: 98px;
     width: 212px;
     z-index: 6789251;
@@ -153,39 +152,33 @@ Login Page
     border-radius: 0 5px 5px 0;
     box-shadow: 2px 0 2px rgba(0, 0, 0, 0.1);
     color: #FFFFFF;
-    display: none;
-    font-size: 30px;
-    height: 45px;
+    display: inline-block;
+    font-size: 18px;
+    margin-right: 4px;
     left: 212px;
-    padding: 0 8px;
-    position: fixed;
+    margin-top: 3px;
+    position: relative;
     top: 98px;
     width: 45px;
-    z-index: 6789252;
-}
-
+    z-index: 9999;
 #t-row-right-ss {
     left: 0;
     z-index: 6789250;
-    display: block;
+#category-div label:hover,
 }
 
-#style-selector .title-ss {
-    background: none repeat scroll 0 0 #3F454A;
+#category-div label.selected{
+    background-color: #83C50F;
     border-bottom: 1px solid #DBDBDB;
-    color: #FFFFFF;
     font-size: 15px;
     height: 45px;
     line-height: 45px;
     text-align: center;
-}
-
-#style-selector .box-ss {
+#category-div label i {
     color: #AAAAAA;
     height: 36px;
     line-height: 36px;
-    text-align: center;
-}
+    position: relative;
 
 
 /**

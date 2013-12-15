@@ -27,6 +27,12 @@ class Tags
      * @ORM\Column(name="Bezeichnung", type="string", length=45, nullable=true)
      */
     private $bezeichnung;
+	/**
+     * @var string
+     *
+     * @ORM\Column(name="iconclass", type="string", length=45,nullable=true)
+     */
+	private $iconclass;
 
 
 
@@ -39,6 +45,18 @@ class Tags
     {
         return $this->id;
     }
+	/**
+     * Set id
+     *
+     * @return Tags 
+     */
+	 public function setId($id) {
+	 
+		 $this->id= $id;
+		 return $this;
+	 
+	 }
+	
 
     /**
      * Set bezeichnung
@@ -61,5 +79,55 @@ class Tags
     public function getBezeichnung()
     {
         return $this->bezeichnung;
+    }
+	/**
+     * Set iconclass
+     *
+     * @param string $iconclass
+     * @return Tags
+     */
+    public function setIconclass($iconclass)
+    {
+        $this->iconclass = $iconclass;
+    
+        return $this;
+    }
+
+    /**
+     * Get iconclass
+     *
+     * @return string 
+     */
+    public function getIconclass()
+    {
+        return $this->iconclass;
+    }
+    /**
+     * @var \Spotted\HomeBundle\Entity\Post
+     */
+    private $post;
+
+
+    /**
+     * Set post
+     *
+     * @param \Spotted\HomeBundle\Entity\Post $post
+     * @return Tags
+     */
+    public function setPost(\Spotted\HomeBundle\Entity\Post $post = null)
+    {
+        $this->post = $post;
+    
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return \Spotted\HomeBundle\Entity\Post 
+     */
+    public function getPost()
+    {
+        return $this->post;
     }
 }

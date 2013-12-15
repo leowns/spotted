@@ -16,14 +16,9 @@ Spotted\HomeBundle\Entity\Location:
             fixed: false
             nullable: true
             column: Name
-    manyToOne:
-        ort:
-            targetEntity: Ort
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                Ort_ID:
-                    referencedColumnName: ID
-            orphanRemoval: false
+        ortId:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: Ort_ID
     lifecycleCallbacks: {  }

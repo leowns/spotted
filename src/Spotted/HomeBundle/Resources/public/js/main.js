@@ -17,7 +17,12 @@ $( document ).ready(function() {
 
 
     $('textarea').autosize();
-
+	
+	$('.typeahead').typeahead({
+	  name: 'accounts',
+	  local: ['timtrueman', 'JakeHarding', 'vskarich']
+	});
+	
     $(document).click(function (event) {
 
         if (!$("#new_item_form").has(event.target).length > 0) {

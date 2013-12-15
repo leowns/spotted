@@ -8,6 +8,11 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
+        #chainprovider:
+         #   chain:
+          #      providers: [fos_userbundle, fos_facebook_provider]
+        fos_facebook_provider:
+            id: fos_facebook.user.login
         fos_FBLoginBundle:
             id: fos_user.user_provider.username
         in_memory:
@@ -19,6 +24,13 @@ security:
     firewalls:
         main:
             pattern: ^/
+            fos_facebook:
+                app_url: "http://apps.facebook.com/ZHAW-Spotted/"
+                server_url: "http://localhost/facebookApp/"
+                login_path: /user/login
+                check_path: /facebook/login_check
+                provider: fos_facebook_provider
+                default_target_path: /
             form_login:
                 provider: fos_FBLoginBundle
                 csrf_provider: form.csrf_provider

@@ -23,6 +23,8 @@ class AppKernel extends Kernel
             new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
             
 	    new Spotted\FBLoginBundle\SpottedFBLoginBundle(),
+		//new FB
+		new FOS\FacebookBundle\FOSFacebookBundle(),
 
         );
 

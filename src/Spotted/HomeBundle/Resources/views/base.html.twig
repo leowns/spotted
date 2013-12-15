@@ -1,8 +1,11 @@
 {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
 
 {% block head_css %}
+
     {{ parent() }}
+    
     <!-- Bootstrap -->
+
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" />
     {% stylesheets 'bundles/spottedhome/css/*' filter='cssrewrite' %}
@@ -10,7 +13,7 @@
     {% endstylesheets %}
 
     <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700">
-
+	
 {% endblock %}
 
 {% block body_container %}
@@ -45,8 +48,40 @@
 
 {% block body_js %}
     {{ parent() }}
+	
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     {% javascripts '@SpottedHomeBundle/Resources/public/js/*' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
+	
+	
+<div id="fb-root"></div>
+
+
+<script type="text/javascript">
+window.fbAsyncInit = function() {
+    FB.init({
+        appId      : '542881899137127',
+        status     : true,
+        cookie     : true,
+        xfbml      : true
+    });
+
+    FB.Event.subscribe('auth.login', function(response) {
+        window.location.reload();
+    });
+};
+
+function onFacebookConnect() {
+    window.location.reload();
+}
+
+(function(d){
+    var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+    js = d.createElement('script'); js.id = id; js.async = true;
+    js.src = "//connect.facebook.net/en_US/all.js";
+    d.getElementsByTagName('head')[0].appendChild(js);
+}(document));
+</script>
+
 {% endblock %}
