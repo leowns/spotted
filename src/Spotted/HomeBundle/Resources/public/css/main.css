@@ -101,16 +101,25 @@ Login Page
     margin-bottom: 80px;
 }
 
-.login-box .login-form .form-group {
+.login-box .register-form {
+    margin-bottom: 30px;
+}
+
+.login-box .login-form .form-group,
+.login-box .register-form .form-group
+{
     margin: 5px 0;
 }
 
-.login-box .login-form .row {
+.login-box .login-form .row,
+.login-box .register-form .row
+{
     padding: 0 15px;
     margin-bottom: 15px;
 }
 
-.login-box .hover-left:hover {
+.login-box .hover-left:hover
+{
     border-left-color: #E41F1F;
     border-image: none;
     border-style: solid;
