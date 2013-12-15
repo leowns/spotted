@@ -186,6 +186,7 @@ Login Page
     height: 36px;
     line-height: 36px;
     text-align: center;
+    padding: 5px;
 }
 
 
@@ -448,6 +449,7 @@ h2.spotted-title a {
 .twitter-typeahead .tt-hint {
   margin-bottom: 0;
 }
+
 
 .tt-dropdown-menu {
   min-width: 160px;
