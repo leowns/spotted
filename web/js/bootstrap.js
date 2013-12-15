@@ -2047,7 +2047,12 @@
     };
 
     CollectionRemove.prototype.removeField = function (e) {
-        var $this = $(this);
+        var $this = $(this),
+            selector = $this.attr('data-field'),
+            $parent
+        ;
+
+        $parent = $(selector);
 
         e && e.preventDefault();
 
