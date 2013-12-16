@@ -12,6 +12,9 @@ use Spotted\HomeBundle\Form\PostType;
 use Spotted\HomeBundle\Entity\Posttags;
 use Spotted\HomeBundle\Entity\Tags;
 use Spotted\HomeBundle\Entity\Location;
+use Symfony\Component\HttpFoundation\Response;
+use Doctrine\ORM\Query;
+
 
 class DefaultController extends Controller
 {
@@ -28,25 +31,22 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $tags = $em->getRepository('SpottedHomeBundle:Tags')->findAll();
-		// $query = $em->createQuery(
-				// 'SELECT p
-				// FROM SpottedHomeBundle:Post p
-				// ORDER BY p.date DESC'
-			// );
+		// $query = $em->createquery(
+				 // 'select p
+					// from spottedhomebundle:post p
+					// order by p.date desc'
+			 // );
 		$query2 = $em->createQuery(
-			'SELECT p.geschlecht,p.text,p.date,l.name,t.bezeichnung
+			'SELECT p.gender,p.text,p.date,l.name,t.name
 			FROM SpottedHomeBundle:Post p
-			JOIN p.user u
 			JOIN p.location l
 			JOIN p.tags t
-			WHERE p.user = u.id
-			AND l.id = p.location
+			WHERE l.id = p.location
 			AND t.id= p.tags
 			ORDER BY p.date DESC'
 		);
 
 		$posts= $query2->getResult();
-		
 		//$user = $this->getUser();
 
 		// $entity = new Post();
@@ -64,6 +64,77 @@ class DefaultController extends Controller
         return $this->render('SpottedHomeBundle:Default:comment.html.twig', array('id' => $id));
 		
     }
+	
+	public function filterAction(Request $request) {
+		// Filter 1 ist das Geschlecht, eigentlich kein Tag
+			$filter1=$request->request->get('filter1');
+			$filter2=$request->request->get('filter2');
+		
+		if ($filter1 == 8) 
+		{		
+				$gschlecht='w';
+		}
+		else 
+		{
+				$geschlecht='m';
+		}
+		$em = $this->getDoctrine()->getManager();
+		
+		if ($filter1!= '' && $filter2 == '') {
+			
+			$query1 = $em->createQuery(
+				'SELECT p.geschlecht,p.text,p.date,l.name,t.bezeichnung
+				FROM SpottedHomeBundle:Post p
+				JOIN p.location l
+				JOIN p.tags t
+				WHERE l.id = p.location
+				AND t.id= p.tags
+				AND p.geschlecht=:geschlecht
+				ORDER BY p.date DESC'
+			)->setParameter('geschlecht', $geschlecht);
+			
+			$posts=$query1->getResult();
+		
+		}
+		if ($filter1!='' && $filter2 != '') {
+			$query2 = $em->createQuery(
+				'SELECT p.geschlecht,p.text,p.date,l.name,t.bezeichnung
+				FROM SpottedHomeBundle:Post p
+				JOIN p.location l
+				JOIN p.tags t
+				WHERE l.id = p.location
+				AND t.id= p.tags
+				AND p.geschlecht=:geschlecht
+				AND p.tags=:id
+				ORDER BY p.date DESC'
+			)->setParameters(array(
+				'geschlecht' => $geschlecht,
+				'id'  => $filter2,
+			));
+			
+			$posts=$query2->getResult();
+		
+		}
+		if ($filter1 =='' && $filter2 != '') {
+			$query3 = $em->createQuery(
+				'SELECT p.geschlecht,p.text,p.date,l.name,t.bezeichnung
+				FROM SpottedHomeBundle:Post p
+				JOIN p.location l
+				JOIN p.tags t
+				WHERE l.id = p.location
+				AND t.id= p.tags
+				AND p.tags=:id
+				ORDER BY p.date DESC'
+			)->setParameter('id', $filter2);
+			
+			$posts=$query3->getResult();
+		
+		}
+		 $tags = $em->getRepository('SpottedHomeBundle:Tags')->findAll();
+		return $this->render('SpottedHomeBundle:Default:index.html.twig', array('entities' => $posts,'tags' => $tags));
+
+	}
+	
 	/**
      * Creates a new Post entity.
      *
@@ -74,37 +145,37 @@ class DefaultController extends Controller
     public function createAction(Request $request)
     {
 		$post = new Post();
-		$posttags= new Posttags();
-		$location= new Location();
+		//$location= new Location();
         // $form = $this->createCreateForm($post);
         // $form->handleRequest($request);
+		 $em = $this->getDoctrine()->getManager();
+		$loc=$request->request->get('location');
+		
+		$query = $em->createQuery(
+				'SELECT l
+				FROM SpottedHomeBundle:Location  l
+				WHERE l.name=:name'
+				)->setParameter('name', $loc);
+				
+			$location=$query->getSingleResult();
 
       //  if ($form->isValid()) {
-               $em = $this->getDoctrine()->getManager();
                 // get current User
 				$user = $this->getUser();
-                // create new Location
-                 $location->setName($request->request->get('location'));
+                // get the Location
+             //   $location=$em->getRepository('SpottedHomeBundle:Location')->find($request->request->get('location'));
                 $dt = new \DateTime();
                 $post->setText($request->request->get('text'));
                 $post->setDate($dt);
                 $post->setUser($user);
-				//$post->setTag
+				$post->setLocation($location);
+				// get the Tag
 				$tags = $em->getRepository('SpottedHomeBundle:Tags')->find($request->request->get('tags'));
 				$post->setTags($tags);
                 $post->setGeschlecht($request->request->get('geschlecht'));
-                // setLocation just sets sets the ID of the Location not the name
-                $post->setLocation($location);
-                // get the PostId to set it for the posttag entity bc its a many to many Relation same with Tags
-                
-
-
-
-                $em->persist($post);
-                $em->persist($location);
+				// save the post
+				$em->persist($post);
 				$em->flush();
-
-                $em->flush();
 
                 return $this->redirect($this->generateUrl('spotted_home_homepage'));
     //   }
@@ -132,5 +203,20 @@ class DefaultController extends Controller
 
         return $form;
     }
+	
+	public function listlocationsAction() {
+	
+	$em = $this->getDoctrine()->getManager();
+	// $location = $em->getRepository('SpottedHomeBundle:Location')->findAll();
+	$query = $em->createQuery('SELECT l from SpottedHomeBundle:Location l');
+	$location = $query->getArrayResult(); 
+	$response = new Response(json_encode($location));
+	$response->headers->set('Content-Type', 'application/json');
+	// var_dump($location);
+
+	return $response;
+	
+
+	}
 
 }

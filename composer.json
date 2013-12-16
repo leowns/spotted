@@ -39,7 +39,8 @@
         "twbs/bootstrap": "3.0.0",
         "leafo/lessphp": "dev-master#85bd4557920d5f4fcbf41beb621e91b842e3621b",
         "jquery/jquery": "1.10.*",
-        "bmatzner/fontawesome-bundle": "*"
+        "bmatzner/fontawesome-bundle": "*",
+		"friendsofsymfony/jsrouting-bundle": "~1.1"
     },
     "scripts": {
         "post-install-cmd": [

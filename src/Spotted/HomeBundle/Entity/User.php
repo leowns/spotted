@@ -124,4 +124,5 @@ class User extends BaseUser
             $this->setEmail($fbdata['email']);
         }
     }
+   
 }

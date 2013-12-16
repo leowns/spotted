@@ -19,10 +19,28 @@ $( document ).ready(function() {
     $('textarea').autosize();
 	
 	$('.typeahead').typeahead({
-	  name: 'accounts',
-	  local: ['timtrueman', 'JakeHarding', 'vskarich']
+		valueKey: 'name',
+		prefetch: Routing.generate('spotted_listlocations'),
+		
+		
 	});
-	
+	$("input[name=filtersleft]:radio").change(function () {
+		$.post(
+			  Routing.generate('ajaxfilters'), 
+			  {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val()}, 
+			  function(data){
+			  
+			  });
+			
+	});
+		$("input[name=filtersright]:radio").change(function () {
+		$.post(
+			  Routing.generate('ajaxfilters'), 
+			  {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val()}, 
+			  function(data){
+			
+			  });
+	});
     $(document).click(function (event) {
 
         if (!$("#new_item_form").has(event.target).length > 0) {

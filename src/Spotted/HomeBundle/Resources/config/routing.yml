@@ -4,6 +4,16 @@ spotted_home_homepage:
 spotted_homeform_submission:
     pattern:  /post
     defaults: { _controller: SpottedHomeBundle:Default:create }
+spotted_listlocations:
+    pattern: /listlocations
+    defaults: { _controller: SpottedHomeBundle:Default:listlocations }
+    options:
+        expose: true
+ajaxfilters:
+    pattern: /ajaxfilters
+    defaults: { _controller: SpottedHomeBundle:Default:filter }
+    options:
+        expose: true
 
 spotted_home_single_comment:
     pattern:  /comment/{id}

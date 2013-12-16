@@ -123,4 +123,60 @@ class Location
     {
         return $this->ortId;
     }
+    /**
+     * @var string
+     */
+    private $street;
+
+    /**
+     * @var \Spotted\HomeBundle\Entity\City
+     */
+    private $city;
+
+
+    /**
+     * Set street
+     *
+     * @param string $street
+     * @return Location
+     */
+    public function setStreet($street)
+    {
+        $this->street = $street;
+    
+        return $this;
+    }
+
+    /**
+     * Get street
+     *
+     * @return string 
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * Set city
+     *
+     * @param \Spotted\HomeBundle\Entity\City $city
+     * @return Location
+     */
+    public function setCity(\Spotted\HomeBundle\Entity\City $city = null)
+    {
+        $this->city = $city;
+    
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return \Spotted\HomeBundle\Entity\City 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
 }

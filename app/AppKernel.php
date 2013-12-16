@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Spotted\HomeBundle\SpottedHomeBundle(),
             new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
+			new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             
 	    new Spotted\FBLoginBundle\SpottedFBLoginBundle(),
 		//new FB

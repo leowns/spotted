@@ -15,10 +15,19 @@ Spotted\HomeBundle\Entity\Location:
             length: 45
             fixed: false
             nullable: true
-            column: Name
-        ortId:
-            type: integer
-            unsigned: false
+        street:
+            type: string
+            length: 45
+            fixed: false
             nullable: true
-            column: Ort_ID
+    manyToOne:
+        city:
+            targetEntity: City
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                City_ID:
+                    referencedColumnName: ID
+            orphanRemoval: false
     lifecycleCallbacks: {  }

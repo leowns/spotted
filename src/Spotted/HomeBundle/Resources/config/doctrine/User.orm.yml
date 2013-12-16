@@ -10,11 +10,6 @@ Spotted\HomeBundle\Entity\User:
             column: ID
             generator:
                 strategy: IDENTITY
-        geschlecht:
-            type: string
-            length: 45
-            fixed: false
-            nullable: true
         username:
             type: string
             length: 255

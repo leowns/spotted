@@ -1,0 +1,49 @@
+{% extends "SpottedHomeBundle::index.html.twig" %}
+{% block post %}
+{% for entity in entities %}
+                <div  class="row">
+                    <div id="item_wrapper" class="container">
+                        <div class="item col-xs-12 col-sm-6 col-md-6">
+                            <div class="spotted-message">
+                                <h2 class="spotted-title">
+                                    <a href="#">
+                                        <strong>{{ entity.name }}</strong>, {{ entity.bezeichnung }}
+                                    </a>
+                                </h2>
+                                <div class="datum">
+                                    <i class="glyphicon glyphicon-time"></i>{% if entity.date %}{{ entity.date|date('d.m.Y H:i') }}{% endif %}
+                                </div>
+                                <div class="gender">
+								{% if entity.geschlecht =='w' %}
+                                    <img src="{{ asset('bundles/spottedhome/images/female.png') }}" />
+								{% endif %}
+								{% if entity.geschlecht =='m' %}
+                                    <img src="{{ asset('bundles/spottedhome/images/male.png') }}" />
+								{% endif %}
+                                </div>
+                                <div style="cursor:pointer;" link="/M%C3%BCnchen/Richard%20Strau%C3%9F%20Stra%C3%9Fe/49882" class="text-main">
+                                    {% if entity.geschlecht =='w' %}
+									<font color="#C42EAF"><strong>Sie:</strong></font>
+									{% endif %}
+									{% if entity.geschlecht =='m' %}
+									<font color="#587fd8"><strong>Er:</strong></font>
+									{% endif %}
+									
+                                    {{ entity.text }}
+                                </div>
+
+                            </div>
+                            <div class="spotted-details container">
+                                <div class="row">
+                                    <div class="box comment">
+                                        <i class="glyphicon glyphicon-comment"></i>
+                                    </div>
+                                    <div class="box box-spotted">
+                                        Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						{% endfor %}
+	{% endblock %}
+						

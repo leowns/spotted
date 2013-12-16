@@ -73,7 +73,7 @@
                                                             <label>Tags</label>
                                                             <div class="form-group">
                                                                 <div class="btn-group" data-toggle="buttons">
-																{% for tag in tags %}
+																{% for tag in tags|slice(0, 6) %}
 																	<label class="btn btn-danger" data-placement="bottom" data-toggle="tooltip" data-original-title="{{ tag.bezeichnung }}" data-container="body">
                                                                         <input type="radio" required="required" value="{{ tag.id }}" name="tags" id="option{{ tag.id }}"> <i class="{{ tag.iconclass }}"></i>
                                                                     </label>  
@@ -108,37 +108,22 @@
                         <div class="row">
                             <div class="col-xs-2">
                                 <div class="btn-group-vertical" data-toggle="buttons">
-                                    <label class="btn">
-                                        <input type="radio" name="options" id="option1"> <i class="fa fa-female"></i> Sie sucht
-                                    </label>
-                                    <label class="btn">
-                                        <input type="radio" name="options" id="option2"> <i class="fa fa-male"></i> Er sucht
-                                    </label>
+										<label class="btn">
+											<input type="radio" value="w" name="filtersleft" id="option1"> <i class="fa fa-female"></i> Sie sucht
+										</label>
+										<label class="btn">
+											<input type="radio" value="m" name="filtersleft" id="option2"> <i class="fa fa-male"></i> Er sucht
+										</label>
                                 </div>
                             </div>
                             <div class="col-xs-10">
                                 <div class="btn-group" data-toggle="buttons">
-                                    <label class="btn">
-                                        <input type="radio" name="options" id="option1"> <i class="fa fa-heart"></i> Alle
-                                    </label>
-                                    <label class="btn">
-                                        <input type="radio" name="options" id="option1"> <i class="glyphicon glyphicon-cutlery"></i> Mensa
-                                    </label>
-                                    <label class="btn">
-                                        <input type="radio" name="options" id="option2"> <i class="fa fa-glass"></i> Party
-                                    </label>
-                                    <label class="btn">
-                                        <input type="radio" name="options" id="option3"> <i class="fa fa-road"></i> Auf dem Weg
-                                    </label>
-                                    <label class="btn">
-                                        <input type="radio" name="options" id="option2"> <i class="fa fa-coffee"></i> Pausenraum
-                                    </label>
-                                    <label class="btn">
-                                        <input type="radio" name="options" id="option2"> <i class="fa fa-superscript"></i> Im Klassenzimmer
-                                    </label>
-                                    <label class="btn">
-                                        <input type="radio" name="options" id="option3"> <i class="fa fa-building"></i> Irgendwo sonst im Gebäude
-                                    </label>
+                                    {% for tag in tags %}
+										<label class="btn">
+											<input type="radio" value="{{ tag.id }}" name="filtersright" id="filterright{{ tag.id }}"> <i class="{{ tag.iconclass }}"></i> {{ tag.name }}
+										</label>
+									{% endfor %}
+
                                 </div>
                             </div>
                         </div>
@@ -191,7 +176,6 @@
                         </div>
 						{% endfor %}
                     </div>
-
                 </div>
             </div>
         </div>

@@ -12,22 +12,21 @@ Spotted\HomeBundle\Entity\Comments:
                 strategy: IDENTITY
         text:
             type: text
-            nullable: true
-        datum:
+            nullable: false
+        date:
             type: datetime
-            nullable: true
-        notread:
+            nullable: false
+        read:
             type: blob
-            nullable: true
-            column: notRead
+            nullable: false
     manyToOne:
-        post1:
+        post:
             targetEntity: Post
             cascade: {  }
             mappedBy: null
             inversedBy: null
             joinColumns:
-                Post_ID1:
+                Post_ID:
                     referencedColumnName: ID
             orphanRemoval: false
     lifecycleCallbacks: {  }

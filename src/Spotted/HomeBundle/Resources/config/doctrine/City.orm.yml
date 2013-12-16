@@ -1,6 +1,6 @@
-Spotted\HomeBundle\Entity\Tags:
+Spotted\HomeBundle\Entity\City:
     type: entity
-    table: Tags
+    table: City
     fields:
         id:
             id: true
@@ -10,12 +10,10 @@ Spotted\HomeBundle\Entity\Tags:
             column: ID
             generator:
                 strategy: IDENTITY
-        name:
-            type: string
-            length: 45
-            fixed: false
+        zip:
+            type: decimal
             nullable: false
-        iconclass:
+        name:
             type: string
             length: 45
             fixed: false

@@ -181,4 +181,60 @@ class Comments
     {
         return $this->post1;
     }
+    /**
+     * @var \DateTime
+     */
+    private $date;
+
+    /**
+     * @var string
+     */
+    private $read;
+
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Comments
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set read
+     *
+     * @param string $read
+     * @return Comments
+     */
+    public function setRead($read)
+    {
+        $this->read = $read;
+    
+        return $this;
+    }
+
+    /**
+     * Get read
+     *
+     * @return string 
+     */
+    public function getRead()
+    {
+        return $this->read;
+    }
 }

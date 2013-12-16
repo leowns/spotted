@@ -12,11 +12,11 @@ Spotted\HomeBundle\Entity\Post:
                 strategy: IDENTITY
         text:
             type: text
-            nullable: true
+            nullable: false
         date:
             type: datetime
-            nullable: true
-        geschlecht:
+            nullable: false
+        gender:
             type: string
             length: 45
             fixed: false
@@ -31,15 +31,6 @@ Spotted\HomeBundle\Entity\Post:
                 Location_ID:
                     referencedColumnName: ID
             orphanRemoval: false
-        tags:
-            targetEntity: Tags
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                Tags_ID:
-                    referencedColumnName: ID
-            orphanRemoval: false
         user:
             targetEntity: User
             cascade: {  }
@@ -47,6 +38,15 @@ Spotted\HomeBundle\Entity\Post:
             inversedBy: null
             joinColumns:
                 User_ID:
+                    referencedColumnName: ID
+            orphanRemoval: false
+        tags:
+            targetEntity: Tags
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Tags_ID:
                     referencedColumnName: ID
             orphanRemoval: false
     lifecycleCallbacks: {  }
