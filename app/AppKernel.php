@@ -24,7 +24,7 @@ class AppKernel extends Kernel
 			new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             
 	    new Spotted\FBLoginBundle\SpottedFBLoginBundle(),
-		//new FB
+		
 		new FOS\FacebookBundle\FOSFacebookBundle(),
 
         );

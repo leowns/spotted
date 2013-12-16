@@ -17,6 +17,30 @@
 {% endblock %}
 
 {% block body_container %}
+
+    <div id="style-selector">
+        <div class="title-ss">Style Selector</div>
+        <div class="box-ss">Choose Background</div>
+        <div class="box-ss pad1">
+            <select name="Layout" id="bg-list" class="form-control">
+                <option data-url="http://static.tumblr.com/70d92089993cff5fbf6a89638b287863/ky1rrhj/iLBmtlqn9/tumblr_static_image.jpg">Standard</option>
+                <option data-url="{{ asset('bundles/spottedhome/images/bg/DSC08382.JPG') }}">Mensa</option>
+                <option data-url="{{ asset('bundles/spottedhome/images/bg/DSC08385.JPG') }}">Pausenraum</option>
+                <option data-url="{{ asset('bundles/spottedhome/images/bg/DSC08398.JPG') }}">Haupt Eingang 1</option>
+                <option data-url="{{ asset('bundles/spottedhome/images/bg/DSC08402.JPG') }}">Haupt Eingang 2</option>
+                <option data-url="{{ asset('bundles/spottedhome/images/bg/DSC08443.JPG') }}">Nacht</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="t-row-right-ss">
+        <i class="fa fa-cog"></i>
+    </div>
+
+    <div id="t-row-left-ss">
+        <i class="fa fa-cog"></i>
+    </div>
+
     <div class="container">
         {% block content %} {% endblock %}
     </div>

@@ -47,6 +47,7 @@ class DefaultController extends Controller
 		);
 
 		$posts= $query2->getResult();
+
 		//$user = $this->getUser();
 
 		// $entity = new Post();
@@ -204,6 +205,7 @@ class DefaultController extends Controller
         return $form;
     }
 	
+
 	public function listlocationsAction() {
 	
 	$em = $this->getDoctrine()->getManager();
@@ -219,4 +221,26 @@ class DefaultController extends Controller
 
 	}
 
+	/**
+    * Creates a user entity from fos-facebook login
+    *
+    * @param Post $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createFacebookUser ($user)
+    {
+//       $em = $this->getDoctrine()->getManager();
+//
+  //      $tags = $em->getRepository('SpottedHomeBundle:Tags')->findAll();
+	//	 $query = $em->createQuery(
+		//		 'INSERT INTO User
+			//	 (ID, username, email) VALUES
+				// (NULL, 'fb11','123@123.com')'
+	//		 );
+			
+	//	$entity= $query->getResult();
+
+
+	}
 }

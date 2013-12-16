@@ -10,12 +10,13 @@ use FOS\UserBundle\Model\User as BaseUser;
  */
 class User extends BaseUser
 {
-/**
+    /**
      * @var string
      *
      * @ORM\Column(name="facebookId", type="string", length=255, nullable=true)
      */
     protected $facebookId;
+	
 
     public function __construct()
     {
