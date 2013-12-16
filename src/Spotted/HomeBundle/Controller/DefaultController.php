@@ -140,7 +140,7 @@ class DefaultController extends Controller
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createFacebookUser $user)
+    private function createFacebookUser ($user)
     {
 //       $em = $this->getDoctrine()->getManager();
 //
@@ -154,4 +154,5 @@ class DefaultController extends Controller
 	//	$entity= $query->getResult();
 
 
+	}
 }
