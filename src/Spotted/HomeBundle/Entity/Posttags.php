@@ -22,16 +22,6 @@ class Posttags
     private $id;
 
     /**
-     * @var \Spotted\HomeBundle\Entity\Tags
-     *
-     * @ORM\ManyToOne(targetEntity="Spotted\HomeBundle\Entity\Tags")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Tags_ID", referencedColumnName="ID")
-     * })
-     */
-    private $tags;
-
-    /**
      * @var \Spotted\HomeBundle\Entity\Post
      *
      * @ORM\ManyToOne(targetEntity="Spotted\HomeBundle\Entity\Post")
@@ -40,6 +30,16 @@ class Posttags
      * })
      */
     private $post;
+
+    /**
+     * @var \Spotted\HomeBundle\Entity\Tags
+     *
+     * @ORM\ManyToOne(targetEntity="Spotted\HomeBundle\Entity\Tags")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Tags_ID", referencedColumnName="ID")
+     * })
+     */
+    private $tags;
 
 
 
@@ -51,29 +51,6 @@ class Posttags
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set tags
-     *
-     * @param \Spotted\HomeBundle\Entity\Tags $tags
-     * @return Posttags
-     */
-    public function setTags(\Spotted\HomeBundle\Entity\Tags $tags = null)
-    {
-        $this->tags = $tags;
-    
-        return $this;
-    }
-
-    /**
-     * Get tags
-     *
-     * @return \Spotted\HomeBundle\Entity\Tags 
-     */
-    public function getTags()
-    {
-        return $this->tags;
     }
 
     /**
@@ -97,5 +74,28 @@ class Posttags
     public function getPost()
     {
         return $this->post;
+    }
+
+    /**
+     * Set tags
+     *
+     * @param \Spotted\HomeBundle\Entity\Tags $tags
+     * @return Posttags
+     */
+    public function setTags(\Spotted\HomeBundle\Entity\Tags $tags = null)
+    {
+        $this->tags = $tags;
+    
+        return $this;
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Spotted\HomeBundle\Entity\Tags 
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }

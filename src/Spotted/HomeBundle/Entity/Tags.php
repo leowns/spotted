@@ -24,15 +24,16 @@ class Tags
     /**
      * @var string
      *
-     * @ORM\Column(name="Bezeichnung", type="string", length=45, nullable=true)
+     * @ORM\Column(name="name", type="string", length=45, nullable=false)
      */
-    private $bezeichnung;
-	/**
+    private $name;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="iconclass", type="string", length=45,nullable=true)
+     * @ORM\Column(name="iconclass", type="string", length=45, nullable=false)
      */
-	private $iconclass;
+    private $iconclass;
 
 
 
@@ -45,96 +46,6 @@ class Tags
     {
         return $this->id;
     }
-	/**
-     * Set id
-     *
-     * @return Tags 
-     */
-	 public function setId($id) {
-	 
-		 $this->id= $id;
-		 return $this;
-	 
-	 }
-	
-
-    /**
-     * Set bezeichnung
-     *
-     * @param string $bezeichnung
-     * @return Tags
-     */
-    public function setBezeichnung($bezeichnung)
-    {
-        $this->bezeichnung = $bezeichnung;
-    
-        return $this;
-    }
-
-    /**
-     * Get bezeichnung
-     *
-     * @return string 
-     */
-    public function getBezeichnung()
-    {
-        return $this->bezeichnung;
-    }
-	/**
-     * Set iconclass
-     *
-     * @param string $iconclass
-     * @return Tags
-     */
-    public function setIconclass($iconclass)
-    {
-        $this->iconclass = $iconclass;
-    
-        return $this;
-    }
-
-    /**
-     * Get iconclass
-     *
-     * @return string 
-     */
-    public function getIconclass()
-    {
-        return $this->iconclass;
-    }
-    /**
-     * @var \Spotted\HomeBundle\Entity\Post
-     */
-    private $post;
-
-
-    /**
-     * Set post
-     *
-     * @param \Spotted\HomeBundle\Entity\Post $post
-     * @return Tags
-     */
-    public function setPost(\Spotted\HomeBundle\Entity\Post $post = null)
-    {
-        $this->post = $post;
-    
-        return $this;
-    }
-
-    /**
-     * Get post
-     *
-     * @return \Spotted\HomeBundle\Entity\Post 
-     */
-    public function getPost()
-    {
-        return $this->post;
-    }
-    /**
-     * @var string
-     */
-    private $name;
-
 
     /**
      * Set name
@@ -157,5 +68,28 @@ class Tags
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set iconclass
+     *
+     * @param string $iconclass
+     * @return Tags
+     */
+    public function setIconclass($iconclass)
+    {
+        $this->iconclass = $iconclass;
+    
+        return $this;
+    }
+
+    /**
+     * Get iconclass
+     *
+     * @return string 
+     */
+    public function getIconclass()
+    {
+        return $this->iconclass;
     }
 }

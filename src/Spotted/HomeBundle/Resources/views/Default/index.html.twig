@@ -78,7 +78,7 @@
                                                             <div class="form-group">
                                                                 <div class="btn-group" data-toggle="buttons">
 																{% for tag in tags|slice(0, 6) %}
-																	<label class="btn btn-danger" data-placement="bottom" data-toggle="tooltip" data-original-title="{{ tag.bezeichnung }}" data-container="body">
+																	<label class="btn btn-danger" data-placement="bottom" data-toggle="tooltip" data-original-title="{{ tag.name }}" data-container="body">
                                                                         <input type="radio" required="required" value="{{ tag.id }}" name="tags" id="option{{ tag.id }}"> <i class="{{ tag.iconclass }}"></i>
                                                                     </label>  
 																{% endfor %}

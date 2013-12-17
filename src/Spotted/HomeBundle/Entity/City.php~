@@ -5,12 +5,12 @@ namespace Spotted\HomeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Tags
+ * City
  *
- * @ORM\Table(name="Tags")
+ * @ORM\Table(name="City")
  * @ORM\Entity
  */
-class Tags
+class City
 {
     /**
      * @var integer
@@ -22,18 +22,18 @@ class Tags
     private $id;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(name="zip", type="decimal", nullable=false)
+     */
+    private $zip;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=45, nullable=false)
      */
     private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="iconclass", type="string", length=45, nullable=false)
-     */
-    private $iconclass;
 
 
 }

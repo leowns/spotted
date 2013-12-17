@@ -6,43 +6,72 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Post
+ *
+ * @ORM\Table(name="Post")
+ * @ORM\Entity
  */
 class Post
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="ID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="text", type="text", nullable=false)
      */
     private $text;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=false)
      */
     private $date;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="gender", type="string", length=45, nullable=false)
      */
-    private $geschlecht;
+    private $gender;
 
     /**
      * @var \Spotted\HomeBundle\Entity\Location
+     *
+     * @ORM\ManyToOne(targetEntity="Spotted\HomeBundle\Entity\Location")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Location_ID", referencedColumnName="ID")
+     * })
      */
     private $location;
 
     /**
+     * @var \Spotted\HomeBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="Spotted\HomeBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="User_ID", referencedColumnName="ID")
+     * })
+     */
+    private $user;
+
+    /**
      * @var \Spotted\HomeBundle\Entity\Tags
+     *
+     * @ORM\ManyToOne(targetEntity="Spotted\HomeBundle\Entity\Tags")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Tags_ID", referencedColumnName="ID")
+     * })
      */
     private $tags;
 
-    /**
-     * @var \Spotted\HomeBundle\Entity\User
-     */
-    private $user;
 
 
     /**
@@ -102,26 +131,26 @@ class Post
     }
 
     /**
-     * Set geschlecht
+     * Set gender
      *
-     * @param string $geschlecht
+     * @param string $gender
      * @return Post
      */
-    public function setGeschlecht($geschlecht)
+    public function setGender($gender)
     {
-        $this->geschlecht = $geschlecht;
+        $this->gender = $gender;
     
         return $this;
     }
 
     /**
-     * Get geschlecht
+     * Get gender
      *
      * @return string 
      */
-    public function getGeschlecht()
+    public function getGender()
     {
-        return $this->geschlecht;
+        return $this->gender;
     }
 
     /**
@@ -148,29 +177,6 @@ class Post
     }
 
     /**
-     * Set tags
-     *
-     * @param \Spotted\HomeBundle\Entity\Tags $tags
-     * @return Post
-     */
-    public function setTags(\Spotted\HomeBundle\Entity\Tags $tags = null)
-    {
-        $this->tags = $tags;
-    
-        return $this;
-    }
-
-    /**
-     * Get tags
-     *
-     * @return \Spotted\HomeBundle\Entity\Tags 
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
-
-    /**
      * Set user
      *
      * @param \Spotted\HomeBundle\Entity\User $user
@@ -192,32 +198,27 @@ class Post
     {
         return $this->user;
     }
-    /**
-     * @var string
-     */
-    private $gender;
-
 
     /**
-     * Set gender
+     * Set tags
      *
-     * @param string $gender
+     * @param \Spotted\HomeBundle\Entity\Tags $tags
      * @return Post
      */
-    public function setGender($gender)
+    public function setTags(\Spotted\HomeBundle\Entity\Tags $tags = null)
     {
-        $this->gender = $gender;
+        $this->tags = $tags;
     
         return $this;
     }
 
     /**
-     * Get gender
+     * Get tags
      *
-     * @return string 
+     * @return \Spotted\HomeBundle\Entity\Tags 
      */
-    public function getGender()
+    public function getTags()
     {
-        return $this->gender;
+        return $this->tags;
     }
 }
