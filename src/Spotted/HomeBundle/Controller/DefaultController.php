@@ -19,13 +19,20 @@ use Doctrine\ORM\Query;
 class DefaultController extends Controller
 {
 	
+	 public function loginAction()
+{
+		if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+			return $this->redirect($this->generateUrl('spotted_home_homepage'));
+		}
+	}
+	
 	/**
      * Lists all Post entities.
      *
      * @Route("/home", name="index")
      * @Method("GET")
      * @Template()
-     */
+     */ 
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -56,12 +63,14 @@ class DefaultController extends Controller
 
 		// $entity = new Post();
         // $form   = $this->createCreateForm($entity);
+		
 
         return array(
             'entities' => $posts,
 			'tags' => $tags,
 			
         );
+		
     }
 
     public function commentAction($id)

@@ -29,7 +29,6 @@ _security_login:
    pattern:  /login
 
 
-
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
