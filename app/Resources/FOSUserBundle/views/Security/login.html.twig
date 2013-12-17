@@ -4,6 +4,24 @@
 
 {% block fos_user_content %}
 
+     <script type="text/javascript">
+         function goLogIn(){
+             window.location.href = "{{ path('_security_check') }}";
+         }
+
+         function onFbInit() {
+             if (typeof(FB) != 'undefined' && FB != null ) {
+                 FB.Event.subscribe('auth.statusChange', function(response) {
+                     if (response.session || response.authResponse) {
+                         setTimeout(goLogIn, 500);
+                     } else {
+                         window.location.href = "{{ path('_security_logout') }}";
+                     }
+                 });
+             }
+         }
+     </script>
+
     <div class="login-box container">
         <header class="login-header">
             <div id="logo">
@@ -48,6 +66,7 @@
 
                 <input type="submit" class="btn btn-danger pull-right" id="_submit" name="_submit" value="Log In" />
             </div>
+            {{ facebook_initialize({'xfbml': true, 'fbAsyncInit': 'onFbInit();'}) }}
 			{{ facebook_login_button({'autologoutlink': true}) }}
         </form>
         <footer class="login-footer row">

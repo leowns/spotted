@@ -80,4 +80,36 @@ Spotted\HomeBundle\Entity\User:
             type: datetime
             nullable: true
             column: credentials_expire_at
+        facebookid:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: facebookId
+        firstname:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+        lastname:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+        gender:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+        relationshipStatus:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+            column: relationship_status
+        hometown:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
     lifecycleCallbacks: {  }

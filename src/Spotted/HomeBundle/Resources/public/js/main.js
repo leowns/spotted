@@ -77,6 +77,12 @@ $( document ).ready(function() {
 //        });
     })
 
+    $(".box.comment").click(function(event) {
+        event.stopPropagation();
+
+        $(this).parents(".spotted-details").prev('.spotted-comments').slideToggle("slow");
+    });
+
     $('*[data-toggle="tooltip"]').tooltip();
 
 
@@ -99,5 +105,6 @@ $( document ).ready(function() {
     $('#bg-list').change(function () {
         $("body").css('background-image', 'url("' + $('option:selected', this).data('url') + '")');
     });
+
 
 });

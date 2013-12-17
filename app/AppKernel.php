@@ -8,7 +8,7 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
-	    new FOS\UserBundle\FOSUserBundle(),
+	        new FOS\UserBundle\FOSUserBundle(),
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -22,10 +22,8 @@ class AppKernel extends Kernel
             new Spotted\HomeBundle\SpottedHomeBundle(),
             new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
 			new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-            
-	    new Spotted\FBLoginBundle\SpottedFBLoginBundle(),
-		
-		new FOS\FacebookBundle\FOSFacebookBundle(),
+
+            new FOS\FacebookBundle\FOSFacebookBundle(),
 
         );
 

@@ -6,23 +6,41 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Watchlist
+ *
+ * @ORM\Table(name="Watchlist")
+ * @ORM\Entity
  */
 class Watchlist
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="ID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var \Spotted\HomeBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="Spotted\HomeBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="User_ID", referencedColumnName="ID")
+     * })
      */
     private $user;
 
     /**
      * @var \Spotted\HomeBundle\Entity\Post
+     *
+     * @ORM\ManyToOne(targetEntity="Spotted\HomeBundle\Entity\Post")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Post_ID", referencedColumnName="ID")
+     * })
      */
     private $post;
+
 
 
     /**

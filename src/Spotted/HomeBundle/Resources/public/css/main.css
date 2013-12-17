@@ -325,7 +325,6 @@ Login Page
     border: 1px solid #DDDDDD;
     margin-bottom: 20px;
     opacity: 0.9;
-    overflow: auto;
     transition: opacity 300ms ease-in 0s;
     padding:0px;
 }
@@ -395,6 +394,11 @@ h2.spotted-title a {
      padding-left: 10px;
 }
 
+.spotted-message .datum i.fa {
+    margin-right: 4px;
+}
+
+
 .spotted-message .gender {
     height: 40px;
     margin-right: 10px;
@@ -412,12 +416,12 @@ h2.spotted-title a {
     background: none repeat scroll 0 0 #F2F2F2;
     border-radius: 0 0 5px 5px;
     border-top: 1px solid #D8D8D8;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .spotted-details {
     height: 50px;
-    line-height: 50px;
+
 }
 
 .spotted-details .box {
@@ -435,17 +439,74 @@ h2.spotted-title a {
     line-height: 45px;
 }
 
-.spotted-details .box.comment {
+.spotted-details .box.comment,
+.spotted-details .box.wishlist{
     width: 60px;
     float:left;
+    height: 49px;
+    line-height: 50px;
 }
 
+.spotted-comments {
+    background-color: #F1F1F4;
+    box-shadow: 0 4px 9px -6px rgba(103, 103, 103, 0.7) inset;
+    margin-top: 0;
+    padding: 10px 0;
+    display: none;
+}
+
+.spotted-comments .list_comment {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.spotted-comments .avatar {
+    font-size: 30px;
+    line-height: 30px;
+}
+
+.spotted-comments .point {
+    border-bottom: 10px solid rgba(0, 0, 0, 0);
+    border-right: 12px solid #FFFFFF;
+    border-top: 10px solid rgba(0, 0, 0, 0);
+    margin-right: -1px;
+    margin-top: 8px;
+    position: relative;
+    float: left;
+    z-index: 999;
+}
+
+.spotted-comments .comment-text {
+    background-color: white;
+    border-radius: 10px;
+    min-height: 30px;
+    padding: 8px 12px;
+    box-shadow: 0 0 4px #999999;
+}
+
+.add_comment {
+
+}
+
+.add_comment textarea {
+    -moz-box-sizing: border-box;
+    border: 0 none;
+    border-radius: 0;
+    font-weight: 300;
+    margin: 0;
+    outline: 0 none;
+    padding: 10px;
+    resize: none;
+    width: 100%;
+}
 
 .spotted-details .box.box-spotted {
     text-align: center;
     border-left: 1px solid #D8D8D8;
     float: right;
     width: 160px;
+    height: 49px;
+    line-height: 50px;
  }
 
 .spotted-details .box.box-spotted img {

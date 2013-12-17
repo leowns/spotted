@@ -6,23 +6,35 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * City
+ *
+ * @ORM\Table(name="City")
+ * @ORM\Entity
  */
 class City
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="ID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var float
+     *
+     * @ORM\Column(name="zip", type="decimal", nullable=false)
      */
     private $zip;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=45, nullable=false)
      */
     private $name;
+
 
 
     /**

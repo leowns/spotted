@@ -3,12 +3,12 @@
 namespace Spotted\HomeBundle\Security\User\Provider;
 
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
-use Facebook;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use \BaseFacebook;
 use \FacebookApiException;
+use Facebook;
 
 class FacebookProvider implements UserProviderInterface
 {
@@ -18,19 +18,15 @@ class FacebookProvider implements UserProviderInterface
     protected $facebook;
     protected $userManager;
     protected $validator;
-    protected $container;
 
-    public function __construct(BaseFacebook $facebook, $userManager, $validator, $container)
+    public function __construct(BaseFacebook $facebook, $userManager, $validator)
     {
-        $this->facebook = $facebook;
-
-        // Add this to not have the error "the ssl certificate is invalid."
         Facebook::$CURL_OPTS[CURLOPT_SSL_VERIFYPEER] = false;
         Facebook::$CURL_OPTS[CURLOPT_SSL_VERIFYHOST] = 2;
 
+        $this->facebook = $facebook;
         $this->userManager = $userManager;
         $this->validator = $validator;
-        $this->container = $container;
     }
 
     public function supportsClass($class)
@@ -40,62 +36,15 @@ class FacebookProvider implements UserProviderInterface
 
     public function findUserByFbId($fbId)
     {
-        return $this->userManager->findUserBy(array('facebookId' => $fbId));
-    }
-
-    public function findUserByUsername($username)
-    {
-        return $this->userManager->findUserBy(array('username' => $username));
-    }
-
-    public function connectExistingAccount()
-    {
-
-        try {
-            $fbdata = $this->facebook->api('/me');
-        } catch (FacebookApiException $e) {
-            $fbdata = null;
-            return false;
-        }
-
-        $alreadyExistingAccount = $this->findUserByFbId($fbdata['id']);
-
-        if (!empty($alreadyExistingAccount)) {
-            return false;
-        }
-
-        if (!empty($fbdata)) {
-
-            $currentUserObj = $this->container->get('security.context')->getToken()->getUser();
-
-            $user = $this->findUserByUsername($currentUserObj->getUsername());
-
-
-            if (empty($user)) {
-                return false;
-            }
-
-			
-            $user->setFBData($fbdata);
-			//$this->setEmail($fbdata['email']);
-
-            if (count($this->validator->validate($user, 'Facebook'))) {
-                // TODO: the user was found obviously, but doesnt match our expectations, do something smart
-                throw new UsernameNotFoundException('The facebook user could not be stored');
-            }
-            //$this->userManager->updateUser($user); //?
-
-            return true;
-        }
-
-        return false;
-
+        return $this->userManager->findUserBy(array('facebookid' => $fbId));
     }
 
     public function loadUserByUsername($username)
     {
+
         $user = $this->findUserByFbId($username);
-		
+
+
 
         try {
             $fbdata = $this->facebook->api('/me');
@@ -105,41 +54,23 @@ class FacebookProvider implements UserProviderInterface
 
         if (!empty($fbdata)) {
             if (empty($user)) {
-			
                 $user = $this->userManager->createUser();
-				//$user->SetId('NULL');
-				//$user->SetUsername('fbtest');
                 $user->setEnabled(true);
-                $user->setPassword(rand(1000,9999));
-				//$user->setActive(1);
+                $user->setPassword('');
             }
 
-            if($user->getUsername() == '' || $user->getUsername() == null)
-            {
-                $user->setUsername($username . '@facebook.com');
-            }
-
+            // TODO use http://developers.facebook.com/docs/api/realtime
             $user->setFBData($fbdata);
 
             if (count($this->validator->validate($user, 'Facebook'))) {
                 // TODO: the user was found obviously, but doesnt match our expectations, do something smart
                 throw new UsernameNotFoundException('The facebook user could not be stored');
             }
-			$fbuser = new User();
-			$fbuser->setId(4);
-			$em = $this->getDoctrine()->getManager();
-			$em->persist($fbuser);
-            $em->flush();
-			
             $this->userManager->updateUser($user);
-
         }
 
         if (empty($user)) {
-
-            // TODO: the user was found obviously, but doesnt match our expectations, do something smart
-            throw new UsernameNotFoundException('The facebook user information could not be retrieved');
-
+            throw new UsernameNotFoundException('The user is not authenticated on facebook');
         }
 
         return $user;
