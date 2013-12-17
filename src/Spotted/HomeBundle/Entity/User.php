@@ -2,112 +2,210 @@
 
 namespace Spotted\HomeBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * User
+ *
+ * @ORM\Table(name="User")
+ * @ORM\Entity
  */
 class User extends BaseUser
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    protected $id;
+
+
     /**
      * @var string
      *
      * @ORM\Column(name="facebookId", type="string", length=255, nullable=true)
      */
-    protected $facebookId;
-	
+    private $facebookid;
 
-    public function __construct()
-    {
-        parent::__construct();
-        // your own logic
-    }
-
-    /**
-     * @var integer
-     */
-    protected $id;
-    
     /**
      * @var string
+     *
+     * @ORM\Column(name="firstname", type="string", length=45, nullable=true)
      */
-    private $geschlecht;
+    private $firstname;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lastname", type="string", length=45, nullable=true)
+     */
+    private $lastname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="gender", type="string", length=45, nullable=true)
+     */
+    private $gender;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="relationship_status", type="string", length=45, nullable=true)
+     */
+    private $relationshipStatus;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="hometown", type="string", length=45, nullable=true)
+     */
+    private $hometown;
 
 
     /**
-     * Get id
+     * Set facebookid
      *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set geschlecht
-     *
-     * @param string $geschlecht
+     * @param string $facebookid
      * @return User
      */
-    public function setGeschlecht($geschlecht)
+    public function setFacebookid($facebookid)
     {
-        $this->geschlecht = $geschlecht;
+        $this->facebookid = $facebookid;
     
         return $this;
     }
 
     /**
-     * Get geschlecht
+     * Get facebookid
      *
      * @return string 
      */
-    public function getGeschlecht()
+    public function getFacebookid()
     {
-        return $this->geschlecht;
-    }
-
-	public function serialize()
-    {
-        return serialize(array($this->facebookId, parent::serialize()));
-    }
-
-    public function unserialize($data)
-    {
-        list($this->facebookId, $parentData) = unserialize($data);
-        parent::unserialize($parentData);
+        return $this->facebookid;
     }
 
     /**
-     * Get the full name of the user (first + last name)
-     * @return string
+     * Set firstname
+     *
+     * @param string $firstname
+     * @return User
      */
-    public function getFullName()
+    public function setFirstname($firstname)
     {
-        return $this->getFirstname() . ' ' . $this->getLastname();
+        $this->firstname = $firstname;
+    
+        return $this;
     }
 
     /**
-     * <a href="/param">@param</a> string $facebookId
-     * @return void
+     * Get firstname
+     *
+     * @return string 
      */
-    public function setFacebookId($facebookId)
+    public function getFirstname()
     {
-        $this->facebookId = $facebookId;
+        return $this->firstname;
     }
 
     /**
-     * @return string
+     * Set lastname
+     *
+     * @param string $lastname
+     * @return User
      */
-    public function getFacebookId()
+    public function setLastname($lastname)
     {
-        return $this->facebookId;
+        $this->lastname = $lastname;
+    
+        return $this;
     }
 
     /**
-     * <a href="/param">@param</a> Array
+     * Get lastname
+     *
+     * @return string 
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * Set gender
+     *
+     * @param string $gender
+     * @return User
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+    
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return string 
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * Set relationshipStatus
+     *
+     * @param string $relationshipStatus
+     * @return User
+     */
+    public function setRelationshipStatus($relationshipStatus)
+    {
+        $this->relationshipStatus = $relationshipStatus;
+    
+        return $this;
+    }
+
+    /**
+     * Get relationshipStatus
+     *
+     * @return string 
+     */
+    public function getRelationshipStatus()
+    {
+        return $this->relationshipStatus;
+    }
+
+    /**
+     * Set hometown
+     *
+     * @param string $hometown
+     * @return User
+     */
+    public function setHometown($hometown)
+    {
+        $this->hometown = $hometown;
+    
+        return $this;
+    }
+
+    /**
+     * Get hometown
+     *
+     * @return string 
+     */
+    public function getHometown()
+    {
+        return $this->hometown;
+    }
+
+    /**
+     * @param Array
      */
     public function setFBData($fbdata)
     {
@@ -116,14 +214,23 @@ class User extends BaseUser
             $this->addRole('ROLE_FACEBOOK');
         }
         if (isset($fbdata['first_name'])) {
-            $this->setFirstname($fbdata['first_name']);
-        }
+        $this->setFirstname($fbdata['first_name']);
+    }
         if (isset($fbdata['last_name'])) {
-            $this->setSurname($fbdata['last_name']);
+            $this->setLastname($fbdata['last_name']);
+        }
+        if (isset($fbdata['gender'])) {
+            $this->setGender($fbdata['gender']);
+        }
+        if (isset($fbdata['hometown'])) {
+            $this->setHometown($fbdata['hometown']['name']);
+        }
+        if (isset($fbdata['relationship_status'])) {
+            $this->setRelationshipStatus($fbdata['relationship_status']);
         }
         if (isset($fbdata['email'])) {
             $this->setEmail($fbdata['email']);
         }
     }
-   
+
 }

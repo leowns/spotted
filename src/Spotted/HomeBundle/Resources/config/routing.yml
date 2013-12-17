@@ -1,14 +1,17 @@
 spotted_home_homepage:
-    pattern:  /home
+    pattern:  /secured/
     defaults: { _controller: SpottedHomeBundle:Default:index }
+
 spotted_homeform_submission:
     pattern:  /post
     defaults: { _controller: SpottedHomeBundle:Default:create }
+
 spotted_listlocations:
     pattern: /listlocations
     defaults: { _controller: SpottedHomeBundle:Default:listlocations }
     options:
         expose: true
+
 ajaxfilters:
     pattern: /ajaxfilters
     defaults: { _controller: SpottedHomeBundle:Default:filter }

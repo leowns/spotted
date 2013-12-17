@@ -100,4 +100,5 @@ $( document ).ready(function() {
         $("body").css('background-image', 'url("' + $('option:selected', this).data('url') + '")');
     });
 
+
 });

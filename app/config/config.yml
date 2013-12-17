@@ -79,8 +79,17 @@ fos_user:
     user_class: Spotted\HomeBundle\Entity\User
 
 fos_facebook:
-    alias:  facebook
+    alias:  ZHAW-Spotted
     app_id: 542881899137127
     secret: 34029cef0267c18fc94163846a53c35d
     cookie: true
     permissions: [email, user_about_me]
+
+
+services:
+    my.facebook.user:
+        class: Spotted\HomeBundle\Security\User\Provider\FacebookProvider
+        arguments:
+            facebook: "@fos_facebook.api"
+            userManager: "@fos_user.user_manager"
+            validator: "@validator"
