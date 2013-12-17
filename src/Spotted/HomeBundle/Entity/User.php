@@ -75,8 +75,7 @@ class User extends BaseUser
     public function setFacebookid($facebookid)
     {
         $this->facebookid = $facebookid;
-		$username=$this->firstname + " " + $this->lastname;
-        $this->setUsername($username);
+        $this->setUsername($facebookid);
     
         return $this;
     }
@@ -204,6 +203,16 @@ class User extends BaseUser
     public function getHometown()
     {
         return $this->hometown;
+    }
+	
+	 /**
+     * Get fullname
+     *
+     * @return string 
+     */
+    public function getFullname()
+    {
+        return $this->getFirstname() . ' ' . $this->getLastname();
     }
 
     /**
