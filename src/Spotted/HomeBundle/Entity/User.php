@@ -206,9 +206,8 @@ class User extends BaseUser
     }
 	
 	 /**
-     * Get fullname
-     *
-     * @return string 
+     * Get the full name of the user (first + last name)
+     * @return string
      */
     public function getFullname()
     {
