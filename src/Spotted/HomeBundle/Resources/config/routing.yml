@@ -2,6 +2,10 @@ spotted_home_homepage:
     pattern:  /secured/
     defaults: { _controller: SpottedHomeBundle:Default:index }
 
+spotted_securedLogin:
+    pattern:  /secured/
+    defaults: { _controller: SpottedHomeBundle:Default:login }
+
 spotted_homeform_submission:
     pattern:  /post
     defaults: { _controller: SpottedHomeBundle:Default:create }
