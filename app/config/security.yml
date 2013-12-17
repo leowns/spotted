@@ -48,6 +48,7 @@ security:
                         lifetime: 31536000 # 365 days in seconds
                         path:     /secured/
                         domain:   ~ # Defaults to the current domain from $_SERVER
+                        default_target_path: /secured/
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
