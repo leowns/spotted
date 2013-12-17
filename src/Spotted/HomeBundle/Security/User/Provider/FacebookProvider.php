@@ -41,7 +41,6 @@ class FacebookProvider implements UserProviderInterface
 
     public function loadUserByUsername($username)
     {
-        var_dump($username);
 
         $user = $this->findUserByFbId($username);
 
@@ -51,7 +50,6 @@ class FacebookProvider implements UserProviderInterface
             $fbdata = $this->facebook->api('/me');
         } catch (FacebookApiException $e) {
             $fbdata = null;
-            var_dump($e);
         }
 
         if (!empty($fbdata)) {
