@@ -77,6 +77,12 @@ $( document ).ready(function() {
 //        });
     })
 
+    $(".box.comment").click(function(event) {
+        event.stopPropagation();
+
+        $(this).parents(".spotted-details").prev('.spotted-comments').slideToggle("slow");
+    });
+
     $('*[data-toggle="tooltip"]').tooltip();
 
 

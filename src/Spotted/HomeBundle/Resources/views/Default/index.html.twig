@@ -74,7 +74,7 @@
                                                     </div>
                                                     <div class="col-xs-5">
                                                         <div class="pull-right">
-                                                            <label>Tag</label>
+                                                            <label>Kategorie</label>
                                                             <div class="form-group">
                                                                 <div class="btn-group" data-toggle="buttons">
 																{% for tag in tags|slice(0, 8) %}
@@ -141,11 +141,11 @@
                             <div class="spotted-message">
                                 <h2 class="spotted-title">
                                     <a href="#">
-                                        <strong>{{ entity.location.name }}</strong>, {{ entity.tags.name }}
+                                        <strong>{{ entity.location.name }} ({{ entity.location.city.name }})</strong>, {{ entity.tags.name }}
                                     </a>
                                 </h2>
                                 <div class="datum">
-                                    <i class="glyphicon glyphicon-time"></i>{% if entity.date %}{{ entity.date|date('d.m.Y H:i') }}{% endif %}
+                                    <i class="fa fa-clock-o"></i>{% if entity.date %}{{ entity.date|date('d.m.Y H:i') }}{% endif %}
                                 </div>
                                 <div class="gender">
 								{% if entity.gender =='w' %}
@@ -155,22 +155,68 @@
                                     <img src="{{ asset('bundles/spottedhome/images/male.png') }}" />
 								{% endif %}
                                 </div>
-                                <div style="cursor:pointer;" link="/M%C3%BCnchen/Richard%20Strau%C3%9F%20Stra%C3%9Fe/49882" class="text-main">
+                                <div style="cursor:pointer;" class="text-main">
                                     {% if entity.gender =='w' %}
-									<font color="#C42EAF"><strong>Sie:</strong></font>
+									<span style="color: #C42EAF"><strong>Sie:</strong></span>
 									{% endif %}
 									{% if entity.gender =='m' %}
-									<font color="#587fd8"><strong>Er:</strong></font>
+									<span style="color: #587fd8"><strong>Er:</strong></span>
 									{% endif %}
 									
                                     {{ entity.text }}
                                 </div>
+                            </div>
+                            <div class="spotted-comments">
+                                <div class="container">
+                                    <div class="row" style="margin-bottom: 10px;">
+                                        <div class="col-sm-12">
+                                            <h4>Kommentare:</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row list_comment">
+                                        <div class="col-sm-2 avatar">
+                                            <div class="pull-right">
+                                                <span style="color: #587fd8"><i class="fa fa-user"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="point"></div>
+                                        <div class="col-sm-9 comment-text">
+                                            Mah das bi ich gsi du huuure!
+                                        </div>
+                                    </div>
+                                    <div class="row list_comment">
+                                        <div class="col-sm-2 avatar">
+                                            <div class="pull-right">
+                                                <span style="color: #C42EAF"><i class="fa fa-user"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="point"></div>
+                                        <div class="col-sm-9 comment-text">
+                                            Was wetsch du Figgfresse eigentli? Chum dahi man!
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="add_comment container">
+                                    <div class="row">
+                                        <textarea required="required" placeholder="Schreibe einen Hinweis..."></textarea>
+                                    </div>
+                                    <div class="row" style="margin-top: 10px">
+                                        <div class="col-xs-12">
+                                            <button class="btn btn-danger pull-right" type="submit">Kommentieren</button>
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
+
                             <div class="spotted-details container">
                                 <div class="row">
-                                    <div class="box comment">
+                                    <div class="box comment" data-placement="top" data-toggle="tooltip" data-original-title="Kommentieren">
                                         <i class="glyphicon glyphicon-comment"></i>
+                                    </div>
+                                    <div class="box wishlist" data-placement="top" data-toggle="tooltip" data-original-title="Auf Watchlist">
+                                        <i class="fa fa-eye"></i>
                                     </div>
                                     <div class="box box-spotted">
                                         Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" />
