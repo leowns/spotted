@@ -31,25 +31,33 @@ security:
                 check_path: /login_check
                 provider: fos_facebook_provider
                 default_target_path: /secured/
+                always_use_default_target_path: true
             form_login:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
                 default_target_path: /secured/
+                always_use_default_target_path: true
             logout:
                 path:   /logout
                 target: /login
+                delete_cookies:
+                        fbs_542881899137127: { path: "/", domain: "localhost" }
             anonymous: true
-
+            remember_me:
+                        key:      "%secret%"
+                        lifetime: 31536000 # 365 days in seconds
+                        path:     /secured/
+                        domain:   ~ # Defaults to the current domain from $_SERVER
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
 
     access_control:
-        - { path: ^/home, roles: ROLE_USER }
-        - { path: ^/secured/.*, role: [IS_AUTHENTICATED_FULLY] } # This is the route secured with fos_facebook
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/secured/.*, role: [IS_AUTHENTICATED_FULLY, ROLE_USER] } # This is the route secured with fos_facebook
+        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: ^/admin/, role: ROLE_ADMIN }
+
