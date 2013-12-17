@@ -36,17 +36,21 @@ class DefaultController extends Controller
 					// from spottedhomebundle:post p
 					// order by p.date desc'
 			 // );
-		$query2 = $em->createQuery(
-			'SELECT p.gender,p.text,p.date,l.name,t.name
-			FROM SpottedHomeBundle:Post p
-			JOIN p.location l
-			JOIN p.tags t
-			WHERE l.id = p.location
-			AND t.id= p.tags
-			ORDER BY p.date DESC'
-		);
+//		$query2 = $em->createQuery(
+//			'SELECT p.gender,p.text,p.date,l.name as location,t.name as tag
+//			FROM SpottedHomeBundle:Post p
+//			JOIN p.location l
+//			JOIN p.tags t
+//			WHERE l.id = p.location
+//			AND t.id= p.tags
+//			ORDER BY p.date DESC'
+//		);
+//
+//		$posts= $query2->getResult();
 
-		$posts= $query2->getResult();
+        $posts = $em->getRepository('SpottedHomeBundle:Post')->findAll();
+
+
 
 		//$user = $this->getUser();
 

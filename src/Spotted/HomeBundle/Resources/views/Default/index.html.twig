@@ -141,25 +141,25 @@
                             <div class="spotted-message">
                                 <h2 class="spotted-title">
                                     <a href="#">
-                                        <strong>{{ entity.name }}</strong>, {{ entity.bezeichnung }}
+                                        <strong>{{ entity.location.name }}</strong>, {{ entity.tags.name }}
                                     </a>
                                 </h2>
                                 <div class="datum">
                                     <i class="glyphicon glyphicon-time"></i>{% if entity.date %}{{ entity.date|date('d.m.Y H:i') }}{% endif %}
                                 </div>
                                 <div class="gender">
-								{% if entity.geschlecht =='w' %}
+								{% if entity.gender =='w' %}
                                     <img src="{{ asset('bundles/spottedhome/images/female.png') }}" />
 								{% endif %}
-								{% if entity.geschlecht =='m' %}
+								{% if entity.gender =='m' %}
                                     <img src="{{ asset('bundles/spottedhome/images/male.png') }}" />
 								{% endif %}
                                 </div>
                                 <div style="cursor:pointer;" link="/M%C3%BCnchen/Richard%20Strau%C3%9F%20Stra%C3%9Fe/49882" class="text-main">
-                                    {% if entity.geschlecht =='w' %}
+                                    {% if entity.gender =='w' %}
 									<font color="#C42EAF"><strong>Sie:</strong></font>
 									{% endif %}
-									{% if entity.geschlecht =='m' %}
+									{% if entity.gender =='m' %}
 									<font color="#587fd8"><strong>Er:</strong></font>
 									{% endif %}
 									
