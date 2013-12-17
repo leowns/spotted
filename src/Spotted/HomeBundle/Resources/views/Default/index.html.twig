@@ -19,9 +19,13 @@
                     </div>
                 </div>
 
-                <a class="link" href="{{ path('spotted_home_homepage') }}">Home</a>
+                <a class="link" href="{{ path('spotted_home_homepage') }}"><i class="fa fa-home"></i> Home</a>
 
-                <a class="link" href="{{ path('user_logout') }}">Logout</a>
+                <a class="link" href="{{ path('spotted_secured_notifications') }}"><i class="fa fa-heart"></i> Meine Neuigkeiten</a>
+
+                <a class="link" href="{{ path('spotted_secured_watchlist') }}"><i class="fa fa-eye"></i> Meine Watchlist</a>
+
+                <a class="link" href="{{ path('user_logout') }}"><i class="fa fa-power-off"></i> Logout</a>
 
                 <div id="search">
                     <form id="search" action="/search" method="get">
@@ -213,7 +217,7 @@
                             <div class="spotted-details container">
                                 <div class="row">
                                     <div class="box comment" data-placement="top" data-toggle="tooltip" data-original-title="Kommentieren">
-                                        <i class="glyphicon glyphicon-comment"></i>
+                                        <i class="fa fa-comment"></i>
                                     </div>
                                     <div class="box wishlist" data-placement="top" data-toggle="tooltip" data-original-title="Auf Watchlist">
                                         <i class="fa fa-eye"></i>

@@ -224,11 +224,6 @@ Login Page
 }
 
 #menu a.link {
-    background-color: rgba(0, 0, 0, 0);
-    background-image: url("http://static.tumblr.com/ky1rrhj/EPsmt25fq/arrow.png");
-    background-position: 10px 50%;
-    background-repeat: no-repeat;
-    background-size: 12px auto;
     border-bottom: 1px solid #000000;
     color: #FFFFFF;
     display: block;
@@ -238,8 +233,16 @@ Login Page
     line-height: 30px;
     padding: 0 10px;
     text-decoration: none;
-    text-indent: 20px;
     text-transform: uppercase;
+}
+
+#menu a.link:hover {
+    font-weight: 700;
+}
+
+
+#menu a.link i {
+    margin-right: 10px;
 }
 
 #menu #search {
@@ -447,6 +450,15 @@ h2.spotted-title a {
     line-height: 50px;
 }
 
+.spotted-details .box.wishlist.selected{
+    background-color: #D9534F;
+    border-color: #D43F3A;
+    color: #FFFFFF;
+    white-space: nowrap;
+}
+
+
+
 .spotted-comments {
     background-color: #F1F1F4;
     box-shadow: 0 4px 9px -6px rgba(103, 103, 103, 0.7) inset;
@@ -481,7 +493,7 @@ h2.spotted-title a {
     border-radius: 10px;
     min-height: 30px;
     padding: 8px 12px;
-    box-shadow: 0 0 4px #999999;
+    box-shadow: 0 0 5px #C8C8C8;
 }
 
 .add_comment {
