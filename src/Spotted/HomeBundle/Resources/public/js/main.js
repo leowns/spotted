@@ -80,7 +80,23 @@ $( document ).ready(function() {
     $(".box.comment").click(function(event) {
         event.stopPropagation();
 
-        $(this).parents(".spotted-details").prev('.spotted-comments').slideToggle("slow");
+        var targetDIV = $(this).parents(".spotted-details").prev('.spotted-comments');
+        var comment_height = targetDIV.height();
+
+        if(targetDIV.is(":visible")) {
+            targetDIV.slideToggle('slow', function() {
+                $(this).parents("#item_wrapper").height(function (index, height) {
+                    return (height - comment_height);
+                });
+            });
+        } else {
+            $(this).parents("#item_wrapper").height(function (index, height) {
+                return (height + comment_height);
+            });
+            targetDIV.slideDown("slow");
+        }
+
+
     });
 
     $('*[data-toggle="tooltip"]').tooltip();

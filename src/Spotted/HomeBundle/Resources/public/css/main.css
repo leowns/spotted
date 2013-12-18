@@ -482,11 +482,11 @@ h2.spotted-title a {
     border-bottom: 10px solid rgba(0, 0, 0, 0);
     border-right: 12px solid #FFFFFF;
     border-top: 10px solid rgba(0, 0, 0, 0);
-    margin-right: -1px;
-    margin-top: 8px;
     position: relative;
     float: left;
     z-index: 999;
+    margin-left: -12px;
+    margin-top: 8px;
 }
 
 .spotted-comments .comment-text {
