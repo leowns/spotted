@@ -319,6 +319,7 @@ Login Page
 #canvas {
     overflow: visible;
     margin-top: 15px;
+    margin-bottom: 70px;
 }
 
 #canvas .item {
@@ -525,4 +526,91 @@ h2.spotted-title a {
     width: 40px;
     margin-left: 5px;
     margin-top: -5px;
+}
+
+.footer {
+    padding: 40px 0px 10px;
+    min-height: 30px;
+    border-top: 5px solid #C0C0C8;
+    background-color: #19191A;
+}
+
+.footer-box {
+    background-color: #3D3D3F;
+    border-radius: 10px;
+    padding-top: 2px;
+    margin-top: 30px;
+}
+
+.footer-box-icon {
+    background: #202021; /* Old browsers */
+    background: -moz-linear-gradient(top,  #202021 0%, #131313 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#202021), color-stop(100%,#131313)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #202021 0%,#131313 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #202021 0%,#131313 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #202021 0%,#131313 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #202021 0%,#131313 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#202021', endColorstr='#131313',GradientType=0 ); /* IE6-9 */
+
+    border-radius: 6px 6px 0 0;
+    margin: 0 2px;
+    height: 80px;
+
+    text-align: center;
+}
+
+.footer-box-icon i {
+    font-size: 63px;
+    margin-top: 9px;
+    color: #FFFFFF;
+}
+
+.footer-box-text {
+    color: #777777;
+    min-height: 80px;
+    padding: 5px 20px 10px;
+}
+
+.footer-box-text-header {
+
+    font-size: 1.3em;
+    font-weight: 700;
+    text-align: center;
+}
+
+.footer-box-text-content {
+    text-shadow: 0 -1px 0 #222222;
+}
+
+.footer-recommendation {
+    margin-top: 40px;
+}
+
+.footer-recommendation-img {
+    border-radius: 75px;
+    float: left;
+    height: 150px;
+    overflow: hidden;
+    width: 150px;
+}
+
+.footer-recommendation-img img {
+    height: 150px;
+    margin-left: -42px;
+}
+.footer-recommendation-text {
+    font-size: 20px;
+    margin-left: 180px;
+    min-height: 150px;
+    padding-top: 29px;
+
+    text-shadow: 0 -1px 0 #222222;
+    color: #777777;
+    font-style: italic;
+}
+
+
+#copyright {
+    margin-top: 40px;
+    color: #565656;
 }

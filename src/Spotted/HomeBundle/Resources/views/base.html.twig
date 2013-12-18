@@ -44,7 +44,81 @@
     <div class="container">
         {% block content %} {% endblock %}
     </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="footer-box">
+                        <div class="footer-box-icon">
+                            <i class="fa fa-info-circle"></i>
+                        </div>
+                        <div class="footer-box-text">
+                            <div class="footer-box-text-header">
+                                Was ist Spotted?
+                            </div>
+                            <div class="footer-box-text-content">
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+                                eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                                no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+                                consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+                                dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+                                ipsum dolor sit amet.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="footer-box">
+                        <div class="footer-box-icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <div class="footer-box-text">
+                            <div class="footer-box-text-header">
+                                Wer kann mitmachen?
+                            </div>
+                            <div class="footer-box-text-content">
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+                                eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                                no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+                                consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+                                dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+                                ipsum dolor sit amet.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="footer-recommendation">
+                        <div class="footer-recommendation-img">
+                            <img src="{{ asset('bundles/spottedhome/images/fabian.jpg') }}" />
+                        </div>
+                        <div class="footer-recommendation-text">
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+                            eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                            At vero eos et accusam et justo duo dolores et ea rebum.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="copyright" class="col-xs-12">
+                    ©2013 Spotted, All Rights Reserved.
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
+
+
+
 
 {% block body_js %}
     {{ parent() }}

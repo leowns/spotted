@@ -1,6 +1,6 @@
-spotted_securedLogin:
+spotted_home_homepage:
     pattern:  /secured/
-    defaults: { _controller: SpottedHomeBundle:Default:login }
+    defaults: { _controller: SpottedHomeBundle:Default:index }
 
 
 spotted_secured_notifications:
@@ -11,7 +11,9 @@ spotted_secured_watchlist:
     pattern:  /secured/watchlist
     defaults: { _controller: SpottedHomeBundle:Default:watchlist }
 
-
+spotted_securedLogin:
+    pattern:  /secured/
+    defaults: { _controller: SpottedHomeBundle:Default:login }
 
 spotted_homeform_submission:
     pattern:  /post
