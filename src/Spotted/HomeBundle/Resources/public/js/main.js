@@ -21,12 +21,48 @@ $( document ).ready(function() {
 
     $('textarea').autosize();
 	
-	$('#Location').typeahead({
-		valueKey: 'name',
-		prefetch: Routing.generate('spotted_listlocations'),
+	$('#Location').typeahead([
+	{	
+			valueKey: 'name',
+			prefetch: Routing.generate('spotted_listlocations'),
+			template: [                                                                 
+			'<strong>{{name}}</strong> <p>{{street}}</p> <p>{{zip}} {{city}}</p>',                                                                            
+		  ].join(''),                                                                 
+		  engine: Hogan  
+	},
+	{
+	
+		valueKey: 'city',
+			prefetch: Routing.generate('spotted_listlocations'),
+			template: [                                                                 
+			'<strong>{{name}}</strong> <p>{{street}}</p> <p>{{zip}} {{city}}</p>',                                                                            
+		  ].join(''),                                                                 
+		  engine: Hogan  
+	
+	},
+	{
+	
+		valueKey: 'street',
+			prefetch: Routing.generate('spotted_listlocations'),
+			template: [                                                                 
+			'<strong>{{name}}</strong> <p>{{street}}</p> <p>{{zip}} {{city}}</p>',                                                                            
+		  ].join(''),                                                                 
+		  engine: Hogan  
+	
+	},
+	{
+	
+		valueKey: 'zip',
+			prefetch: Routing.generate('spotted_listlocations'),
+			template: [                                                                 
+			'<strong>{{name}}</strong> <p>{{street}}</p> <p>{{zip}} {{city}}</p>',                                                                            
+		  ].join(''),                                                                 
+		  engine: Hogan  
+	
+	}
+	
 		
-		
-	});
+	]);
 	$("input[name=filtersleft]:radio").change(function () {
 		$.post(
 			  Routing.generate('ajaxfilters'), 
