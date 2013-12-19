@@ -224,7 +224,7 @@ class DefaultController extends Controller
 	
 	$em = $this->getDoctrine()->getManager();
 	// $location = $em->getRepository('SpottedHomeBundle:Location')->findAll();
-	$query = $em->createQuery('SELECT l from SpottedHomeBundle:Location l');
+	$query = $em->createQuery('SELECT l.name,l.street,c.name As city,c.zip from SpottedHomeBundle:Location l JOIN l.city c WHERE l.city=c.id');
 	$location = $query->getArrayResult(); 
 	$response = new Response(json_encode($location));
 	$response->headers->set('Content-Type', 'application/json');
