@@ -23,7 +23,7 @@ $( document ).ready(function() {
 			valueKey: 'name',
 			prefetch: Routing.generate('spotted_listlocations'),
 			template: [                                                                 
-			'<strong>{{name}}</strong> <p>{{street}}</p> <p>{{zip}}</p> <p>{{city}}</p>',                                                                            
+			'<strong>{{name}}</strong> <p>{{street}}</p> <p>{{zip}} {{city}}</p>',                                                                            
 		  ].join(''),                                                                 
 		  engine: Hogan  
 	},
@@ -32,7 +32,7 @@ $( document ).ready(function() {
 		valueKey: 'city',
 			prefetch: Routing.generate('spotted_listlocations'),
 			template: [                                                                 
-			'<strong>{{name}}</strong> <p>{{street}}</p> <p>{{zip}}</p> <p>{{city}}</p>',                                                                            
+			'<strong>{{name}}</strong> <p>{{street}}</p> <p>{{zip}} {{city}}</p>',                                                                            
 		  ].join(''),                                                                 
 		  engine: Hogan  
 	
@@ -42,7 +42,7 @@ $( document ).ready(function() {
 		valueKey: 'street',
 			prefetch: Routing.generate('spotted_listlocations'),
 			template: [                                                                 
-			'<strong>{{name}}</strong> <p>{{street}}</p> <p>{{zip}}</p> <p>{{city}}</p>',                                                                            
+			'<strong>{{name}}</strong> <p>{{street}}</p> <p>{{zip}} {{city}}</p>',                                                                            
 		  ].join(''),                                                                 
 		  engine: Hogan  
 	
@@ -52,7 +52,7 @@ $( document ).ready(function() {
 		valueKey: 'zip',
 			prefetch: Routing.generate('spotted_listlocations'),
 			template: [                                                                 
-			'<strong>{{name}}</strong> <p>{{street}}</p> <p>{{zip}}</p> <p>{{city}}</p>',                                                                            
+			'<strong>{{name}}</strong> <p>{{street}}</p> <p>{{zip}} {{city}}</p>',                                                                            
 		  ].join(''),                                                                 
 		  engine: Hogan  
 	
