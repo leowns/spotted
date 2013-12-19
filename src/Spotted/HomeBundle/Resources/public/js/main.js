@@ -9,12 +9,15 @@ $( document ).ready(function() {
 
     // Creates an instance of Masonry on #pin-outer
 
-    container.masonry({
-        gutter: gutter,
-        itemSelector: '.item',
-        columnWidth: '.item'
-    });
+    var reMasonry = function() {
+        container.masonry({
+            gutter: gutter,
+            itemSelector: '.item',
+            columnWidth: '.item'
+        });
+    };
 
+    reMasonry();
 
     $('textarea').autosize();
 	
@@ -83,19 +86,9 @@ $( document ).ready(function() {
         var targetDIV = $(this).parents(".spotted-details").prev('.spotted-comments');
         var comment_height = targetDIV.height();
 
-        if(targetDIV.is(":visible")) {
-            targetDIV.slideToggle('slow', function() {
-                $(this).parents("#item_wrapper").height(function (index, height) {
-                    return (height - comment_height);
-                });
-            });
-        } else {
-            $(this).parents("#item_wrapper").height(function (index, height) {
-                return (height + comment_height);
-            });
-            targetDIV.slideDown("slow");
-        }
-
+        targetDIV.slideToggle('slow', function() {
+            reMasonry();
+        });
 
     });
 
