@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Oryzone\Bundle\BoilerplateBundle\OryzoneBoilerplateBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Spotted\HomeBundle\SpottedHomeBundle(),
+            new Spotted\FBLoginBundle\SpottedFBLoginBundle(),
             new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
 			new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
 

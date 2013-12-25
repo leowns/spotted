@@ -13,6 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User extends BaseUser
 {
+    // This is the constructor in the Entity
+    public function __construct() {
+        parent::__construct();
+        parent::setUsername("empty");
+    }
+
     /**
      * @var integer
      *
@@ -88,6 +94,12 @@ class User extends BaseUser
     public function getFacebookid()
     {
         return $this->facebookid;
+    }
+
+    public function setEmail($email)
+    {
+        parent::setEmail($email);
+        $this->setUsername($email);
     }
 
     /**

@@ -1,14 +1,28 @@
 $( document ).ready(function() {
 
-    // Takes the gutter width from the bottom margin of .pin-inner
+    /**
+     * Landing Page
+     */
+    $( "#landing_box" ).fadeIn( 4000 );
+    $( "#landing_image" ).fadeIn( 4000 );
 
+    $('#landing_image').height($(window).height());
+    $('#landing_wrapper').height($(window).height());
+
+
+    /**
+     * Register Page
+     */
+    $("fos_user_registration_form_gender").hid
+
+
+    /**
+     * Main Page
+     */
     var gutter = 30;
     var container = $('#item_wrapper');
 
-
-
-    // Creates an instance of Masonry on #pin-outer
-
+    // Creates a function of Masonry
     var reMasonry = function() {
         container.masonry({
             gutter: gutter,
@@ -17,9 +31,12 @@ $( document ).ready(function() {
         });
     };
 
+    // Creates an instance of Masonry on .item
     reMasonry();
 
-    $('textarea').autosize();
+
+
+    $('textarea.autosize').autosize();
 	
 	$('#Location').typeahead([
 	{	

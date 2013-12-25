@@ -1,0 +1,43 @@
+{% extends "SpottedHomeBundle::base.html.twig" %}
+
+{% block head_title %}ZHAW Spotted{% endblock %}
+
+
+
+{% block content %}
+    <div id="landing_image">
+        <div id="companies">
+
+        </div>
+    </div>
+    <div id="landing_wrapper" class="row">
+        <div class="col-xs-8">
+            <div id="landing_box">
+
+                <!-- Logo -->
+
+                <div>
+                    <img src="{{ asset('bundles/spottedhome/images/logo_white_red.png') }}" style="height:100px" />
+                </div>
+
+                <!-- Title -->
+                <div id="landing_text">
+                    <h2 class="fade2" style="display: block;">Get ready to see something awesome
+                        <br>That'll change your life.</h2>
+                </div>
+
+                <!-- Button-->
+
+                <a id="btn_joinus" href="{{ path('fos_user_registration_register') }}" style="margin-left: 10px; display: inline;" class="btn btn-default btn-lg">Mach mit!</a>
+
+                <a id="btn_login" href="{{ path('fos_user_security_login') }}" class="btn btn-danger btn-lg" style="display: inline;">Log In</a>
+
+            </div>
+        </div>
+
+        <div class="col-xs-4">
+
+
+        </div>
+    </div>
+{% endblock %}

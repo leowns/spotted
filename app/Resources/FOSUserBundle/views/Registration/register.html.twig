@@ -1,10 +1,37 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
+{% block head_title %}Spotted ZHAW - Registrieren{% endblock %}
+
+{% form_theme form _self %}
+
+{% block choice_widget %}
+    {% spaceless %}
+        {% if expanded %}
+            {% spaceless %}
+                <div {{ block('widget_container_attributes') }}>
+                    {% for child in form %}
+                        <label class="btn btn-default" data-container="body" data-original-title="{{ child.vars.label }}" data-toggle="tooltip" data-placement="bottom">
+                            {% if child.vars.label == "Weiblich" %}
+                                <i class="fa fa-female"></i>
+                            {% else %}
+                                <i class="fa fa-male"></i>
+                            {% endif %}
+                            {{ form_widget(child) }}
+                        </label>
+                    {% endfor %}
+                </div>
+            {% endspaceless %}
+        {% else %}
+            {{ block('choice_widget_collapsed') }}
+        {% endif %}
+    {% endspaceless %}
+{% endblock choice_widget %}
+
 {% block fos_user_content %}
     <div class="login-box container">
         <header class="login-header">
             <div id="logo">
-                <a href="{{ path('spotted_home_homepage') }}"  style="width: 100%; height: 100%; display: block;">
+                <a href="{{ path('spotted_secured_homepage') }}"  style="width: 100%; height: 100%; display: block;">
 
                 </a>
             </div>

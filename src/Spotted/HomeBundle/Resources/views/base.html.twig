@@ -41,9 +41,11 @@
         <i class="fa fa-cog"></i>
     </div>
 
-    <div class="container" style="min-height: 800px;">
-        {% block content %} {% endblock %}
-    </div>
+    {% block container_content %}
+        <div class="container" style="min-height:600px;">
+            {% block content %} {% endblock %}
+        </div>
+    {% endblock %}
 
     <div class="footer">
         <div class="container">

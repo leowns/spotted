@@ -18,15 +18,11 @@ use Doctrine\ORM\Query;
 
 class DefaultController extends Controller
 {
-	
-	 public function loginAction()
-	{
-		
-		if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
-			return $this->redirect($this->generateUrl('spotted_home_homepage'));
-		}
-	}
-	
+
+    public function landingAction() {
+        return $this->render('SpottedHomeBundle:Default:landing.html.twig');
+    }
+
 	/**
      * Lists all Post entities.
      *
@@ -34,8 +30,10 @@ class DefaultController extends Controller
      * @Method("GET")
      * @Template()
      */ 
-    public function indexAction()
+    public function indexAction($confirmed = false)
     {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
         $em = $this->getDoctrine()->getManager();
 
         $tags = $em->getRepository('SpottedHomeBundle:Tags')->findAll();
@@ -69,6 +67,8 @@ class DefaultController extends Controller
         return array(
             'entities' => $posts,
 			'tags' => $tags,
+            'confirmed' => $confirmed,
+            'user' => $user
 			
         );
 		

@@ -19,7 +19,7 @@
                     </div>
                 </div>
 
-                <a class="link" href="{{ path('spotted_home_homepage') }}"><i class="fa fa-home"></i> Home</a>
+                <a class="link" href="{{ path('spotted_secured_homepage') }}"><i class="fa fa-home"></i> Home</a>
 
                 <a class="link" href="{{ path('spotted_secured_notifications') }}"><i class="fa fa-heart"></i> Meine Neuigkeiten</a>
 
@@ -27,10 +27,13 @@
 
                 <a class="link" href="{{ path('user_logout') }}"><i class="fa fa-power-off"></i> Logout</a>
 
-                <div id="search">
-                    <form id="search" action="/search" method="get">
-                        <input type="text" placeholder="search..." size="40" value="" name="q" class="form-control">
-                    </form>
+                <div id="profile" class="row">
+                    <div class="col-xs-1 col-sm-4 col-md-3">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <div id="profile_name" class="col-xs-11 col-sm-8 col-md-9">
+                        {{ user.email }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,6 +43,12 @@
             <div style="padding: 0 15px">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
+                        {% if confirmed == true %}
+
+                            <div class="alert alert-success">Herzlichen Glückwunsch {{ user.firstname }}  du bist nun registriert.</div>
+
+                        {% endif %}
+
                         <div class="new_item container">
                             <div class="head row">
 							
@@ -52,7 +61,7 @@
                                      <form id="new_item_form" action="{{ path('spotted_homeform_submission') }}" name="form" method="post">
 
                                         <div class="row">
-                                            <textarea placeholder="TRAU DICH, SCHREIBE DEINEM FLIRT!" name="text" class="message_text" required="required" id="form_message"></textarea>
+                                            <textarea placeholder="TRAU DICH, SCHREIBE DEINEM FLIRT!" name="text" class="message_text autosize" required="required" id="form_message"></textarea>
                                         </div>
                                         <div class="row">
                                             <div id="new_item_div" class="container">
@@ -186,6 +195,7 @@
                                             </div>
                                             <div class="point"></div>
                                             <div class="col-xs-9 col-sm-9 comment-text">
+                                                <div class="comment-username">Manuel:</div>
                                                 Mah das bi ich gsi du huuure!
                                             </div>
                                         </div>
@@ -197,6 +207,7 @@
                                             </div>
                                             <div class="point"></div>
                                             <div class="col-xs-9 col-sm-9 comment-text">
+                                                <div class="comment-username">Sandra:</div>
                                                 Was wetsch du Figgfresse eigentli? Chum dahi man!
                                             </div>
                                         </div>
@@ -204,7 +215,7 @@
 
                                     <div class="add_comment container">
                                         <div class="row">
-                                            <textarea required="required" placeholder="Schreibe einen Hinweis..."></textarea>
+                                            <textarea required="required" placeholder="Schreibe einen Hinweis..." maxlength="255"></textarea>
                                         </div>
                                         <div class="row" style="margin-top: 10px">
                                             <div class="col-xs-12">

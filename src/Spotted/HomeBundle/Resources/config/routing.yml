@@ -1,7 +1,10 @@
-spotted_home_homepage:
-    pattern:  /secured/
-    defaults: { _controller: SpottedHomeBundle:Default:index }
+spotted_open_landingpage:
+    pattern:  /
+    defaults: { _controller: SpottedHomeBundle:Default:landing }
 
+spotted_secured_homepage:
+    pattern:  /secured/home/{confirmed}
+    defaults: { _controller: SpottedHomeBundle:Default:index, confirmed: null }
 
 spotted_secured_notifications:
     pattern:  /secured/notifications
@@ -10,10 +13,6 @@ spotted_secured_notifications:
 spotted_secured_watchlist:
     pattern:  /secured/watchlist
     defaults: { _controller: SpottedHomeBundle:Default:watchlist }
-
-spotted_securedLogin:
-    pattern:  /secured/
-    defaults: { _controller: SpottedHomeBundle:Default:login }
 
 spotted_homeform_submission:
     pattern:  /post

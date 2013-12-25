@@ -5,3 +5,8 @@ services:
 #    spotted_fb_login.example:
 #        class: %spotted_fb_login.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    spotted.registration.form.type:
+        class: Spotted\FBLoginBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: fbloginbundle_user_registration }

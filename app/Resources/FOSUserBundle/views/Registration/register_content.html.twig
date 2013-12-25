@@ -1,12 +1,18 @@
 
+
+
+
+
     <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="register-form fos_user_registration_register">
 
+
+
         <div class="row hover-left">
-            <div class="form-group input-icon input-icon-left">
-                <i class="fa fa-user"></i>
-                {{ form_widget(form.username, {'attr': {'placeholder': 'Benutzername'}}) }}
+            <div class="form-group">
+                Geschlecht<br>
+                {{ form_widget(form.gender, {'attr': {'class': 'btn-group', 'data-toggle': 'buttons'}}) }}
             </div>
-            {{ form_errors(form.username) }}
+            {{ form_errors(form.firstname) }}
         </div>
         <div class="row hover-left">
             <div class="form-group input-icon input-icon-left">
@@ -14,6 +20,20 @@
                 {{ form_widget(form.email, {'attr': {'placeholder': 'E-Mail'}}) }}
             </div>
             {{ form_errors(form.email) }}
+        </div>
+        <div class="row hover-left">
+            <div class="form-group input-icon input-icon-left">
+                <i class="fa fa-user"></i>
+                {{ form_widget(form.firstname, {'attr': {'placeholder': 'Vorname'}}) }}
+            </div>
+            {{ form_errors(form.firstname) }}
+        </div>
+        <div class="row hover-left">
+            <div class="form-group input-icon input-icon-left">
+                <i class="fa fa-user"></i>
+                {{ form_widget(form.lastname, {'attr': {'placeholder': 'Nachname'}}) }}
+            </div>
+            {{ form_errors(form.lastname) }}
         </div>
         <div class="row hover-left">
             <div class="form-group input-icon input-icon-left">
@@ -32,6 +52,6 @@
             <input type="submit" class="btn btn-danger pull-right" value="Abschicken" />
         </div>
 
-        {{ form_rest(form) }}
+        {{ form_widget(form._token) }}
 
     </form>
