@@ -90,17 +90,17 @@ Spotted\HomeBundle\Entity\User:
             type: string
             length: 45
             fixed: false
-            nullable: true
+            nullable: false
         lastname:
             type: string
             length: 45
             fixed: false
-            nullable: true
+            nullable: false
         gender:
             type: string
             length: 45
             fixed: false
-            nullable: true
+            nullable: false
         relationshipStatus:
             type: string
             length: 45

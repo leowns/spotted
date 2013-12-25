@@ -53,4 +53,106 @@ class Comments
     private $post;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set text
+     *
+     * @param string $text
+     * @return Comments
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
+    
+        return $this;
+    }
+
+    /**
+     * Get text
+     *
+     * @return string 
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Comments
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set read
+     *
+     * @param string $read
+     * @return Comments
+     */
+    public function setRead($read)
+    {
+        $this->read = $read;
+    
+        return $this;
+    }
+
+    /**
+     * Get read
+     *
+     * @return string 
+     */
+    public function getRead()
+    {
+        return $this->read;
+    }
+
+    /**
+     * Set post
+     *
+     * @param \Spotted\HomeBundle\Entity\Post $post
+     * @return Comments
+     */
+    public function setPost(\Spotted\HomeBundle\Entity\Post $post = null)
+    {
+        $this->post = $post;
+    
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return \Spotted\HomeBundle\Entity\Post 
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
 }

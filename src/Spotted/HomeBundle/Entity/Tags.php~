@@ -36,4 +36,60 @@ class Tags
     private $iconclass;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Tags
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set iconclass
+     *
+     * @param string $iconclass
+     * @return Tags
+     */
+    public function setIconclass($iconclass)
+    {
+        $this->iconclass = $iconclass;
+    
+        return $this;
+    }
+
+    /**
+     * Get iconclass
+     *
+     * @return string 
+     */
+    public function getIconclass()
+    {
+        return $this->iconclass;
+    }
 }

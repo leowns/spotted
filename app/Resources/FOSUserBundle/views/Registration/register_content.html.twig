@@ -38,7 +38,7 @@
         <div class="row hover-left">
             <div class="form-group input-icon input-icon-left">
                 <i class="fa fa-lock"></i>
-                {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Passwort'}}) }}
+                {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Passwort (min. 6 Zeichen)'}}) }}
             </div>
             {{ form_errors(form.plainPassword.first) }}
         </div>
