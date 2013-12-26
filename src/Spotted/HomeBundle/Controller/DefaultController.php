@@ -38,11 +38,12 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $tags = $em->getRepository('SpottedHomeBundle:Tags')->findAll();
-		// $query = $em->createquery(
-				 // 'select p
-					// from spottedhomebundle:post p
-					// order by p.date desc'
-			 // );
+		
+		 $query = $em->createquery(
+				 'select p
+					from SpottedHomeBundle:post p
+					order by p.date desc'
+			  );
 //		$query2 = $em->createQuery(
 //			'SELECT p.gender,p.text,p.date,l.name as location,t.name as tag
 //			FROM SpottedHomeBundle:Post p
@@ -53,9 +54,9 @@ class DefaultController extends Controller
 //			ORDER BY p.date DESC'
 //		);
 //
-//		$posts= $query2->getResult();
+	$posts= $query->getResult();
 
-        $posts = $em->getRepository('SpottedHomeBundle:Post')->findAll();
+        //$posts = $em->getRepository('SpottedHomeBundle:Post')->findAll();
 
 
 
@@ -165,13 +166,13 @@ class DefaultController extends Controller
         // $form = $this->createCreateForm($post);
         // $form->handleRequest($request);
 		 $em = $this->getDoctrine()->getManager();
-		$loc=$request->request->get('location');
+		$loc=$request->request->get('hidden');
 		
 		$query = $em->createQuery(
 				'SELECT l
 				FROM SpottedHomeBundle:Location  l
-				WHERE l.name=:name'
-				)->setParameter('name', $loc);
+				WHERE l.id=:id'
+				)->setParameter('id', $loc);
 				
 			$location=$query->getSingleResult();
 
@@ -193,7 +194,7 @@ class DefaultController extends Controller
 				$em->persist($post);
 				$em->flush();
 
-                return $this->redirect($this->generateUrl('spotted_home_homepage'));
+                return $this->redirect($this->generateUrl('spotted_secured_homepage'));
     //   }
 
         // return array(
@@ -225,7 +226,7 @@ class DefaultController extends Controller
 	
 	$em = $this->getDoctrine()->getManager();
 	// $location = $em->getRepository('SpottedHomeBundle:Location')->findAll();
-	$query = $em->createQuery('SELECT l.name,l.street,c.name As city,c.zip from SpottedHomeBundle:Location l JOIN l.city c WHERE l.city=c.id');
+	$query = $em->createQuery('SELECT l.id,l.name,l.street,c.name As city,c.zip from SpottedHomeBundle:Location l JOIN l.city c WHERE l.city=c.id');
 	$location = $query->getArrayResult(); 
 	$response = new Response(json_encode($location));
 	$response->headers->set('Content-Type', 'application/json');

@@ -84,9 +84,25 @@ $( document ).ready(function() {
 		  engine: Hogan  
 	
 	}
-	
 		
 	]);
+	
+	$('#Location').bind('typeahead:selected', function( obj,datum,name) {      
+		
+		var id= JSON.stringify(datum.id);
+		//alert(id);
+		$('#hidden').val(id);
+		 // var n=JSON.stringify(datum.name);
+		 // var name=n.replace(/\"/g, "");
+		// var s = JSON.stringify(datum.street);
+		// var street= s.replace(/\"/g, "");
+		 // var c = JSON.stringify(datum.city);
+		 // var city= c.replace(/\"/g, "");
+		 // var z = JSON.stringify(datum.zip);
+		 // var zip= z.replace(/\"/g, "");
+		 // $('#Location').val(name+' '+street+' '+city+' '+zip);
+});
+	
 	$("input[name=filtersleft]:radio").change(function () {
 		$.post(
 			  Routing.generate('ajaxfilters'), 
