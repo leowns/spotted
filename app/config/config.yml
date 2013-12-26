@@ -73,7 +73,7 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
-    
+
 fos_user:
     db_driver: orm
     firewall_name: main
@@ -81,6 +81,8 @@ fos_user:
     registration:
         form:
             type: fbloginbundle_user_registration
+        confirmation:
+            enabled:    true
 
 fos_facebook:
     alias:  ZHAW-Spotted

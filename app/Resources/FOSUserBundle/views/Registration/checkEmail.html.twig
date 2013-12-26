@@ -1,0 +1,10 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block head_title %}Spotted ZHAW - Bestätigungsmail{% endblock %}
+
+{% block fos_user_content %}
+    <div class="alert alert-info" style="margin-top: 10px;">
+        {{ 'registration.check_email'|trans({'%email%': user.email}, 'FOSUserBundle') }} <br>
+        <a href="{{ path('fos_user_security_login') }}" style="font-weight: bold; text-align: center; margin: auto; display: block;">Zum Login</a>
+    </div>
+{% endblock fos_user_content %}

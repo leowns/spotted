@@ -8,7 +8,8 @@
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" />
-    {% stylesheets 'bundles/spottedhome/css/*' filter='cssrewrite' %}
+
+    {% stylesheets 'bundles/spottedhome/css/*' filter='cssrewrite' output='css/*.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 

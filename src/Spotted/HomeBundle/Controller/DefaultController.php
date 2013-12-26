@@ -32,6 +32,7 @@ class DefaultController extends Controller
      */ 
     public function indexAction($confirmed = false)
     {
+
         $user = $this->container->get('security.context')->getToken()->getUser();
 
         $em = $this->getDoctrine()->getManager();

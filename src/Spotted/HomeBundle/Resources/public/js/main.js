@@ -133,10 +133,22 @@ $( document ).ready(function() {
 //        });
     })
 
+    $(".box.box-spotted").click(function(event) {
+        event.stopPropagation();
+
+        var targetDIV = $(this).parents(".spotted-details").prev('.spotted-match');
+        var comment_height = targetDIV.height();
+
+        targetDIV.slideToggle('slow', function() {
+            reMasonry();
+        });
+
+    });
+
     $(".box.comment").click(function(event) {
         event.stopPropagation();
 
-        var targetDIV = $(this).parents(".spotted-details").prev('.spotted-comments');
+        var targetDIV = $(this).parents(".spotted-details").prev().prev('.spotted-comments');
         var comment_height = targetDIV.height();
 
         targetDIV.slideToggle('slow', function() {
