@@ -1,6 +1,13 @@
 $( document ).ready(function() {
 
     /**
+     * Third Party
+     */
+    $('*[data-toggle="tooltip"]').tooltip();
+
+    $('textarea.autosize').autosize();
+
+    /**
      * Landing Page
      */
     $( "#landing_box" ).fadeIn( 4000 );
@@ -35,9 +42,9 @@ $( document ).ready(function() {
     reMasonry();
 
 
-
-    $('textarea.autosize').autosize();
-	
+    /**
+     * Spotted Write Post Form
+     */
 	$('#Location').typeahead([
 	{	
 			valueKey: 'name',
@@ -133,34 +140,38 @@ $( document ).ready(function() {
 //        });
     })
 
+
+    /**
+     * Spotted Posts
+     */
     $(".box.box-spotted").click(function(event) {
         event.stopPropagation();
 
-        var targetDIV = $(this).parents(".spotted-details").prev('.spotted-match');
-        var comment_height = targetDIV.height();
-
-        targetDIV.slideToggle('slow', function() {
-            reMasonry();
-        });
+        slideBox (this,'.spotted-match');
 
     });
 
     $(".box.comment").click(function(event) {
         event.stopPropagation();
 
-        var targetDIV = $(this).parents(".spotted-details").prev().prev('.spotted-comments');
-        var comment_height = targetDIV.height();
+        slideBox (this,'.spotted-comments');
+    });
+
+    function slideBox (target, name) {
+
+        $(target).parents(".spotted-details").prevAll('.spotted-slidedown').hide();
+
+        var targetDIV = $(target).parents(".spotted-details").siblings(name);
 
         targetDIV.slideToggle('slow', function() {
             reMasonry();
         });
-
-    });
-
-    $('*[data-toggle="tooltip"]').tooltip();
+    }
 
 
-
+    /**
+     * Style Selector
+     */
 
     jQuery('#style-selector').hide(200);
 
