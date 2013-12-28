@@ -29,7 +29,7 @@ class PostController extends Controller
 			$filter1=$request->request->get('filter1');
 			$filter2=$request->request->get('filter2');
 			
-			  $em = $this->getDoctrine()->getManager();
+			$em = $this->getDoctrine()->getManager();
 		
 		if ($filter1!= '' && $filter2 == '') {
 			

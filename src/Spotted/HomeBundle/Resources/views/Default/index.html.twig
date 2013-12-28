@@ -188,6 +188,9 @@
                             </div>
                             <div class="col-xs-8 col-sm-10">
                                 <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn">
+                                        <input type="radio" value="" name="filtersright" id="filterrightAll"> <i class="fa fa-calendar"></i> Alle
+                                    </label>
                                     {% for tag in tags %}
 										<label class="btn">
 											<input type="radio" value="{{ tag.id }}" name="filtersright" id="filterright{{ tag.id }}"> <i class="{{ tag.iconclass }}"></i> {{ tag.name }}
