@@ -11,7 +11,7 @@
                                         <i class="fa fa-clock-o"></i>{% if entity.date %}{{ entity.date|date('d.m.Y H:i') }}{% endif %}
                                     </div>
                                     <div class="gender">
-                                    {% if entity.gender =='w' %}
+                                    {% if entity.gender =='f' %}
                                         <img src="{{ asset('bundles/spottedhome/images/female.png') }}" />
                                     {% endif %}
                                     {% if entity.gender =='m' %}
@@ -19,7 +19,7 @@
                                     {% endif %}
                                     </div>
                                     <div style="cursor:pointer;" class="text-main">
-                                        {% if entity.gender =='w' %}
+                                        {% if entity.gender =='f' %}
                                         <span style="color: #C42EAF"><strong>Sie:</strong></span>
                                         {% endif %}
                                         {% if entity.gender =='m' %}
@@ -36,35 +36,12 @@
                                                 <h4>Kommentare:</h4>
                                             </div>
                                         </div>
-                                        <div class="row list_comment">
-                                            <div class="col-xs-2 col-sm-2 avatar">
-                                                <div class="pull-right">
-                                                    <span style="color: #587fd8"><i class="fa fa-user"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="point"></div>
-                                            <div class="col-xs-9 col-sm-9 comment-text">
-                                                <div class="comment-username">Manuel:</div>
-                                                Mah das bi ich gsi du huuure!
-                                            </div>
-                                        </div>
-                                        <div class="row list_comment">
-                                            <div class="col-xs-2 col-sm-2 avatar">
-                                                <div class="pull-right">
-                                                    <span style="color: #C42EAF"><i class="fa fa-user"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="point"></div>
-                                            <div class="col-xs-9 col-sm-9 comment-text">
-                                                <div class="comment-username">Sandra:</div>
-                                                Was wetsch du Figgfresse eigentli? Chum dahi man!
-                                            </div>
-                                        </div>
+										{% include "SpottedHomeBundle:Comment:index.html.twig" with { 'postid': entity.id } %}
                                     </div>
 
                                     <div class="add_comment container">
                                         <div class="row">
-                                            <textarea required="required" placeholder="Schreibe einen Hinweis..." maxlength="255"></textarea>
+                                            <textarea id="txthint" name="txthint" required="required" placeholder="Schreibe einen Hinweis..." maxlength="255"></textarea>
                                         </div>
                                         <div class="row" style="margin-top: 10px">
                                             <div class="col-xs-12">
@@ -108,6 +85,12 @@
                                     </div>
                                 </div>
                             </div>
+							 
+							
+							{% else %}
+					<strong>Keine Posts wurden gefunden!</strong>
+					
+    
                         {% endfor %}
 
 						

@@ -82,75 +82,7 @@ class DefaultController extends Controller
 		
     }
 	
-	public function filterAction(Request $request) {
-		// Filter 1 ist das Geschlecht, eigentlich kein Tag
-			$filter1=$request->request->get('filter1');
-			$filter2=$request->request->get('filter2');
-		
-		if ($filter1 == 8) 
-		{		
-				$gschlecht='w';
-		}
-		else 
-		{
-				$geschlecht='m';
-		}
-		$em = $this->getDoctrine()->getManager();
-		
-		if ($filter1!= '' && $filter2 == '') {
-			
-			$query1 = $em->createQuery(
-				'SELECT p.geschlecht,p.text,p.date,l.name,t.bezeichnung
-				FROM SpottedHomeBundle:Post p
-				JOIN p.location l
-				JOIN p.tags t
-				WHERE l.id = p.location
-				AND t.id= p.tags
-				AND p.geschlecht=:geschlecht
-				ORDER BY p.date DESC'
-			)->setParameter('geschlecht', $geschlecht);
-			
-			$posts=$query1->getResult();
-		
-		}
-		if ($filter1!='' && $filter2 != '') {
-			$query2 = $em->createQuery(
-				'SELECT p.geschlecht,p.text,p.date,l.name,t.bezeichnung
-				FROM SpottedHomeBundle:Post p
-				JOIN p.location l
-				JOIN p.tags t
-				WHERE l.id = p.location
-				AND t.id= p.tags
-				AND p.geschlecht=:geschlecht
-				AND p.tags=:id
-				ORDER BY p.date DESC'
-			)->setParameters(array(
-				'geschlecht' => $geschlecht,
-				'id'  => $filter2,
-			));
-			
-			$posts=$query2->getResult();
-		
-		}
-		if ($filter1 =='' && $filter2 != '') {
-			$query3 = $em->createQuery(
-				'SELECT p.geschlecht,p.text,p.date,l.name,t.bezeichnung
-				FROM SpottedHomeBundle:Post p
-				JOIN p.location l
-				JOIN p.tags t
-				WHERE l.id = p.location
-				AND t.id= p.tags
-				AND p.tags=:id
-				ORDER BY p.date DESC'
-			)->setParameter('id', $filter2);
-			
-			$posts=$query3->getResult();
-		
-		}
-		 $tags = $em->getRepository('SpottedHomeBundle:Tags')->findAll();
-		return $this->render('SpottedHomeBundle:Default:index.html.twig', array('entities' => $posts,'tags' => $tags));
 
-	}
 	
 	/**
      * Creates a new Post entity.

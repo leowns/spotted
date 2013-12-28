@@ -61,7 +61,7 @@
                                 <div class="content container">
 
                                     <button type="button" class="close" id="new_item_close" style="display: none; font-size: 30px; position: absolute; right: 23px;" aria-hidden="true">&times;</button>
-                                     <form id="new_item_form" action="{{ path('spotted_homeform_submission') }}" name="form" method="post">
+                                     <form id="new_item_form" action="{{ path('spotted_secured_submission') }}" name="form" method="post">
 
                                         <div class="row">
                                             <textarea placeholder="TRAU DICH, SCHREIBE DEINEM FLIRT!" name="text" class="message_text autosize" required="required" id="form_message"></textarea>
@@ -130,7 +130,7 @@
                             <div class="col-xs-4 col-sm-2">
                                 <div class="btn-group-vertical" data-toggle="buttons">
 										<label class="btn">
-											<input type="radio" value="w" name="filtersleft" id="option1"> <i class="fa fa-female"></i> Sie sucht
+											<input type="radio" value="f" name="filtersleft" id="option1"> <i class="fa fa-female"></i> Sie sucht
 										</label>
 										<label class="btn">
 											<input type="radio" value="m" name="filtersleft" id="option2"> <i class="fa fa-male"></i> Er sucht
@@ -151,119 +151,10 @@
 
                     </div>
                 </div>
-
+				
                 <div  class="row">
                     <div id="item_wrapper" class="container">
-                        {% for entity in entities %}
-                            <div class="item col-xs-12 col-sm-12 col-md-6">
-                                <div class="spotted-message">
-                                    <h2 class="spotted-title">
-                                        <a href="#">
-                                            <strong>{{ entity.location.name }} ({{ entity.location.city.name }})</strong>, {{ entity.tags.name }}
-                                        </a>
-                                    </h2>
-                                    <div class="datum">
-                                        <i class="fa fa-clock-o"></i>{% if entity.date %}{{ entity.date|date('d.m.Y H:i') }}{% endif %}
-                                    </div>
-                                    <div class="gender">
-                                    {% if entity.gender =='w' %}
-                                        <img src="{{ asset('bundles/spottedhome/images/female.png') }}" />
-                                    {% endif %}
-                                    {% if entity.gender =='m' %}
-                                        <img src="{{ asset('bundles/spottedhome/images/male.png') }}" />
-                                    {% endif %}
-                                    </div>
-                                    <div style="cursor:pointer;" class="text-main">
-                                        {% if entity.gender =='w' %}
-                                        <span style="color: #C42EAF"><strong>Sie:</strong></span>
-                                        {% endif %}
-                                        {% if entity.gender =='m' %}
-                                        <span style="color: #587fd8"><strong>Er:</strong></span>
-                                        {% endif %}
-
-                                        {{ entity.text }}
-                                    </div>
-                                </div>
-                                <div class="spotted-slidedown spotted-comments">
-                                    <div class="container">
-                                        <div class="row" style="margin-bottom: 10px;">
-                                            <div class="col-xs-12">
-                                                <h4>Kommentare:</h4>
-                                            </div>
-                                        </div>
-                                        <div class="row list_comment">
-                                            <div class="col-xs-2 col-sm-2 avatar">
-                                                <div class="pull-right">
-                                                    <span style="color: #587fd8"><i class="fa fa-user"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="point"></div>
-                                            <div class="col-xs-9 col-sm-9 comment-text">
-                                                <div class="comment-username">Manuel:</div>
-                                                Mah das bi ich gsi du huuure!
-                                            </div>
-                                        </div>
-                                        <div class="row list_comment">
-                                            <div class="col-xs-2 col-sm-2 avatar">
-                                                <div class="pull-right">
-                                                    <span style="color: #C42EAF"><i class="fa fa-user"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="point"></div>
-                                            <div class="col-xs-9 col-sm-9 comment-text">
-                                                <div class="comment-username">Sandra:</div>
-                                                Was wetsch du Figgfresse eigentli? Chum dahi man!
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="add_comment container">
-                                        <div class="row">
-                                            <textarea required="required" placeholder="Schreibe einen Hinweis..." maxlength="255"></textarea>
-                                        </div>
-                                        <div class="row" style="margin-top: 10px">
-                                            <div class="col-xs-12">
-                                                <button class="btn btn-danger pull-right" type="submit">Kommentieren</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="spotted-slidedown spotted-match">
-                                    <div class="container">
-                                        <div class="row" style="margin-bottom: 10px;">
-                                            <div class="col-xs-12">
-                                                <h4>Ausgezeichnet! Ihr habt euch gefunden:</h4>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <textarea style="height: 140px;" class="message_text" required="required" placeholder="Schreibe deine Nachricht..."></textarea>
-                                        </div>
-                                        <div class="row" style="margin-top: 10px">
-                                            <div class="col-xs-12">
-                                                <button class="btn btn-danger pull-right" type="submit">E-Mail senden</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="spotted-details container">
-                                    <div class="row">
-                                        <div class="box comment" data-placement="top" data-toggle="tooltip" data-original-title="Kommentieren">
-                                            <i class="fa fa-comment"></i>
-                                        </div>
-                                        <div class="box wishlist" data-placement="top" data-toggle="tooltip" data-original-title="Auf Watchlist">
-                                            <i class="fa fa-eye"></i>
-                                        </div>
-                                        <div class="box box-spotted">
-                                            Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
+						{% include "SpottedHomeBundle:Post:index.html.twig" with { 'entities': entities } %}
                     </div>
                 </div>
 

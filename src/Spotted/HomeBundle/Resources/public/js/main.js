@@ -48,7 +48,7 @@ $( document ).ready(function() {
 	$('#Location').typeahead([
 	{	
 			valueKey: 'name',
-			prefetch: Routing.generate('spotted_listlocations'),
+			prefetch: Routing.generate('spotted_secured_listlocations'),
 			template: [                                                                 
 			'<strong>{{name}}</strong> <p>{{street}}</p> <p>{{zip}} {{city}}</p>',                                                                            
 		  ].join(''),                                                                 
@@ -57,7 +57,7 @@ $( document ).ready(function() {
 	{
 	
 		valueKey: 'city',
-			prefetch: Routing.generate('spotted_listlocations'),
+			prefetch: Routing.generate('spotted_secured_listlocations'),
 			template: [                                                                 
 			'<strong>{{name}}</strong> <p>{{street}}</p> <p>{{zip}} {{city}}</p>',                                                                            
 		  ].join(''),                                                                 
@@ -67,7 +67,7 @@ $( document ).ready(function() {
 	{
 	
 		valueKey: 'street',
-			prefetch: Routing.generate('spotted_listlocations'),
+			prefetch: Routing.generate('spotted_secured_listlocations'),
 			template: [                                                                 
 			'<strong>{{name}}</strong> <p>{{street}}</p> <p>{{zip}} {{city}}</p>',                                                                            
 		  ].join(''),                                                                 
@@ -77,7 +77,7 @@ $( document ).ready(function() {
 	{
 	
 		valueKey: 'zip',
-			prefetch: Routing.generate('spotted_listlocations'),
+			prefetch: Routing.generate('spotted_secured_listlocations'),
 			template: [                                                                 
 			'<strong>{{name}}</strong> <p>{{street}}</p> <p>{{zip}} {{city}}</p>',                                                                            
 		  ].join(''),                                                                 
@@ -105,18 +105,19 @@ $( document ).ready(function() {
 	
 	$("input[name=filtersleft]:radio").change(function () {
 		$.post(
-			  Routing.generate('ajaxfilters'), 
+			  Routing.generate('spotted_secured_filters'), 
 			  {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val()}, 
 			  function(data){
-			  
+			  $('#item_wrapper').html(data);
 			  });
 			
 	});
 		$("input[name=filtersright]:radio").change(function () {
 		$.post(
-			  Routing.generate('ajaxfilters'), 
+			  Routing.generate('spotted_secured_filters'), 
 			  {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val()}, 
 			  function(data){
+			 $('#item_wrapper').html(data);
 			
 			  });
 	});

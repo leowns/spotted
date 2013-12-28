@@ -155,4 +155,32 @@ class Comments
     {
         return $this->post;
     }
+    /**
+     * @var \Spotted\HomeBundle\Entity\User
+     */
+    private $user;
+
+
+    /**
+     * Set user
+     *
+     * @param \Spotted\HomeBundle\Entity\User $user
+     * @return Comments
+     */
+    public function setUser(\Spotted\HomeBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Spotted\HomeBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }
