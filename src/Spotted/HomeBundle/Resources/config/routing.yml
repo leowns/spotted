@@ -14,19 +14,19 @@ spotted_secured_watchlist:
     pattern:  /secured/watchlist
     defaults: { _controller: SpottedHomeBundle:Default:watchlist }
 
-spotted_homeform_submission:
-    pattern:  /post
+spotted_secured_submission:
+    pattern:  /secured/submission
     defaults: { _controller: SpottedHomeBundle:Default:create }
 
-spotted_listlocations:
-    pattern: /listlocations
+spotted_secured_listlocations:
+    pattern: /secured/listlocations
     defaults: { _controller: SpottedHomeBundle:Default:listlocations }
     options:
         expose: true
 
-ajaxfilters:
-    pattern: /ajaxfilters
-    defaults: { _controller: SpottedHomeBundle:Default:filter }
+spotted_secured_filters:
+    pattern: /secured/filters
+    defaults: { _controller: SpottedHomeBundle:Post:filter }
     options:
         expose: true
 

@@ -1,0 +1,21 @@
+					{#{% for comment in comments %} 
+										<div class="row list_comment">
+                                            <div class="col-xs-2 col-sm-2 avatar">
+                                                <div class="pull-right">
+												{% if comment.gender =='m' %}
+                                                    <span style="color: #587fd8"><i class="fa fa-user"></i></span>
+												{% endif %}
+												{% if comment.gender =='f' %}
+                                                    <span style="color: #C42EAF"><i class="fa fa-user"></i></span>
+												{% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="point"></div>
+                                            <div class="col-xs-9 col-sm-9 comment-text">
+                                                <div class="comment-username">{{ comment.user.firstname }} </div>
+                                                {{ comment.text}} 
+                                            </div>
+                                        </div>
+						{% else %}
+					<strong>Es wurden keine Kommentare gefunden!</strong>
+						{% endfor %} #}
