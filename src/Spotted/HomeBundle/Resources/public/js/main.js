@@ -119,7 +119,7 @@ $( document ).ready(function() {
 
                   container.html(data);
 
-                  container.masonry( 'addItems', $('.item'));
+                  container.masonry( 'appended', $('.item'));
                   reMasonry()
 			  });
 			
@@ -133,7 +133,7 @@ $( document ).ready(function() {
 
                   container.html(data);
 
-                  container.masonry( 'addItems', $('.item'));
+                  container.masonry( 'appended', $('.item'));
                   reMasonry()
 			  })
 	});
