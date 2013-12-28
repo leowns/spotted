@@ -27,7 +27,7 @@ $( document ).ready(function() {
     /**
      * Register Page
      */
-    $("fos_user_registration_form_gender").hid
+
 
 
     /**
@@ -115,19 +115,30 @@ $( document ).ready(function() {
 			  Routing.generate('spotted_secured_filters'), 
 			  {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val()}, 
 			  function(data){
-			  $('#item_wrapper').html(data);
+                  container.masonry( 'remove', $('.item'));
+
+                  container.html(data);
+
+                  container.masonry( 'addItems', $('.item'));
+                  reMasonry()
 			  });
 			
 	});
-		$("input[name=filtersright]:radio").change(function () {
+    $("input[name=filtersright]:radio").change(function () {
 		$.post(
 			  Routing.generate('spotted_secured_filters'), 
 			  {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val()}, 
 			  function(data){
-			 $('#item_wrapper').html(data);
-			
-			  });
+                  container.masonry( 'remove', $('.item'));
+
+                  container.html(data);
+
+                  container.masonry( 'addItems', $('.item'));
+                  reMasonry()
+			  })
 	});
+
+
     $("#new_item_close").click(function (event) {
        // if (!$("#new_item_form").has(event.target).length > 0 && !$("#Location").has(event.target).length > 0) {
 
@@ -168,14 +179,14 @@ $( document ).ready(function() {
     /**
      * Spotted Posts
      */
-    $(".box.box-spotted").click(function(event) {
+    $(document).on('click', ".box.box-spotted", function (event) {
         event.stopPropagation();
 
         slideBox (this,'.spotted-match');
 
     });
 
-    $(".box.comment").click(function(event) {
+    $(document).on('click', ".box.comment", function (event) {
         event.stopPropagation();
 
         slideBox (this,'.spotted-comments');
