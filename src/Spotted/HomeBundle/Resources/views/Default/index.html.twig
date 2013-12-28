@@ -2,44 +2,93 @@
 
 {% block head_title %}ZHAW Spotted{% endblock %}
 
+{% block nav_mobile_content %}
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse">
+        <span class="sr-only">Menü</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+{% endblock %}
 
-{% block content %}
-
-    <div class="row">
-        <div id="menu_wrapper">
-            <div id="menu" class="col-xs-12 col-sm-2 col-md-2">
-
-                <div class="row">
-                    <div class="col-xs-12 col-md-12" style="padding:20px;">
-                        <div id="logo">
-                            <a href="/"  style="width: 100%; height: 100%; display: block;">
-
-                            </a>
+{% block nav_content %}
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a id="notification_menu" href="#" data-placement="bottom"><i class="fa fa-heart"></i> Meine Neuigkeiten <span class="label label-danger">2</span></a></li>
+            <div id="notification_content">
+                <div class="notification_header clearfix">
+                    <div class="pull-left"><h1>Neuigkeiten</h1></div>
+                </div>
+                <div class="notification_content">
+                    <div class="notification_list clearfix">
+                        <div class="notification_image">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="notification_message">
+                            <h2>SC (Winterthur), Lift</h2>
+                            <p>Manuel: Hoi du ich ha en gseh...</p>
+                        </div>
+                    </div>
+                    <div class="notification_list clearfix">
+                        <div class="notification_image">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="notification_message">
+                            <h2>TN (Winterthur), Mensa</h2>
+                            <p>Sandra: Hoi du ich au...</p>
                         </div>
                     </div>
                 </div>
-
-                <a class="link" href="{{ path('spotted_secured_homepage') }}"><i class="fa fa-home"></i> Home</a>
-
-                <a class="link" href="{{ path('spotted_secured_notifications') }}"><i class="fa fa-heart"></i> Meine Neuigkeiten</a>
-
-                <a class="link" href="{{ path('spotted_secured_watchlist') }}"><i class="fa fa-eye"></i> Meine Watchlist</a>
-
-                <a class="link" href="{{ path('user_logout') }}"><i class="fa fa-power-off"></i> Logout</a>
-
-                <div id="profile" class="row">
-                    <div class="col-xs-1 col-sm-4 col-md-3">
-                        <i class="fa fa-user"></i>
-                    </div>
-                    <div id="profile_name" class="col-xs-11 col-sm-8 col-md-9">
-                        {{ user.email }}
-                    </div>
-                </div>
             </div>
+            <li><a href="#"><i class="fa fa-eye"></i> Meine Watchlist</a></li>
+            <li><a href="{{ path('user_logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
+
+        </ul>
+        <div id="profile" class="nav navbar-nav navbar-right">
+            <i class="fa fa-user"></i>
+            {{ user.email }}
         </div>
+    </div><!-- /.navbar-collapse -->
+{% endblock %}
+
+{% block content %}
+
+    <div class="row" style="margin-top: 70px;">
+        {#<div id="menu_wrapper">#}
+            {#<div id="menu" class="col-xs-12 col-sm-2 col-md-2">#}
+
+                {#<div class="row">#}
+                    {#<div class="col-xs-12 col-md-12" style="padding:20px;">#}
+                        {#<div id="logo">#}
+                            {#<a href="/"  style="width: 100%; height: 100%; display: block;">#}
+
+                            {#</a>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+
+                {#<a class="link" href="{{ path('spotted_secured_homepage') }}"><i class="fa fa-home"></i> Home</a>#}
+
+                {#<a class="link" href="{{ path('spotted_secured_notifications') }}"><i class="fa fa-heart"></i> Meine Neuigkeiten</a>#}
+
+                {#<a class="link" href="{{ path('spotted_secured_watchlist') }}"><i class="fa fa-eye"></i> Meine Watchlist</a>#}
+
+                {#<a class="link" href="{{ path('user_logout') }}"><i class="fa fa-power-off"></i> Logout</a>#}
+
+                {#<div id="profile" class="row">#}
+                    {#<div class="col-xs-1 col-sm-4 col-md-3">#}
+                        {#<i class="fa fa-user"></i>#}
+                    {#</div>#}
+                    {#<div id="profile_name" class="col-xs-11 col-sm-8 col-md-9">#}
+                        {#{{ user.email }}#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
 
 
-        <div id="canvas" class="col-xs-12 col-sm-10 col-md-10">
+        <div id="canvas" class="col-xs-12">
             <div style="padding: 0 15px">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">

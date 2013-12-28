@@ -7,14 +7,21 @@ $( document ).ready(function() {
 
     $('textarea.autosize').autosize();
 
+    $('*[data-toggle="popover"]').popover();
+
+
+    $('#notification_menu').popover({
+        html : true,
+        content: function() {
+            return $('#notification_content').html();
+        }
+    });
+
     /**
      * Landing Page
      */
-    $( "#landing_box" ).fadeIn( 4000 );
-    $( "#landing_image" ).fadeIn( 4000 );
+    $( ".fade_slow" ).fadeIn( 4000 );
 
-    $('#landing_image').height($(window).height());
-    $('#landing_wrapper').height($(window).height());
 
 
     /**
@@ -159,7 +166,10 @@ $( document ).ready(function() {
 
     function slideBox (target, name) {
 
-        $(target).parents(".spotted-details").prevAll('.spotted-slidedown').hide();
+        var $el = $(name);
+        if (!$el.is(":visible")) {
+            $(target).parents(".spotted-details").prevAll('.spotted-slidedown').hide();
+        }
 
         var targetDIV = $(target).parents(".spotted-details").siblings(name);
 
