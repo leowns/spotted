@@ -41,7 +41,7 @@ class DefaultController extends Controller
 		
 		 $query = $em->createquery(
 				 'select p
-					from SpottedHomeBundle:post p
+					from SpottedHomeBundle:Post p
 					order by p.date desc'
 			  );
 //		$query2 = $em->createQuery(
