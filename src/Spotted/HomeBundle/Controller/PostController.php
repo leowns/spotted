@@ -30,7 +30,7 @@ class PostController extends Controller
 			$filter2=$request->request->get('filter2');
 			
 			$em = $this->getDoctrine()->getManager();
-		
+
 		if ($filter1!= '' && $filter2 == '') {
 			
 			$query1 = $em->createQuery(
@@ -67,10 +67,16 @@ class PostController extends Controller
 			)->setParameter('id', $filter2);
 			
 			$posts=$query3->getResult();
-			
-		
 		}
-		
+
+        if ($filter2 == 'all') {
+            $query4 = $em->createQuery(
+                'SELECT p
+                FROM SpottedHomeBundle:Post p
+                ORDER BY p.date DESC');
+
+            $posts=$query4->getResult();
+        }
 		// $response = new Response(json_encode($posts));
 		// $response->headers->set('Content-Type', 'application/json');
 		

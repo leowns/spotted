@@ -177,7 +177,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-4 col-sm-2">
-                                <div class="btn-group-vertical" data-toggle="buttons">
+                                <div id="buttonsleft" class="btn-group-vertical" data-toggle="buttons">
 										<label class="btn">
 											<input type="radio" value="f" name="filtersleft" id="option1"> <i class="fa fa-female"></i> Sie sucht
 										</label>
@@ -189,7 +189,7 @@
                             <div class="col-xs-8 col-sm-10">
                                 <div class="btn-group" data-toggle="buttons">
                                     <label class="btn">
-                                        <input type="radio" value="" name="filtersright" id="filterrightAll"> <i class="fa fa-calendar"></i> Alle
+                                        <input type="radio" value="all" name="filtersright" id="filterrightAll"> <i class="fa fa-repeat"></i> Alle
                                     </label>
                                     {% for tag in tags %}
 										<label class="btn">

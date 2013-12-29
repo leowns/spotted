@@ -111,6 +111,13 @@ $( document ).ready(function() {
 });
 	
 	$("input[name=filtersleft]:radio").change(function () {
+        // If user selects a gender and "all" is checked => uncheck "all"
+        if ($(this).is(':checked')) {
+            $('input:radio[id=filterrightAll]').removeAttr('checked');
+            // Refresh the jQuery UI buttonset.
+            $('input:radio[id=filterrightAll]').parent('label').removeClass('active');
+        }
+
 		$.post(
 			  Routing.generate('spotted_secured_filters'), 
 			  {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val()}, 
@@ -124,7 +131,15 @@ $( document ).ready(function() {
 			  });
 			
 	});
+
     $("input[name=filtersright]:radio").change(function () {
+        // If user selected 'all' => uncheck every other radio
+        if ($(this).is(':checked') && $(this).val() == 'all') {
+            $('input:radio[name=filtersleft]').removeAttr('checked');
+            // Refresh the jQuery UI buttonset.
+            $('input:radio[name=filtersleft]').parent('label').removeClass('active');
+        }
+
 		$.post(
 			  Routing.generate('spotted_secured_filters'), 
 			  {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val()}, 
@@ -137,6 +152,11 @@ $( document ).ready(function() {
                   reMasonry()
 			  })
 	});
+
+
+    $('input:radio[name="filtersright"]').change(function(){
+
+    });
 
 
     $("#new_item_close").click(function (event) {
