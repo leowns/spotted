@@ -10,10 +10,6 @@ spotted_secured_notifications:
     pattern:  /secured/notifications
     defaults: { _controller: SpottedHomeBundle:Default:notifications }
 
-spotted_secured_watchlist:
-    pattern:  /secured/watchlist
-    defaults: { _controller: SpottedHomeBundle:Default:watchlist }
-
 spotted_secured_submission:
     pattern:  /secured/submission
     defaults: { _controller: SpottedHomeBundle:Default:create }
@@ -27,6 +23,21 @@ spotted_secured_listlocations:
 spotted_secured_filters:
     pattern: /secured/filters
     defaults: { _controller: SpottedHomeBundle:Post:filter }
+    options:
+        expose: true
+spotted_secured_watchlist:
+    pattern: /secured/watchlist
+    defaults: { _controller: SpottedHomeBundle:Watchlist:index }
+    options:
+        expose: true
+spotted_secured_add_watchlist:
+    pattern: /secured/add_watchlist/{postid}
+    defaults: { _controller: SpottedHomeBundle:Watchlist:add }
+    options:
+        expose: true
+spotted_secured_add_comment:
+    pattern: /secured/add_comment/{postid}
+    defaults: { _controller: SpottedHomeBundle:Comment:create }
     options:
         expose: true
 

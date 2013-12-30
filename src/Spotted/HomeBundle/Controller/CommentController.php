@@ -8,14 +8,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Spotted\HomeBundle\Entity\Post;
-use Spotted\HomeBundle\Form\PostType;
-use Spotted\HomeBundle\Entity\Posttags;
-use Spotted\HomeBundle\Entity\Tags;
-use Spotted\HomeBundle\Entity\Location;
+use Spotted\HomeBundle\Entity\Comments;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\Query;
 
-class PostController extends Controller
+class CommentController extends Controller
 {
 		/**
      * Shows the Comments
@@ -24,12 +21,13 @@ class PostController extends Controller
      * @Method("POST")
      * @Template("SpottedHomeBundle:Comment:index.html.twig")
      */
-	public function commentAction($postid)
+	public function ShowAction($postid)
     {
+		
 		  $em = $this->getDoctrine()->getManager();
 		  $query = $em->createQuery(
 				'SELECT c
-				FROM SpottedHomeBundle:Comment c
+				FROM SpottedHomeBundle:Comments c
 				WHERE c.id=:id
 				ORDER BY c.date DESC'
 			)->setParameter('id', $postid);
@@ -40,37 +38,34 @@ class PostController extends Controller
 		
     }
 	/**
-     * Creates a new Post entity.
+     * Creates a new Comment entity.
      *
      * @Route("/", name="post_create")
      * @Method("POST")
-     * @Template("SpottedHomeBundle:Default:index.html.twig")
+     * @Template("SpottedHomeBundle:Comment:index.html.twig")
      */
-    public function createAction(Request $request)
+    public function createAction($postid)
     {
-		$comment = new Comment();
+		
+		$request = $this->getRequest();
+		$comment = new Comments();
 		 $em = $this->getDoctrine()->getManager();
 				$user = $this->getUser();
+				
             
                 $dt = new \DateTime();
-                $comment->setText($request->request->get('hint'));
+                $comment->setText($request->request->get('txthint'));
                 $comment->setDate($dt);
+				$comment->setRead(0);
                 $comment->setUser($user);	
-				// get the Tag
-				$post = $em->getRepository('SpottedHomeBundle:Tags')->find($request->request->get('postid'));
-				$comment->setTags($post);
-                $post->setGender($request->request->get('geschlecht'));
-				// save the post
+				$post = $em->getRepository('SpottedHomeBundle:Post')->find($postid);
+				$comment->setPost($post);
+                
+				// save the comment
 				$em->persist($comment);
 				$em->flush();
 
-                return $this->redirect($this->generateUrl('spotted_secured_show_comment'));
+                return $this->redirect($this->generateUrl('spotted_secured_show_comment', array ('postid'    => $comment->getPost()->getId())));
     }
 	
-	
-	
-	
-	
-	
-
 }
