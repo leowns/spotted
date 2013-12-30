@@ -199,6 +199,24 @@ $( document ).ready(function() {
     /**
      * Spotted Posts
      */
+	  $(document).on('click', "#watchlist", function (event) {
+        event.stopPropagation();
+		$.post(
+			  Routing.generate('spotted_secured_watchlist'), 
+			  
+			  function(data){
+                  container.masonry( 'remove', $('.item'));
+
+                  container.html(data);
+
+                  container.masonry( 'appended', $('.item'));
+                  reMasonry()
+			  })
+		
+
+    });
+
+	 
     $(document).on('click', ".box.box-spotted", function (event) {
         event.stopPropagation();
 
