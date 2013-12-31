@@ -20,6 +20,9 @@ Spotted\HomeBundle\Entity\Post:
             type: string
             length: 45
             fixed: false
+            nullable: false	
+onwatchlist:
+            type: integer
             nullable: false
     manyToOne:
         location:

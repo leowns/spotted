@@ -795,6 +795,14 @@ h2.spotted-title a {
     color: #FFFFFF;
     white-space: nowrap;
 }
+.spotted-details .box.wishlist.active{
+    background-color: red;
+	width: 60px;
+    float:left;
+    height: 49px;
+    line-height: 50px;
+
+}
 
 
 

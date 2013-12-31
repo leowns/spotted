@@ -7,6 +7,7 @@
     <field name="text" type="text" column="text" nullable="false"/>
     <field name="date" type="datetime" column="date" nullable="false"/>
     <field name="gender" type="string" column="gender" length="45" nullable="false"/>
+	<field name="onwatchlist" type="integer" column="onwatchlist" nullable="false"/>
     <many-to-one field="user" target-entity="User">
       <join-columns>
         <join-column name="User_ID" referenced-column-name="ID"/>

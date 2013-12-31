@@ -82,16 +82,22 @@
                                         <div class="box comment" data-placement="top" id="{{ entity.id }}" data-toggle="tooltip" data-original-title="Kommentieren">
                                             <i class="fa fa-comment"></i>
                                         </div>
-                                        <div class="box wishlist" data-placement="top" data-toggle="tooltip" data-original-title="Auf Watchlist">
-                                           <a href="#modal{{ entity.id}}" data-toggle="modal"> <i class="fa fa-eye"></i></a>
+										{% if entity.onwatchlist == 0 %}
+                                        <div class="box wishlist"  id="{{ entity.id }}" data-placement="top" data-toggle="tooltip" data-original-title="Auf Watchlist">
+                                           <a href="#addmodal{{ entity.id }}"data-toggle="modal" ><i class="fa fa-eye"></i></a>
                                         </div>
+										{% else %}
+										<div class="box wishlist active"  id="{{ entity.id }}" data-placement="top" data-toggle="tooltip" data-original-title="Von Watchlist entfernen">
+                                            <a href="#delmodal{{ entity.id }}" data-toggle="modal"><i class="fa fa-eye"></i></a>
+                                        </div>
+										{% endif %}
                                         <div class="box box-spotted">
                                             Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-						<div class="modal" id="modal{{ entity.id}}">
+						<div class="modal" id="addmodal{{ entity.id}}">
 							<div class="modal-dialog">
 							  <div class="modal-content">
 								<div class="modal-header">
@@ -103,11 +109,28 @@
 								</div>
 								<div class="modal-footer">
 								  <a href="#" data-dismiss="modal" class="btn btn-danger">Abbrechen</a>
-								  <a href="{{ path('spotted_secured_add_watchlist', {'postid': entity.id}) }}" class="btn btn-primary">Hinzüfugen</a>
+								  <a   href="{{ path('spotted_secured_add_watchlist', {'postid': entity.id}) }}" class="btn btn-primary">Hinzüfugen</a>
 								</div>
 							  </div>
-						</div>
-					</div>
+							</div>
+						</div> 
+						<div class="modal" id="delmodal{{ entity.id}}">
+							<div class="modal-dialog">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								  <h4 class="modal-title">Post von Watchlist entfernen</h4>
+								</div>
+								<div class="modal-body">
+								  Wollen Sie diesen Post von Ihrer Watchlist entfernen?
+								</div>
+								<div class="modal-footer">
+								  <a href="#" data-dismiss="modal" class="btn btn-primary">Abbrechen</a>
+								  <a   href="{{ path('spotted_secured_del_watchlist', {'postid': entity.id}) }}" class="btn btn-danger">Entfernen</a>
+								</div>
+							  </div>
+							</div>
+						</div> 
 							 
 							
 							{% else %}

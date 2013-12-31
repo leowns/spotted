@@ -195,10 +195,20 @@ $( document ).ready(function() {
 //        });
     })
 
-
+	// loads the modal for watchlist
+	// $(document).on('click', ".box.wishlist", function (event) {
+        // event.stopPropagation();
+		// var postid = jQuery(this).attr("id");
+		// //alert(postid);
+		// $('#modal'+postid).modal('show');
+    // });
+	
+	
+		
     /**
      * Spotted Posts
      */
+	 // loads the watchlist when you clock on the navbar menu
 	  $(document).on('click', "#watchlist", function (event) {
         event.stopPropagation();
 		$.post(

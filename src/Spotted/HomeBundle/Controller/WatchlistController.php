@@ -46,12 +46,47 @@ class WatchlistController extends Controller
 					)->setParameter('id', $postid);
 					
 				$post=$query->getSingleResult();
-
+					$post->setOnwatchlist(1);
 					$user = $this->getUser();
 					$watchlist->setUser($user);
 					$watchlist->setPost($post);
 					// save  watchlist
 					$em->persist($watchlist);
+					$em->flush();
+
+					return $this->redirect($this->generateUrl('spotted_secured_homepage'));
+		
+		}
+		
+	public function delAction($postid)
+		{
+			
+			 $em = $this->getDoctrine()->getManager();
+			 $userid = $this->getUser()->getId();
+			$query = $em->createQuery(
+				'SELECT w
+				FROM SpottedHomeBundle:Watchlist w
+				WHERE w.user=:userid
+				AND w.post=:postid
+				'
+			)->setParameters(array(
+				'userid' => $userid,
+				'postid'  => $postid,
+			));
+			
+			$watchlist=$query->getSingleResult();
+			 
+			$query = $em->createQuery(
+					'SELECT p
+					FROM SpottedHomeBundle:Post p
+					WHERE p.id=:id'
+					)->setParameter('id', $postid);
+					
+				$post=$query->getSingleResult();
+				// set onwatchlist to 0->false
+					$post->setOnwatchlist(0);
+					// remove  watchlist
+					$em->remove($watchlist);
 					$em->flush();
 
 					return $this->redirect($this->generateUrl('spotted_secured_homepage'));

@@ -35,6 +35,11 @@ spotted_secured_add_watchlist:
     defaults: { _controller: SpottedHomeBundle:Watchlist:add }
     options:
         expose: true
+spotted_secured_del_watchlist:
+    pattern: /secured/del_watchlist/{postid}
+    defaults: { _controller: SpottedHomeBundle:Watchlist:del }
+    options:
+        expose: true
 spotted_secured_add_comment:
     pattern: /secured/add_comment/{postid}
     defaults: { _controller: SpottedHomeBundle:Comment:create }
