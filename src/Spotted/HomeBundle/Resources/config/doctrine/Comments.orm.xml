@@ -6,7 +6,7 @@
     </id>
     <field name="text" type="text" column="text" nullable="false"/>
     <field name="date" type="datetime" column="date" nullable="false"/>
-    <field name="read" type="blob" column="read" nullable="false"/>
+    <field name="rd" type="integer" column="rd" nullable="false"/>
     <many-to-one field="post" target-entity="Post">
       <join-columns>
         <join-column name="Post_ID" referenced-column-name="ID"/>

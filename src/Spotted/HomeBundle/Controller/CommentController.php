@@ -28,7 +28,7 @@ class CommentController extends Controller
 		  $query = $em->createQuery(
 				'SELECT c
 				FROM SpottedHomeBundle:Comments c
-				WHERE c.id=:id
+				WHERE c.post=:id
 				ORDER BY c.date DESC'
 			)->setParameter('id', $postid);
 			
@@ -56,7 +56,7 @@ class CommentController extends Controller
                 $dt = new \DateTime();
                 $comment->setText($request->request->get('txthint'));
                 $comment->setDate($dt);
-				$comment->setRead(0);
+				$comment->setRd(0);
                 $comment->setUser($user);	
 				$post = $em->getRepository('SpottedHomeBundle:Post')->find($postid);
 				$comment->setPost($post);
