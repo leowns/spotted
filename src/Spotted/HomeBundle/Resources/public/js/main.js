@@ -208,23 +208,23 @@ $( document ).ready(function() {
     /**
      * Spotted Posts
      */
-	 // loads the watchlist when you clock on the navbar menu
-	  $(document).on('click', "#watchlist", function (event) {
-        event.stopPropagation();
-		$.post(
-			  Routing.generate('spotted_secured_watchlist'), 
+	 // // loads the watchlist when you clock on the navbar menu
+	  // $(document).on('click', "#watchlist", function (event) {
+        // event.stopPropagation();
+		// $.post(
+			  // Routing.generate('spotted_secured_watchlist'), 
 			  
-			  function(data){
-                  container.masonry( 'remove', $('.item'));
+			  // function(data){
+                  // container.masonry( 'remove', $('.item'));
 
-                  container.html(data);
+                  // container.html(data);
 
-                  container.masonry( 'appended', $('.item'));
-                  reMasonry()
-			  })
+                  // container.masonry( 'appended', $('.item'));
+                  // reMasonry()
+			  // })
 		
 
-    });
+    // });
 
 	 
     $(document).on('click', ".box.box-spotted", function (event) {

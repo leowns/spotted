@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <li><a id="watchlist" href="#"><i class="fa fa-eye"></i> Meine Watchlist</a></li>
+            <li><a href="{{ path('spotted_secured_watchlist') }}"><i class="fa fa-eye"></i> Meine Watchlist</a></li>
             <li><a href="{{ path('user_logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
 
         </ul>
@@ -100,7 +100,6 @@
                             </div>
 
                         {% endif %}
-
                         <div class="new_item container">
                             <div class="head row">
 							

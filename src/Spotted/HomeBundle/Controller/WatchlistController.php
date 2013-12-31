@@ -15,10 +15,17 @@ use Doctrine\ORM\Query;
 
 class WatchlistController extends Controller
 {
-	
+	/**
+     * Lists all Watchlist entities.
+     *
+     * @Route("/secured/watchlist", name="spotted_secured_watchlist")
+     * 
+     * @Template()
+     */ 
 	public function indexAction() 
 	{
 		$em = $this->getDoctrine()->getManager();
+		$tags = $em->getRepository('SpottedHomeBundle:Tags')->findAll();
 		$userid = $this->getUser()->getId();
 		$user= $this->getUser();
 		$query = $em->createQuery(
@@ -29,7 +36,12 @@ class WatchlistController extends Controller
 			
 			$posts=$query->getResult();
 			
-			return $this->render('SpottedHomeBundle:Watchlist:index.html.twig', array('entities' => $posts));
+			return array(
+            'entities' => $posts,
+			'tags' => $tags,
+            'user' => $user
+			
+        );
 
 	}
 
@@ -89,7 +101,7 @@ class WatchlistController extends Controller
 					$em->remove($watchlist);
 					$em->flush();
 
-					return $this->redirect($this->generateUrl('spotted_secured_homepage'));
+					return $this->redirect($this->generateUrl('spotted_secured_watchlist'));
 		
 		}
 

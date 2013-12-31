@@ -1,125 +1,212 @@
+{% extends "SpottedHomeBundle::base.html.twig" %}
 
-{% for entity in entities %}
-                            <div class="item col-xs-12 col-sm-12 col-md-6">
-                                <div class="spotted-message">
-                                    <h2 class="spotted-title">
-                                        <a href="#">
-                                            <strong>{{ entity.post.location.name }} ({{ entity.post.location.city.name }})</strong>, {{ entity.post.tags.name }}
-                                        </a>
-                                    </h2>
-                                    <div class="datum">
-                                        <i class="fa fa-clock-o"></i>{% if entity.post.date %}{{ entity.post.date|date('d.m.Y H:i') }}{% endif %}
-                                    </div>
-                                    <div class="gender">
-                                    {% if entity.post.gender =='female' %}
-                                        <img src="{{ asset('bundles/spottedhome/images/female.png') }}" />
-                                    {% endif %}
-                                    {% if entity.post.gender =='male' %}
-                                        <img src="{{ asset('bundles/spottedhome/images/male.png') }}" />
-                                    {% endif %}
-                                    </div>
-                                    <div style="cursor:pointer;" class="text-main">
-                                        {% if entity.post.gender =='female' %}
-                                        <span style="color: #C42EAF"><strong>Sie:</strong></span>
-                                        {% endif %}
-                                        {% if entity.post.gender =='male' %}
-                                        <span style="color: #587fd8"><strong>Er:</strong></span>
-                                        {% endif %}
+{% block head_title %}ZHAW Spotted{% endblock %}
 
-                                        {{ entity.post.text }}
-                                    </div>
-                                </div>
-                                <div class="spotted-slidedown spotted-comments">
-                                    <div class="container">
-                                        <div class="row" style="margin-bottom: 10px;">
-                                            <div class="col-xs-12">
-                                                <h4>Kommentare:</h4>
-                                            </div>
-                                        </div>
-											<div id="comment_wrapper{{ entity.post.id }}">
-												
+{% block nav_mobile_content %}
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse">
+        <span class="sr-only">Menü</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+{% endblock %}
 
-											</div>
-                                    </div>
+{% block nav_content %}
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a id="notification_menu" href="#" data-placement="bottom"><i class="fa fa-heart"></i> Meine Neuigkeiten <span class="label label-danger">2</span></a></li>
+            <div id="notification_content">
+                <div class="notification_header clearfix">
+                    <div class="pull-left"><h1>Neuigkeiten</h1></div>
+                </div>
+                <div class="notification_content">
+                    <div class="notification_list clearfix">
+                        <div class="notification_image">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="notification_message">
+                            <h2>SC (Winterthur), Lift</h2>
+                            <p>Manuel: Hoi du ich ha en gseh...</p>
+                        </div>
+                    </div>
+                    <div class="notification_list clearfix">
+                        <div class="notification_image">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="notification_message">
+                            <h2>TN (Winterthur), Mensa</h2>
+                            <p>Sandra: Hoi du ich au...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <li><a href="{{ path('spotted_secured_watchlist') }}"><i class="fa fa-eye"></i> Meine Watchlist</a></li>
+            <li><a href="{{ path('user_logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
 
-                                    <div class="add_comment container">
-										{#<form name="comment_form" id="comment_form" action="{{ path('spotted_secured_add_comment',{ postid: entity.id }) }}" method="post">#}
-											<div class="row">
-												<textarea id="txthint{{ entity.post.id }}" name="txthint" required="required" placeholder="Schreibe einen Hinweis..." maxlength="255"></textarea>
-												
-											</div>
-											<div class="row" style="margin-top: 10px">
-												<div class="col-xs-12">
-													<button id="{{ entity.post.id }}" name="btncomment" class="btn btn-danger pull-right" type="submit">Kommentieren</button>
-												</div>
-											</div>
-										{#</form>#}
-                                    </div>
+        </ul>
+        <div id="profile" class="nav navbar-nav navbar-right">
+            <i class="fa fa-user"></i>
+            {{ user.email }}
+        </div>
+    </div><!-- /.navbar-collapse -->
+{% endblock %}
 
-                                </div>
+{% block content %}
 
-                                <div class="spotted-slidedown spotted-match">
-                                    <div class="container">
-                                        <div class="row" style="margin-bottom: 10px;">
-                                            <div class="col-xs-12">
-                                                <h4>Ausgezeichnet! Ihr habt euch gefunden:</h4>
-                                            </div>
+    <div class="row" style="margin-top: 70px;">
+        {#<div id="menu_wrapper">#}
+            {#<div id="menu" class="col-xs-12 col-sm-2 col-md-2">#}
+
+                {#<div class="row">#}
+                    {#<div class="col-xs-12 col-md-12" style="padding:20px;">#}
+                        {#<div id="logo">#}
+                            {#<a href="/"  style="width: 100%; height: 100%; display: block;">#}
+
+                            {#</a>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+
+                {#<a class="link" href="{{ path('spotted_secured_homepage') }}"><i class="fa fa-home"></i> Home</a>#}
+
+                {#<a class="link" href="{{ path('spotted_secured_notifications') }}"><i class="fa fa-heart"></i> Meine Neuigkeiten</a>#}
+
+                {#<a class="link" href="{{ path('spotted_secured_watchlist') }}"><i class="fa fa-eye"></i> Meine Watchlist</a>#}
+
+                {#<a class="link" href="{{ path('user_logout') }}"><i class="fa fa-power-off"></i> Logout</a>#}
+
+                {#<div id="profile" class="row">#}
+                    {#<div class="col-xs-1 col-sm-4 col-md-3">#}
+                        {#<i class="fa fa-user"></i>#}
+                    {#</div>#}
+                    {#<div id="profile_name" class="col-xs-11 col-sm-8 col-md-9">#}
+                        {#{{ user.email }}#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+
+
+        <div id="canvas" class="col-xs-12">
+            <div style="padding: 0 15px">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        
+
+                        <div class="new_item container">
+                            <div class="head row">
+							
+                                <h1>Flirt verpasst? Wir geben dir eine zweite Chance!</h1>
+                            </div>
+                            <div class="row">
+                                <div class="content container">
+
+                                    <button type="button" class="close" id="new_item_close" style="display: none; font-size: 30px; position: absolute; right: 23px;" aria-hidden="true">&times;</button>
+                                     <form id="new_item_form" action="{{ path('spotted_secured_submission') }}" name="form" method="post">
+
+                                        <div class="row">
+                                            <textarea placeholder="TRAU DICH, SCHREIBE DEINEM FLIRT!" name="text" class="message_text autosize" required="required" id="form_message"></textarea>
                                         </div>
                                         <div class="row">
-                                            <textarea style="height: 140px;" class="message_text" required="required" placeholder="Schreibe deine Nachricht..."></textarea>
-                                        </div>
-                                        <div class="row" style="margin-top: 10px">
-                                            <div class="col-xs-12">
-                                                <button class="btn btn-danger pull-right" type="submit">E-Mail senden</button>
+                                            <div id="new_item_div" class="container">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                                                        <label>Dein Geschlecht</label>
+                                                        <div class="form-group">
+                                                            <div class="btn-group" data-toggle="buttons">
+                                                                <label class="btn btn-default" data-placement="bottom" data-toggle="tooltip" data-original-title="weiblich" >
+                                                                    <input type="radio" name="geschlecht" value="f" id="option1"> <i class="fa fa-female"></i>
+                                                                </label>
+                                                                <label class="btn btn-default" data-placement="bottom" data-toggle="tooltip" data-original-title="männlich" >
+                                                                    <input type="radio" name="geschlecht" value="m" id="option2"> <i class="fa fa-male"></i>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-8 col-md-9 col-lg-5">
+                                                        <div class="form-group">
+                                                            <label for="Location">Location</label>
+                                                            <input type="text" class="typeahead form-control" name="location" id="Location" placeholder="Location">
+															<input type="hidden" name="hidden" id="hidden">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
+                                                        <div class="pull-right">
+                                                            <label>Kategorie</label>
+                                                            <div class="form-group">
+                                                                <div class="btn-group" data-toggle="buttons">
+																{% for tag in tags|slice(0, 8) %}
+																	<label class="btn btn-danger" data-placement="bottom" data-toggle="tooltip" data-original-title="{{ tag.name }}" data-container="body">
+                                                                        <input type="radio" required="required" value="{{ tag.id }}" name="tags" id="option{{ tag.id }}"> <i class="{{ tag.iconclass }}"></i>
+                                                                    </label>  
+																{% endfor %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12" style="margin-top: 20px">
+                                                        <button type="submit" class="btn btn-default btn-block pull-right">Finde deinen Flirt!</button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="spotted-details container">
-                                    <div class="row">
-                                        <div class="box comment" data-placement="top" id="{{ entity.post.id }}" data-toggle="tooltip" data-original-title="Kommentieren">
-                                            <i class="fa fa-comment"></i>
-                                        </div>
-                                        {% if entity.post.onwatchlist == 0 %}
-                                        <div class="box wishlist"  id="{{ entity.post.id }}" data-placement="top" data-toggle="tooltip" data-original-title="Auf Watchlist">
-                                        </div>
-										{% else %}
-										<div class="box wishlist active"  id="{{ entity.post.id }}" data-placement="top" data-toggle="tooltip" data-original-title="Von Watchlist entfernen">
-                                            <a href="#delmodal{{ entity.post.id }}" data-toggle="modal"><i class="fa fa-eye"></i></a>
-                                        </div>
-										{% endif %}
-                                        <div class="box box-spotted">
-                                            Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" />
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
-						<div class="modal" id="delmodal{{ entity.post.id}}">
-							<div class="modal-dialog">
-							  <div class="modal-content">
-								<div class="modal-header">
-								  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								  <h4 class="modal-title">Post von Watchlist entfernen</h4>
-								</div>
-								<div class="modal-body">
-								  Wollen Sie diesen Post von Ihrer Watchlist entfernen?
-								</div>
-								<div class="modal-footer">
-								  <a href="#" data-dismiss="modal" class="btn btn-primary">Abbrechen</a>
-								  <a   href="{{ path('spotted_secured_del_watchlist', {'postid': entity.post.id}) }}" class="btn btn-danger">Entfernen</a>
-								</div>
-							  </div>
-							</div>
-						</div> 
-							 
-							
-							{% else %}
-					<strong>Keine Posts wurden gefunden!</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <div id="message_filter" class="row">
+                    <div class="container">
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-xs-12">
+                                <input type="text" class="form-control" id="filter_location" placeholder="Location">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-2">
+                                <div id="buttonsleft" class="btn-group-vertical" data-toggle="buttons">
+										<label class="btn">
+											<input type="radio" value="f" name="filtersleft" id="option1"> <i class="fa fa-female"></i> Sie sucht
+										</label>
+										<label class="btn">
+											<input type="radio" value="m" name="filtersleft" id="option2"> <i class="fa fa-male"></i> Er sucht
+										</label>
+                                </div>
+                            </div>
+                            <div class="col-xs-8 col-sm-10">
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn">
+                                        <input type="radio" value="all" name="filtersright" id="filterrightAll"> <i class="fa fa-repeat"></i> Alle
+                                    </label>
+                                    {% for tag in tags %}
+										<label class="btn">
+											<input type="radio" value="{{ tag.id }}" name="filtersright" id="filterright{{ tag.id }}"> <i class="{{ tag.iconclass }}"></i> {{ tag.name }}
+										</label>
+									{% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+				
+                <div  class="row">
+                    <div id="item_wrapper" class="container">
 					
-    
-                        {% endfor %}
+						{% include "SpottedHomeBundle:Watchlist:post.html.twig" with { 'entities': entities } %}
+					
+                    </div>
+                </div>
 
+            </div>
+        </div>
+    </div>
 
-						
+{% endblock %}
