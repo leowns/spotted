@@ -226,11 +226,17 @@ $( document ).ready(function() {
 
     $(document).on('click', ".box.comment", function (event) {
         event.stopPropagation();
+
+        currentThis = this;
+
 		 var postid = jQuery(this).attr("id");
 		// alert(postid);
 		// load the Comments for each post
-		showComment(postid);
-		slideBox (this,'.spotted-comments');
+        showComment(postid, function() {
+            slideBox (currentThis,'.spotted-comments');
+        });
+
+
 		
     });
 	$('button[name="btncomment"]').click(function(){
@@ -239,20 +245,20 @@ $( document ).ready(function() {
 			  Routing.generate('spotted_secured_add_comment',{ postid: postid }),
 			  {txthint: $("#txthint"+postid).val()}, 
 			  function(){
-			 
-			  showComment(postid);
+                showComment(postid, function() {
+                    reMasonry();
+                });
 			  });
 	});
 	
-	function showComment (postid) {
+	function showComment (postid, myCallbackFn) {
 		$.post(
 			  Routing.generate('spotted_secured_show_comment',{ postid: postid }),
 			  function(data){
-				   
 				  $("#comment_wrapper"+postid).html(data);
-				 
-				  
-			  });	
+			  }).done(function() {
+                myCallbackFn.call();
+              });
 	
     }
 
