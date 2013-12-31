@@ -38,9 +38,9 @@ class Comments
     /**
      * @var string
      *
-     * @ORM\Column(name="read", type="blob", nullable=false)
+     * @ORM\Column(name="rd", type="blob", nullable=false)
      */
-    private $read;
+    private $rd;
 
     /**
      * @var \Spotted\HomeBundle\Entity\Post
@@ -116,9 +116,9 @@ class Comments
      * @param string $read
      * @return Comments
      */
-    public function setRead($read)
+    public function setRd($rd)
     {
-        $this->read = $read;
+        $this->rd = $rd;
     
         return $this;
     }
@@ -128,9 +128,9 @@ class Comments
      *
      * @return string 
      */
-    public function getRead()
+    public function getRd()
     {
-        return $this->read;
+        return $this->rd;
     }
 
     /**

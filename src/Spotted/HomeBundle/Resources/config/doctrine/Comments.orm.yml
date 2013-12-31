@@ -16,8 +16,8 @@ Spotted\HomeBundle\Entity\Comments:
         date:
             type: datetime
             nullable: false
-        read:
-            type: blob
+        rd:
+            type: integer
             nullable: false
     manyToOne:
         post:

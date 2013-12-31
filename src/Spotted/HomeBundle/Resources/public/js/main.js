@@ -226,9 +226,35 @@ $( document ).ready(function() {
 
     $(document).on('click', ".box.comment", function (event) {
         event.stopPropagation();
-
-        slideBox (this,'.spotted-comments');
+		 var postid = jQuery(this).attr("id");
+		// alert(postid);
+		// load the Comments for each post
+		showComment(postid);
+		slideBox (this,'.spotted-comments');
+		
     });
+	$('button[name="btncomment"]').click(function(){
+		var postid = jQuery(this).attr("id");
+		$.post(
+			  Routing.generate('spotted_secured_add_comment',{ postid: postid }),
+			  {txthint: $("#txthint"+postid).val()}, 
+			  function(){
+			 
+			  showComment(postid);
+			  });
+	});
+	
+	function showComment (postid) {
+		$.post(
+			  Routing.generate('spotted_secured_show_comment',{ postid: postid }),
+			  function(data){
+				   
+				  $("#comment_wrapper"+postid).html(data);
+				 
+				  
+			  });	
+	
+    }
 
     function slideBox (target, name) {
 

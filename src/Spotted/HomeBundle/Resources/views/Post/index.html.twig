@@ -36,23 +36,24 @@
                                                 <h4>Kommentare:</h4>
                                             </div>
                                         </div>
-											<div id="comment_wrapper>">
-												{% include "SpottedHomeBundle:Comment:index.html.twig" %}
+											<div id="comment_wrapper{{ entity.id }}">
+												
+
 											</div>
                                     </div>
 
                                     <div class="add_comment container">
-										<form name="comment_form" id="comment_form" action="{{ path('spotted_secured_add_comment',{ postid: entity.id }) }}" method="post">
+										{#<form name="comment_form" id="comment_form" action="{{ path('spotted_secured_add_comment',{ postid: entity.id }) }}" method="post">#}
 											<div class="row">
-												<textarea id="txthint" name="txthint" required="required" placeholder="Schreibe einen Hinweis..." maxlength="255"></textarea>
+												<textarea id="txthint{{ entity.id }}" name="txthint" required="required" placeholder="Schreibe einen Hinweis..." maxlength="255"></textarea>
 												
 											</div>
 											<div class="row" style="margin-top: 10px">
 												<div class="col-xs-12">
-													<button class="btn btn-danger pull-right" type="submit">Kommentieren</button>
+													<button id="{{ entity.id }}" name="btncomment" class="btn btn-danger pull-right" type="submit">Kommentieren</button>
 												</div>
 											</div>
-										</form>
+										{#</form>#}
                                     </div>
 
                                 </div>
@@ -78,7 +79,7 @@
 
                                 <div class="spotted-details container">
                                     <div class="row">
-                                        <div class="box comment" data-placement="top" data-toggle="tooltip" data-original-title="Kommentieren">
+                                        <div class="box comment" data-placement="top" id="{{ entity.id }}" data-toggle="tooltip" data-original-title="Kommentieren">
                                             <i class="fa fa-comment"></i>
                                         </div>
                                         <div class="box wishlist" data-placement="top" data-toggle="tooltip" data-original-title="Auf Watchlist">

@@ -1,21 +1,24 @@
-					{#{% for comment in comments %} 
+					{% for comment in comments %} 
 										<div class="row list_comment">
                                             <div class="col-xs-2 col-sm-2 avatar">
+
                                                 <div class="pull-right">
-												{% if comment.gender =='m' %}
+												{% if comment.user.gender =='male' %}
                                                     <span style="color: #587fd8"><i class="fa fa-user"></i></span>
 												{% endif %}
-												{% if comment.gender =='f' %}
+												{% if comment.user.gender =='female' %}
                                                     <span style="color: #C42EAF"><i class="fa fa-user"></i></span>
 												{% endif %}
                                                 </div>
                                             </div>
                                             <div class="point"></div>
                                             <div class="col-xs-9 col-sm-9 comment-text">
-                                                <div class="comment-username">{{ comment.user.firstname }} </div>
+                                                <div class="comment-username">{{ comment.user.firstname }}</div>
+												<h6><small>{% if comment.date %}{{ comment.date|date('d.m.Y H:i') }}{% endif %}</small></h6>
+												
                                                 {{ comment.text}} 
                                             </div>
                                         </div>
 						{% else %}
 					<strong>Es wurden keine Kommentare gefunden!</strong>
-						{% endfor %} #}
+						{% endfor %} 
