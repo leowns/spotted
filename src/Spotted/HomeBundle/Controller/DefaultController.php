@@ -44,17 +44,13 @@ class DefaultController extends Controller
 					from SpottedHomeBundle:Post p
 					order by p.date desc'
 			  );
-//		$query2 = $em->createQuery(
-//			'SELECT p.gender,p.text,p.date,l.name as location,t.name as tag
-//			FROM SpottedHomeBundle:Post p
-//			JOIN p.location l
-//			JOIN p.tags t
-//			WHERE l.id = p.location
-//			AND t.id= p.tags
-//			ORDER BY p.date DESC'
-//		);
-//
+		$query2 = $em->createquery(
+				 'select c from SpottedHomeBundle:Comments c JOIN c.post p WHERE p.user=:userid AND c.rd= 0'
+			  )->setParameter('userid', $user->getId());
+
 	$posts= $query->getResult();
+	$notreadcomments=$query2->getResult();
+	$notifications = count($notreadcomments);
 
         //$posts = $em->getRepository('SpottedHomeBundle:Post')->findAll();
 
@@ -71,7 +67,9 @@ class DefaultController extends Controller
             'userWatchlist' => $user->getWatchlist(),
 			'tags' => $tags,
             'confirmed' => $confirmed,
-            'user' => $user
+            'user' => $user,
+			'comments' => $notreadcomments,
+            'notifications' => $notifications
         );
 		
     }

@@ -50,6 +50,11 @@ spotted_secured_show_comment:
     defaults: { _controller: SpottedHomeBundle:Comment:show }
     options:
         expose: true
+spotted_secured_show_post:
+    pattern: /secured/post/{postid}
+    defaults: { _controller: SpottedHomeBundle:Post:show }
+    options:
+        expose: true
 
 spotted_home_single_comment:
     pattern:  /comment/{id}

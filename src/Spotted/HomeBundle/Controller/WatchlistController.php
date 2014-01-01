@@ -33,8 +33,13 @@ class WatchlistController extends Controller
 				FROM SpottedHomeBundle:Post p
 				WHERE p.id in (:userid)'
 			)->setParameter('userid',$user->getWatchlist());
+		$query2 = $em->createquery(
+				 'select c from SpottedHomeBundle:Comments c JOIN c.post p WHERE p.user=:userid AND c.rd= 0'
+			  )->setParameter('userid', $userid);
 			
         $posts=$query->getResult();
+		$notreadcomments=$query2->getResult();
+	$notifications = count($notreadcomments);
 
         return $this->render(
             'SpottedHomeBundle:Default:index.html.twig',
@@ -43,7 +48,9 @@ class WatchlistController extends Controller
             'userWatchlist' => $user->getWatchlist(),
 			'tags' => $tags,
             'confirmed' => false,
-            'user' => $user
+            'user' => $user,
+			'comments' => $notreadcomments,
+            'notifications' => $notifications
             )
         );
 	}
