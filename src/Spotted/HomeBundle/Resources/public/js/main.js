@@ -25,8 +25,17 @@ $( document ).ready(function() {
 
 
     /**
-     * Register Page
+     * Menü
      */
+    $('#notification_li_menu').click(function() {
+        $(this).siblings().removeClass("active");
+        $(this).toggleClass("active");
+
+        if(!$(this).hasClass('active') && $(this).siblings().hasClass('current_url')) {
+            $('.current_url').toggleClass("active");
+        }
+
+    })
 
 
 

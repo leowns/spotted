@@ -373,9 +373,7 @@ Login Page
 
 .navbar {
     background-color: #282A27;
-    border-color: #E85C5C;
-    padding-top: 5px;
-    padding-bottom: 10px;
+    border-color: #D9534F;
     font-family: 'Source Sans Pro',sans-serif !important;
     font-weight: 200;
 }
@@ -387,7 +385,7 @@ Login Page
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #E85C5C;
+    color: #D9534F;
     font-size: 19px;
 }
 
@@ -396,12 +394,12 @@ Login Page
 }
 
 .navbar-default .navbar-toggle {
-    border-color: #E85C5C;
-    color: #E85C5C;
+    border-color: #D9534F;
+    color: #D9534F;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-    background-color: #E85C5C;
+    background-color: #D9534F;
 }
 
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
@@ -455,6 +453,7 @@ Login Page
 #bs-navbar-collapse .popover {
     max-width: 100%;
     width: 95%;
+    margin-top: 0px;
 }
 
 #bs-navbar-collapse .popover-content {
@@ -586,6 +585,15 @@ Login Page
     margin: 10px 0;
 }
 
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover {
+    background-color: #D9534F;
+    color: #CCCCCC;
+}
+
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #CCCCCC;
+    background-color: #D9534F;
+}
 
 #message_filter {
     margin-bottom: 8px;
@@ -761,10 +769,10 @@ h2.spotted-title a {
     overflow: visible;
 }
 
-.spotted-details {
-    height: 50px;
-
+.spotted-details a {
+    color: inherit;
 }
+
 
 .spotted-details .box {
     border-right: 1px solid #D8D8D8;
