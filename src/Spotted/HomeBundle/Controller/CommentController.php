@@ -23,16 +23,38 @@ class CommentController extends Controller
      */
 	public function ShowAction($postid)
     {
-		
+		  
 		  $em = $this->getDoctrine()->getManager();
-		  $query = $em->createQuery(
+		  $user= $this->getUser();
+		 // Check if post is from user
+		 $query = $em->createQuery(
+				'SELECT p
+				FROM SpottedHomeBundle:Post p
+				WHERE p.user=:userid
+				AND p.id=:id'
+			)->setParameters(array(
+				'userid' => $user->getId(),
+				'id'  => $postid,
+			));
+		$post=$query->getResult();
+		if (count($post)> 0) 
+		{
+			$query = $em->createQuery(
+				'UPDATE SpottedHomeBundle:Comments c SET c.rd=1 
+				WHERE c.post=:postid'
+			)->setParameter('postid', $postid);
+			
+			$query->execute();
+		
+		}
+		  $query2 = $em->createQuery(
 				'SELECT c
 				FROM SpottedHomeBundle:Comments c
 				WHERE c.post=:id
 				ORDER BY c.date DESC'
 			)->setParameter('id', $postid);
 			
-			$comments=$query->getResult();
+			$comments=$query2->getResult();
 	
         return $this->render('SpottedHomeBundle:Comment:index.html.twig', array('comments' => $comments));
 		
@@ -67,5 +89,7 @@ class CommentController extends Controller
 
                 return $this->redirect($this->generateUrl('spotted_secured_show_comment', array ('postid'    => $comment->getPost()->getId())));
     }
+	
+	
 	
 }

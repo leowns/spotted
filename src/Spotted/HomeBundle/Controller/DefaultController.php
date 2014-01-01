@@ -45,7 +45,7 @@ class DefaultController extends Controller
 					order by p.date desc'
 			  );
 		$query2 = $em->createquery(
-				 'select c from SpottedHomeBundle:Comments c JOIN c.post p WHERE p.user=:userid AND c.rd= 0'
+				 'select c from SpottedHomeBundle:Comments c JOIN c.post p WHERE p.user=:userid AND c.rd= 0 order by c.date DESC'
 			  )->setParameter('userid', $user->getId());
 
 	$posts= $query->getResult();
@@ -119,7 +119,7 @@ class DefaultController extends Controller
 				// get the Tag
 				$tags = $em->getRepository('SpottedHomeBundle:Tags')->find($request->request->get('tags'));
 				$post->setTags($tags);
-                $post->setGender($request->request->get('geschlecht'));
+                $post->setGender($request->request->get('gender'));
 				// save the post
 				$em->persist($post);
 				$em->flush();
