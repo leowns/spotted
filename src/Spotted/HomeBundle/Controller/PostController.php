@@ -25,6 +25,8 @@ class PostController extends Controller
      * @Template("SpottedHomeBundle:Post:index.html.twig")
      */
 		public function filterAction(Request $request) {
+            $user = $this->container->get('security.context')->getToken()->getUser();
+
 		//Filter 1 ist das Geschlecht, eigentlich kein Tag
 			$filter1=$request->request->get('filter1');
 			$filter2=$request->request->get('filter2');
@@ -80,7 +82,7 @@ class PostController extends Controller
 		// $response = new Response(json_encode($posts));
 		// $response->headers->set('Content-Type', 'application/json');
 		
-		return $this->render('SpottedHomeBundle:Post:index.html.twig', array('entities' => $posts));
+		return $this->render('SpottedHomeBundle:Post:index.html.twig', array('entities' => $posts, 'userWatchlist'=> $user->getWatchlist()));
 
 	}
 	
