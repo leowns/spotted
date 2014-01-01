@@ -112,4 +112,8 @@ Spotted\HomeBundle\Entity\User:
             length: 45
             fixed: false
             nullable: true
+    oneToMany:
+        watchlist:
+            targetEntity: Watchlist
+            mappedBy: user
     lifecycleCallbacks: {  }

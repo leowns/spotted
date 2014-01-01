@@ -13,9 +13,8 @@
                                             </div>
                                             <div class="point"></div>
                                             <div class="col-xs-9 col-sm-9 comment-text">
-                                                <div class="comment-username">{{ comment.user.firstname }}</div>
-												<h6><small>{% if comment.date %}{{ comment.date|date('d.m.Y H:i') }}{% endif %}</small></h6>
-												
+                                                <div class="comment-username">{{ comment.user.firstname }}<small>{% if comment.date %}-{{ comment.date|date('d.m.Y H:i') }}{% endif %}</small></div>
+
                                                 {{ comment.text}} 
                                             </div>
                                         </div>

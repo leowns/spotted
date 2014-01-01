@@ -24,9 +24,9 @@ class Watchlist
     /**
      * @var \Spotted\HomeBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="Spotted\HomeBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Spotted\HomeBundle\Entity\User", inversedBy="watchlist")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="User_ID", referencedColumnName="ID")
+     *  @ORM\JoinColumn(name="User_ID", referencedColumnName="ID")
      * })
      */
     private $user;

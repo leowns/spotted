@@ -71,6 +71,28 @@ class User extends BaseUser
      */
     private $hometown;
 
+    /**
+     *
+     *
+     * @ORM\OneToMany(targetEntity="Spotted\HomeBundle\Entity\Watchlist", mappedBy="user")
+     */
+    private $watchlist;
+
+
+    /**
+     * Get watchlist
+     *
+     *
+     */
+    public function getWatchlist()
+    {
+        $watches = array();
+
+        foreach($this->watchlist as $watch) {
+            $watches[] = $watch->getPost()->getId();
+         }
+        return $watches;
+    }
 
     /**
      * Set facebookid

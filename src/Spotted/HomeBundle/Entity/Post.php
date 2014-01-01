@@ -72,14 +72,6 @@ class Post
      */
     private $tags;
 	
-	/**
-     * @var string
-     *
-     * @ORM\Column(name="onwatchlist", type="integer", nullable=false)
-     */
-	private $onwatchlist;
-
-
 
     /**
      * Get id
@@ -150,28 +142,6 @@ class Post
         return $this;
     }
 
-    /**
-     * Get onwatchlist
-     *
-     * @return integer 
-     */
-    public function getOnwatchlist()
-    {
-        return $this->onwatchlist;
-    }
-	
-	/**
-     * Set onwatchlist
-     *
-     * @param string $onwatchlist
-     * @return Post
-     */
-    public function setOnwatchlist($onwatchlist)
-    {
-        $this->onwatchlist = $onwatchlist;
-    
-        return $this;
-    }
 
     /**
      * Get gender

@@ -15,7 +15,7 @@ Spotted\HomeBundle\Entity\Watchlist:
             targetEntity: User
             cascade: {  }
             mappedBy: null
-            inversedBy: null
+            inversedBy: watchlist
             joinColumns:
                 User_ID:
                     referencedColumnName: ID

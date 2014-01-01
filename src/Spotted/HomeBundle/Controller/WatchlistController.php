@@ -29,20 +29,23 @@ class WatchlistController extends Controller
 		$userid = $this->getUser()->getId();
 		$user= $this->getUser();
 		$query = $em->createQuery(
-				'SELECT w
-				FROM SpottedHomeBundle:Watchlist w
-				WHERE w.user=:userid'
-			)->setParameter('userid', $userid);
+				'SELECT p
+				FROM SpottedHomeBundle:Post p
+				WHERE p.id in (:userid)'
+			)->setParameter('userid',$user->getWatchlist());
 			
-			$posts=$query->getResult();
-			
-			return array(
-            'entities' => $posts,
-			'tags' => $tags,
-            'user' => $user
-			
-        );
+        $posts=$query->getResult();
 
+        return $this->render(
+            'SpottedHomeBundle:Default:index.html.twig',
+            array(
+            'entities' => $posts,
+            'userWatchlist' => $user->getWatchlist(),
+			'tags' => $tags,
+            'confirmed' => false,
+            'user' => $user
+            )
+        );
 	}
 
 	public function addAction($postid)
@@ -73,8 +76,8 @@ class WatchlistController extends Controller
 	public function delAction($postid)
 		{
 			
-			 $em = $this->getDoctrine()->getManager();
-			 $userid = $this->getUser()->getId();
+             $em = $this->getDoctrine()->getManager();
+             $userid = $this->getUser()->getId();
 			$query = $em->createQuery(
 				'SELECT w
 				FROM SpottedHomeBundle:Watchlist w
@@ -87,21 +90,13 @@ class WatchlistController extends Controller
 			));
 			
 			$watchlist=$query->getSingleResult();
-			 
-			$query = $em->createQuery(
-					'SELECT p
-					FROM SpottedHomeBundle:Post p
-					WHERE p.id=:id'
-					)->setParameter('id', $postid);
-					
-				$post=$query->getSingleResult();
-				// set onwatchlist to 0->false
-					$post->setOnwatchlist(0);
-					// remove  watchlist
-					$em->remove($watchlist);
-					$em->flush();
 
-					return $this->redirect($this->generateUrl('spotted_secured_watchlist'));
+
+            // remove  watchlist
+            $em->remove($watchlist);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('spotted_secured_watchlist'));
 		
 		}
 

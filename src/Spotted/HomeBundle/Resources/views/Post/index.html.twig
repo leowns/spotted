@@ -82,15 +82,11 @@
                                         <div class="box comment" data-placement="top" id="{{ entity.id }}" data-toggle="tooltip" data-original-title="Kommentieren">
                                             <i class="fa fa-comment"></i>
                                         </div>
-										{% if entity.onwatchlist == 0 %}
-                                        <div class="box wishlist"  id="{{ entity.id }}" data-placement="top" data-toggle="tooltip" data-original-title="Auf Watchlist">
-                                           <a href="#addmodal{{ entity.id }}"data-toggle="modal" ><i class="fa fa-eye"></i></a>
-                                        </div>
-										{% else %}
-										<div class="box wishlist active"  id="{{ entity.id }}" data-placement="top" data-toggle="tooltip" data-original-title="Von Watchlist entfernen">
-                                            <a href="#delmodal{{ entity.id }}" data-toggle="modal"><i class="fa fa-eye"></i></a>
-                                        </div>
-										{% endif %}
+                                        <a href="#{% if entity.id in userWatchlist %}delmodal{% else %}addmodal{% endif %}{{ entity.id}}" data-toggle="modal">
+                                            <div class="{% if entity.id in userWatchlist %}selected {% endif %}box wishlist" data-placement="top" data-toggle="tooltip" data-original-title="{% if entity.id in userWatchlist %}Von Watchlist entfernen{% else %}Auf Watchlist{% endif %}">
+                                                <i class="fa fa-eye"></i>
+                                            </div>
+                                        </a>
                                         <div class="box box-spotted">
                                             Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" />
                                         </div>

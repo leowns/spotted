@@ -29,4 +29,13 @@ Spotted\HomeBundle\Entity\Comments:
                 Post_ID:
                     referencedColumnName: ID
             orphanRemoval: false
+        user:
+            targetEntity: User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                User_ID:
+                    referencedColumnName: ID
+            orphanRemoval: false
     lifecycleCallbacks: {  }

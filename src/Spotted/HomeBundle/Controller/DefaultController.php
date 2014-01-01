@@ -68,10 +68,10 @@ class DefaultController extends Controller
 
         return array(
             'entities' => $posts,
+            'userWatchlist' => $user->getWatchlist(),
 			'tags' => $tags,
             'confirmed' => $confirmed,
             'user' => $user
-			
         );
 		
     }
