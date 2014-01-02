@@ -68,7 +68,6 @@ class WatchlistController extends Controller
 					)->setParameter('id', $postid);
 					
 				$post=$query->getSingleResult();
-					$post->setOnwatchlist(1);
 					$user = $this->getUser();
 					$watchlist->setUser($user);
 					$watchlist->setPost($post);
