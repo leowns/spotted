@@ -10,7 +10,7 @@ $( document ).ready(function() {
     $('*[data-toggle="popover"]').popover();
 
 
-    $('#notification_menu').popover({
+    var $MenuPopover = $('#notification_menu').popover({
         html : true,
         content: function() {
             return $('#notification_content').html();
@@ -27,15 +27,23 @@ $( document ).ready(function() {
     /**
      * Menü
      */
-    $('#notification_li_menu').click(function() {
-        $(this).siblings().removeClass("active");
-        $(this).toggleClass("active");
+    $MenuPopover.on("show.bs.popover", function(e) {
+        $this = $('#notification_li_menu');
 
-        if(!$(this).hasClass('active') && $(this).siblings().hasClass('current_url')) {
+        $this.siblings().removeClass("active");
+        $this.addClass("active");
+    });
+
+    $MenuPopover.on("hidden.bs.popover", function(e) {
+        $this = $('#notification_li_menu');
+
+        $this.removeClass("active");
+
+        if($this.siblings().hasClass('current_url')) {
             $('.current_url').toggleClass("active");
         }
+    });
 
-    })
 
 
 

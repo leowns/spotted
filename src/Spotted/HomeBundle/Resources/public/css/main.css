@@ -438,6 +438,11 @@ Login Page
     margin-top: 0px;
     padding-left: 0;
     padding-bottom: 5px;
+    background-color: #353834;
+}
+
+#bs-navbar-collapse .popover.bottom .arrow:after {
+    border-bottom-color: #353834;
 }
 
 #bs-navbar-collapse .popover-content {
@@ -457,9 +462,10 @@ Login Page
 }
 
 .notification_header {
-    border-bottom: 1px solid #DCDCDC;
+    border-bottom: 1px solid #D9534F;
     font-size: 16px;
     font-weight: bold;
+    color: #FFFFFF;
 }
 
 .notification_header h1 {
@@ -490,6 +496,7 @@ Login Page
 
 .notification_message {
     font-size: 12px;
+    color: #D9534F;
 }
 
 .notification_message > h2 {
@@ -499,13 +506,22 @@ Login Page
     margin-top: 0;
 }
 
+.notification_list:hover .notification_message {
+    color: #CCCCCC;
+}
+
 .notification_list {
-    border-bottom: 1px solid #DCDCDC;
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #D9534F;
     padding: 10px 0;
 }
 
+.notification_list:last-child {
+    border-bottom: none;
+}
+
 .notification_list:hover {
-    background-color: #DCDCDC;
+    background-color: #D9534F;
     cursor: pointer;
 }
 
