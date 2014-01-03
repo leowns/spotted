@@ -81,16 +81,6 @@ Landing Page
     z-index: 10;
 }
 
-#header #logo {
-    background: url(../images/logo_white_red.png) no-repeat scroll center center rgba(0, 0, 0, 0);
-    background-size: contain;
-    display: inline-block;
-    height: 100%;
-    margin: 0 35px;
-    text-indent: -9999px;
-    width: 190px;
-}
-
 #landing_box {
     margin-top: 200px;
     font-family: 'Source Sans Pro',sans-serif !important;
@@ -362,14 +352,6 @@ Login Page
     font-size: 0.7em;
 }
 
-#menu #logo {
-    background-image: url("../images/logo_white_red.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: top center;
-    display: block;
-    height: 30px;
-}
 
 .navbar {
     background-color: #282A27;
@@ -411,12 +393,12 @@ Login Page
     color: #CCCCCC;
 }
 
-.navbar #logo {
+.navbar #nav_logo {
     background: url(../images/logo_white_red.png) no-repeat scroll center center rgba(0, 0, 0, 0);
     background-size: contain;
     display: inline-block;
     height: 100%;
-    margin: 0 35px;
+    margin: 0 20px;
     text-indent: -9999px;
     width: 150px;
 }
@@ -454,6 +436,8 @@ Login Page
     max-width: 100%;
     width: 95%;
     margin-top: 0px;
+    padding-left: 0;
+    padding-bottom: 5px;
 }
 
 #bs-navbar-collapse .popover-content {
@@ -467,8 +451,7 @@ Login Page
         width: 270px;
     }
     #bs-navbar-collapse .popover-content {
-        width: 270px;
-        padding: 0px;
+        width: 268px;
     }
 
 }
@@ -894,8 +877,8 @@ h2.spotted-title a {
 .footer {
     padding: 40px 0px 10px;
     min-height: 30px;
-    border-top: 5px solid #C0C0C8;
-    background-color: #19191A;
+    border-top: 3px solid #D9534F;
+    background-color: #282A27;
     position: relative;
 }
 
@@ -915,6 +898,18 @@ h2.spotted-title a {
     background: -ms-linear-gradient(top,  #202021 0%,#131313 100%); /* IE10+ */
     background: linear-gradient(to bottom,  #202021 0%,#131313 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#202021', endColorstr='#131313',GradientType=0 ); /* IE6-9 */
+
+    background: #303030; /* Old browsers */
+    background: -moz-linear-gradient(top,  #303030 0%, #282a27 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#303030), color-stop(100%,#282a27)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #303030 0%,#282a27 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #303030 0%,#282a27 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #303030 0%,#282a27 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #303030 0%,#282a27 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#303030', endColorstr='#282a27',GradientType=0 ); /* IE6-9 */
+
+
+
 
     border-radius: 6px 6px 0 0;
     margin: 0 2px;

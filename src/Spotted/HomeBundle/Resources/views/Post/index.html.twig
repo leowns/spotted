@@ -12,10 +12,10 @@
                                     </div>
                                     <div class="gender">
                                     {% if entity.gender =='female' %}
-                                        <img src="{{ asset('bundles/spottedhome/images/female.png') }}" />
+                                        <img src="{{ asset('bundles/spottedhome/images/female.png') }}" alt="Female"/>
                                     {% endif %}
                                     {% if entity.gender =='male' %}
-                                        <img src="{{ asset('bundles/spottedhome/images/male.png') }}" />
+                                        <img src="{{ asset('bundles/spottedhome/images/male.png') }}" alt="Male"/>
                                     {% endif %}
                                     </div>
                                     <div style="cursor:pointer;" class="text-main">
@@ -50,7 +50,7 @@
 											</div>
 											<div class="row" style="margin-top: 10px">
 												<div class="col-xs-12">
-													<button id="{{ entity.id }}" name="btncomment" class="btn btn-danger pull-right" type="submit">Kommentieren</button>
+													<button id="btn_comment_{{ entity.id }}" name="btncomment" class="btn btn-danger pull-right" type="submit">Kommentieren</button>
 												</div>
 											</div>
 										{#</form>#}
@@ -79,7 +79,7 @@
 
                                 <div class="spotted-details container">
                                     <div class="row">
-                                        <div class="box comment" data-placement="top" id="{{ entity.id }}" data-toggle="tooltip" data-original-title="Kommentieren">
+                                        <div class="box comment" data-placement="top" id="div_comment_{{ entity.id }}" data-toggle="tooltip" data-original-title="Kommentieren">
                                             <i class="fa fa-comment"></i>
                                         </div>
                                         <a href="#{% if entity.id in userWatchlist %}delmodal{% else %}addmodal{% endif %}{{ entity.id}}" data-toggle="modal">
@@ -88,7 +88,7 @@
                                             </div>
                                         </a>
                                         <div class="box box-spotted">
-                                            Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" />
+                                            Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" alt="Match" />
                                         </div>
                                     </div>
                                 </div>

@@ -20,7 +20,7 @@
 
 {% block body_container %}
 
-    <div id="style-selector">
+  {#  <div id="style-selector">
         <div class="title-ss">Style Selector</div>
         <div class="box-ss">Choose Background</div>
         <div class="box-ss pad1">
@@ -41,7 +41,7 @@
 
     <div id="t-row-left-ss">
         <i class="fa fa-cog"></i>
-    </div>
+    </div>#}
 
     {% block container_content %}
         <div class="container" style="min-height:600px;">
@@ -49,7 +49,7 @@
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     {% block nav_mobile_content %} {% endblock %}
-                    <a class="navbar-brand" id="logo" href="{{ path('spotted_open_landingpage') }}">Spotted</a>
+                    <a class="navbar-brand" id="nav_logo" href="{{ path('spotted_open_landingpage') }}">Spotted</a>
                 </div>
                 {% block nav_content %} {% endblock %}
             </nav>
@@ -113,7 +113,7 @@
                 <div class="col-xs-12">
                     <div class="footer-recommendation">
                         <div class="footer-recommendation-img">
-                            <img src="{{ asset('bundles/spottedhome/images/fabian.jpg') }}" />
+                            <img src="{{ asset('bundles/spottedhome/images/fabian.jpg') }}" alt="Founder"/>
                         </div>
                         <div class="footer-recommendation-text">
                             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
@@ -147,7 +147,6 @@
     {% endjavascripts %}
 	
 	
-<div id="fb-root"></div>
 
 
 <script type="text/javascript">

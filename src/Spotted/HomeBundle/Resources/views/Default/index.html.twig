@@ -15,27 +15,29 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-            <li id="notification_li_menu"><a id="notification_menu" href="#" data-placement="bottom"><i class="fa fa-heart"></i> Meine Neuigkeiten <span class="label label-danger">{{ notifications}}</span></a></li>
-             <div id="notification_content">
-                <div class="notification_header clearfix">
-                    <div class="pull-left"><h1>Neuigkeiten</h1></div>
-                </div>
-                <div class="notification_content">
-				{% for comment in comments %}
-                    <div class="notification_list clearfix">
-                       <div class="notification_image">
-                            <i class="fa fa-envelope"></i>
-                        </div>
-					<a href="{{ path('spotted_secured_show_post',{'postid': comment.post.id}) }}">
-                        <div class="notification_message">
-                            <h2>{{ comment.post.location.name }} ({{ comment.post.location.city.name }}), {{ comment.post.tags.name }}</h2>
-                            <p>{{ comment.user.firstname }}: {{ comment.text|length > 20 ? comment.text|slice(0, 20) ~ '...' : comment.text  }}</p>
-                        </div>
-					</a>
-                    </div>
-				{% endfor %}
-                </div>
-            </div>
+            <li id="notification_li_menu"><a id="notification_menu" href="#" data-placement="bottom"><i class="fa fa-heart"></i> Meine Neuigkeiten <span class="label label-danger">{{ notifications}}</span></a>
+             <ul id="notification_content">
+                 <li>
+                     <div class="notification_header clearfix">
+                         <div class="pull-left"><h1>Neuigkeiten</h1></div>
+                     </div>
+                     <div class="notification_content">
+                         {% for comment in comments %}
+                             <div class="notification_list clearfix" onclick="location.href='{{ path('spotted_secured_show_post',{'postid': comment.post.id}) }}'">
+                                 <div class="notification_image">
+                                     <i class="fa fa-envelope"></i>
+                                 </div>
+
+                                 <div class="notification_message">
+                                     <h2>{{ comment.post.location.name }} ({{ comment.post.location.city.name }}), {{ comment.post.tags.name }}</h2>
+                                     <p>{{ comment.user.firstname }}: {{ comment.text|length > 20 ? comment.text|slice(0, 20) ~ '...' : comment.text  }}</p>
+                                 </div>
+                             </div>
+                         {% endfor %}
+                     </div>
+                 </li>
+            </ul>
+            </li>
             <li class="{% if app.request.attributes.get('_route') == 'spotted_secured_watchlist' %}active current_url{% endif %}"><a href="{{ path('spotted_secured_watchlist') }}"><i class="fa fa-eye"></i> Meine Watchlist</a></li>
             <li><a href="{{ path('user_logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
 
@@ -117,10 +119,10 @@
                                                         <div class="form-group">
                                                             <div class="btn-group" data-toggle="buttons">
                                                                 <label class="btn btn-default" data-placement="bottom" data-toggle="tooltip" data-original-title="weiblich" >
-                                                                    <input type="radio" name="geschlecht" value="f" id="option1"> <i class="fa fa-female"></i>
+                                                                    <input type="radio" name="geschlecht" value="f" id="optionFemale"> <i class="fa fa-female"></i>
                                                                 </label>
                                                                 <label class="btn btn-default" data-placement="bottom" data-toggle="tooltip" data-original-title="männlich" >
-                                                                    <input type="radio" name="geschlecht" value="m" id="option2"> <i class="fa fa-male"></i>
+                                                                    <input type="radio" name="geschlecht" value="m" id="optionMale"> <i class="fa fa-male"></i>
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -173,10 +175,10 @@
                             <div class="col-xs-4 col-sm-2">
                                 <div id="buttonsleft" class="btn-group-vertical" data-toggle="buttons">
 										<label class="btn">
-											<input type="radio" value="f" name="filtersleft" id="option1"> <i class="fa fa-female"></i> Sie sucht
+											<input type="radio" value="f" name="filtersleft" id="optionFilterFemale"> <i class="fa fa-female"></i> Sie sucht
 										</label>
 										<label class="btn">
-											<input type="radio" value="m" name="filtersleft" id="option2"> <i class="fa fa-male"></i> Er sucht
+											<input type="radio" value="m" name="filtersleft" id="optionFilterMale"> <i class="fa fa-male"></i> Er sucht
 										</label>
                                 </div>
                             </div>
