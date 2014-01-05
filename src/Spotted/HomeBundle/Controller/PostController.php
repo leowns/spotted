@@ -26,127 +26,51 @@ class PostController extends Controller
     * @Template("SpottedHomeBundle:Post:index.html.twig")
     */
     public function filterAction(Request $request) {
-     $user = $this->container->get('security.context')->getToken()->getUser();
+        $user = $this->container->get('security.context')->getToken()->getUser();
 
-		//Filter 1 ist das Geschlecht, eigentlich kein Tag
-			$filter1=$request->request->get('filter1');
-			$filter2=$request->request->get('filter2');
-			$locationfilter=$request->request->get('locationfilter');
-			
-			$em = $this->getDoctrine()->getManager();
-			
-		if ($locationfilter!= '' && $filter1 == '' && $filter2 == '') {
-			
-			$query1 = $em->createQuery(
-				'SELECT p
-				FROM SpottedHomeBundle:Post p
-				WHERE p.location=:location
-				ORDER BY p.date DESC'
-			)->setParameter('location', $locationfilter);
-			
-			$posts=$query1->getResult();
-		
-		}
-		if ($locationfilter!= '' && $filter1 != '' && $filter2 == '') {
-			
-			$query1 = $em->createQuery(
-				'SELECT p
-				FROM SpottedHomeBundle:Post p
-				WHERE p.location=:location
-				AND p.gender=:gender
-				ORDER BY p.date DESC'
-			)->setParameters(array(
-				'gender' => $filter1,
-				'location'  => $locationfilter,
-			));
-			
-			$posts=$query1->getResult();
-		
-		}
-		if ($locationfilter!= '' && $filter1 == '' && $filter2 != '') {
-			
-			$query1 = $em->createQuery(
-				'SELECT p
-				FROM SpottedHomeBundle:Post p
-				WHERE p.location=:location
-				AND p.tags=:id
-				ORDER BY p.date DESC'
-			)->setParameters(array(
-				'id' => $filter2,
-				'location'  => $locationfilter,
-			));
-			
-			$posts=$query1->getResult();
-		
-		}
-		if ($locationfilter!= '' && $filter1 != '' && $filter2 != '') {
-			
-			$query1 = $em->createQuery(
-				'SELECT p
-				FROM SpottedHomeBundle:Post p
-				WHERE p.location=:location
-				AND p.tags=:id
-				AND p.gender=:gender
-				ORDER BY p.date DESC'
-			)->setParameters(array(
-				'id' => $filter2,
-				'location'  => $locationfilter,
-				'gender'  => $filter1
-			));
-			
-			$posts=$query1->getResult();
-		
-		}
+        //Filter 1 ist das Geschlecht, eigentlich kein Tag
+        $filter1=$request->request->get('filter1');
+        $filter2=$request->request->get('filter2');
+        $locationfilter=$request->request->get('locationfilter');
 
-		if ($filter1!= '' && $filter2 == '' && $locationfilter == '') {
-			
-			$query1 = $em->createQuery(
-				'SELECT p
-				FROM SpottedHomeBundle:Post p
-				WHERE p.gender=:gender
-				ORDER BY p.date DESC'
-			)->setParameter('gender', $filter1);
-			
-			$posts=$query1->getResult();
-		
-		}
-		if ($filter1!='' && $filter2 != '' && $locationfilter == '') {
-			$query2 = $em->createQuery(
-				'SELECT p
-				FROM SpottedHomeBundle:Post p
-				WHERE p.gender=:gender
-				AND p.tags=:id
-				ORDER BY p.date DESC'
-			)->setParameters(array(
-				'gender' => $filter1,
-				'id'  => $filter2,
-			));
-			
-			$posts=$query2->getResult();
-		
-		}
-		if ($filter1 =='' && $filter2 != '' && $locationfilter == '') {
-			$query3 = $em->createQuery(
-				'SELECT p
-				FROM SpottedHomeBundle:Post p
-				WHERE p.tags=:id
-				ORDER BY p.date DESC'
-			)->setParameter('id', $filter2);
-			
-			$posts=$query3->getResult();
-		}
+        // Wenn der User sich auf der Watchlist-Seite befindet müssen in allen Abfragen nur seine Watchlist Posts angezeigt werden
+        $isWatchlist =$request->request->get('watchlist');
 
-        if ($filter2 == 'all') {
-            $query4 = $em->createQuery(
-                'SELECT p
-                FROM SpottedHomeBundle:Post p
-                ORDER BY p.date DESC');
+        $em = $this->getDoctrine()->getManager();
+        $qb = $em->createQueryBuilder();
 
-            $posts=$query4->getResult();
+        $qb->select(array('p','u'))
+            ->from('SpottedHomeBundle:Post','p')
+            ->join('p.user','u')
+            ->orderBy('p.date', 'DESC');
+
+        if ($isWatchlist == 'true') {
+            $qb->where('p.id in (:watch)')
+                ->setParameter('watch',$user->getWatchlist());
         }
+
+        if ($filter2 != 'all') {
+            if ($locationfilter != '') {
+                $qb->andWhere('p.location = :location')
+                    ->setParameter('location',$locationfilter);
+            }
+            if ($filter1 != '') {
+                $qb->andWhere('u.gender = :gender')
+                    ->setParameter('gender',$filter1);
+            }
+
+            if ($filter2 != '') {
+                $qb->andWhere('p.tags = :tag')
+                    ->setParameter('tag',$filter2);
+            }
+        }
+
+
+        $posts = $qb->getQuery()->getResult();
+
 		// $response = new Response(json_encode($posts));
 		// $response->headers->set('Content-Type', 'application/json');
-		
+
 		return $this->render('SpottedHomeBundle:Post:index.html.twig',
             array('entities' => $posts,
                 'userWatchlist'=> $user->getWatchlist(),
@@ -154,7 +78,6 @@ class PostController extends Controller
             )
         );
 	}
-  
 
     /**
      * Show single post action

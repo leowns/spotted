@@ -626,21 +626,21 @@ Login Page
     margin-bottom: 8px;
 }
 
-#filter_location {
+#location_filter {
     background-color: rgba(255,255,255,0.25);
     color:    #333333;
 }
 
-#filter_location::-webkit-input-placeholder { /* WebKit browsers */
+#location_filter::-webkit-input-placeholder { /* WebKit browsers */
     color:    #000000;
 }
-#filter_location:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+#location_filter:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     color:    #000000;
 }
-#filter_location::-moz-placeholder { /* Mozilla Firefox 19+ */
+#location_filter::-moz-placeholder { /* Mozilla Firefox 19+ */
     color:    #000000;
 }
-#filter_location:-ms-input-placeholder { /* Internet Explorer 10+ */
+#location_filter:-ms-input-placeholder { /* Internet Explorer 10+ */
     color:    #000000;
 }
 
