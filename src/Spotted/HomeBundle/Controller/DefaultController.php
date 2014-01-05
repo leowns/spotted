@@ -83,6 +83,30 @@ class DefaultController extends Controller
 		
     }
 	
+	public function contactAction ($postid) {
+		
+		$em = $this->getDoctrine()->getManager();
+		$query = $em->createQuery(
+				'SELECT p
+				FROM SpottedHomeBundle:Post  p
+				WHERE p.id=:id'
+				)->setParameter('id', $postid);
+				
+			$user = $this->getUser();
+			$post = $query->getSingleResult();
+			$request = $this->getRequest();
+			$message=$request->request->get('txtmail');
+			$user2=$post->getUser();
+			
+			$message = \Swift_Message::newInstance()
+				->setSubject('Kontaktanfrage Spotted ZHAW')
+				->setFrom($user->getEmail())
+				->setTo($user2->getEmail())
+				->setBody($this->renderView('SpottedHomeBundle:Default:contactEmail.txt.twig', array('user' => $user,'message' => $message)));
+			$this->get('mailer')->send($message);
+			return $this->redirect($this->generateUrl('spotted_secured_homepage'));
+
+	}
 
 	
 	/**

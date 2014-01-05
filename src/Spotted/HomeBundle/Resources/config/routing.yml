@@ -60,5 +60,11 @@ spotted_home_single_comment:
     pattern:  /comment/{id}
     defaults: { _controller: SpottedHomeBundle:Default:comment }
 
+spotted_secured_sendmail:
+    pattern: /secured/sendmail/{postid}
+    defaults: { _controller: SpottedHomeBundle:Default:contact }
+    options:
+        expose: true
+
 user_logout:
        pattern:   /logout
