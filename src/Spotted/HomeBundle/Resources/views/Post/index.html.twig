@@ -36,7 +36,7 @@
                                                 <h4>Kommentare:</h4>
                                             </div>
                                         </div>
-											<div id="comment_wrapper{{ entity.id }}">
+											<div id="comment_wrapper{{ entity.id }}" data-id="{{ entity.id }}">
 
                                                 {# If current page is "view single post"-page then display all comments from single post #}
                                                 {% if app.request.attributes.get('_route') == 'spotted_secured_show_post' %}
@@ -83,7 +83,7 @@
 
                                 <div class="spotted-details container">
                                     <div class="row">
-                                        <div class="box comment" data-placement="top" id="div_comment_{{ entity.id }}" data-toggle="tooltip" data-original-title="Kommentieren">
+                                        <div class="box comment" data-placement="top" id="div_comment_{{ entity.id }}" data-id="{{ entity.id }}" data-toggle="tooltip" data-original-title="Kommentieren">
                                             <i class="fa fa-comment"></i>
                                         </div>
                                         <a href="#{% if entity.id in userWatchlist %}delmodal{% else %}addmodal{% endif %}{{ entity.id}}" data-toggle="modal">

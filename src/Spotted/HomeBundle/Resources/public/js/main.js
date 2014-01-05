@@ -127,47 +127,61 @@ $( document ).ready(function() {
 		 // $('#Location').val(name+' '+street+' '+city+' '+zip);
 });
 	
-	$("input[name=filtersleft]:radio").change(function () {
-        // If user selects a gender and "all" is checked => uncheck "all"
-        if ($(this).is(':checked')) {
-            $('input:radio[id=filterrightAll]').removeAttr('checked');
-            // Refresh the jQuery UI buttonset.
-            $('input:radio[id=filterrightAll]').parent('label').removeClass('active');
+	$("input[name=filtersleft]:radio").change(function (event) {
+
+        // If user has already set this kind of filter
+        if (!$(this).parent().hasClass('active')) {
+            // If user selects a gender and "all" is checked => uncheck "all"
+            if ($(this).is(':checked')) {
+                $('input:radio[id=filterrightAll]').removeAttr('checked');
+                // Refresh the jQuery UI buttonset.
+                $('input:radio[id=filterrightAll]').parent('label').removeClass('active');
+            }
+
+            $.post(
+                Routing.generate('spotted_secured_filters'),
+                {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val(), watchlist: $("#message_filter").data('iswatchlist')},
+                function(data){
+                    container.masonry( 'remove', $('.item'));
+
+                    container.html(data);
+
+                    container.masonry( 'appended', $('.item'));
+                    reMasonry()
+                });
+        } else {
+            $(this).prop('checked', true);
         }
 
-		$.post(
-			  Routing.generate('spotted_secured_filters'), 
-			  {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val()}, 
-			  function(data){
-                  container.masonry( 'remove', $('.item'));
-
-                  container.html(data);
-
-                  container.masonry( 'appended', $('.item'));
-                  reMasonry()
-			  });
 			
 	});
 
-    $("input[name=filtersright]:radio").change(function () {
-        // If user selected 'all' => uncheck every other radio
-        if ($(this).is(':checked') && $(this).val() == 'all') {
-            $('input:radio[name=filtersleft]').removeAttr('checked');
-            // Refresh the jQuery UI buttonset.
-            $('input:radio[name=filtersleft]').parent('label').removeClass('active');
+    $("input[name=filtersright]:radio").change(function (event) {
+
+        // If user has already set this kind of filter
+        if (!$(this).parent().hasClass('active')) {
+            // If user selected 'all' => uncheck every other radio
+            if ($(this).is(':checked') && $(this).val() == 'all') {
+                $('input:radio[name=filtersleft]').removeAttr('checked');
+                // Refresh the jQuery UI buttonset.
+                $('input:radio[name=filtersleft]').parent('label').removeClass('active');
+            }
+
+            $.post(
+                Routing.generate('spotted_secured_filters'),
+                {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val(), watchlist: $("#message_filter").data('iswatchlist')},
+                function(data){
+                    container.masonry( 'remove', $('.item'));
+
+                    container.html(data);
+
+                    container.masonry( 'appended', $('.item'));
+                    reMasonry()
+                })
+        } else {
+            $(this).prop('checked', true);
         }
 
-		$.post(
-			  Routing.generate('spotted_secured_filters'), 
-			  {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val()}, 
-			  function(data){
-                  container.masonry( 'remove', $('.item'));
-
-                  container.html(data);
-
-                  container.masonry( 'appended', $('.item'));
-                  reMasonry()
-			  })
 	});
 
 
@@ -256,16 +270,21 @@ $( document ).ready(function() {
 
         currentThis = this;
 
-		 var postid = jQuery(this).attr("id");
-		// alert(postid);
-		// load the Comments for each post
-        showComment(postid, function() {
+        var postid = jQuery(this).data("id");
+
+        var $el = $("#comment_wrapper"+postid);
+
+        if ($el.is(":visible")) {
             slideBox (currentThis,'.spotted-comments');
-        });
+        } else {
+            // load the Comments for each post
+            showComment(postid, function() {
+                slideBox (currentThis,'.spotted-comments');
+            });
+        }
 
-
-		
     });
+
 	$('button[name="btncomment"]').click(function(){
 		var postid = jQuery(this).attr("id");
 		$.post(

@@ -18,68 +18,57 @@ use Doctrine\Common\Collections;
 
 class PostController extends Controller
 {
-		/**
-     * Filters the Posts
-     *
-     * @Route("/secured/filters", name="filters")
-     * @Method("POST")
-     * @Template("SpottedHomeBundle:Post:index.html.twig")
-     */
-		public function filterAction(Request $request) {
-            $user = $this->container->get('security.context')->getToken()->getUser();
+    /**
+    * Filters the Posts
+    *
+    * @Route("/secured/filters", name="filters")
+    * @Method("POST")
+    * @Template("SpottedHomeBundle:Post:index.html.twig")
+    */
+    public function filterAction(Request $request) {
+        $user = $this->container->get('security.context')->getToken()->getUser();
 
-		//Filter 1 ist das Geschlecht, eigentlich kein Tag
-			$filter1=$request->request->get('filter1');
-			$filter2=$request->request->get('filter2');
-			
-			$em = $this->getDoctrine()->getManager();
+        //Filter 1 ist das Geschlecht, eigentlich kein Tag
+        $filter1=$request->request->get('filter1');
+        $filter2=$request->request->get('filter2');
 
-		if ($filter1!= '' && $filter2 == '') {
-			
-			$query1 = $em->createQuery(
-				'SELECT p
-				FROM SpottedHomeBundle:Post p
-				WHERE p.gender=:gender
-				ORDER BY p.date DESC'
-			)->setParameter('gender', $filter1);
-			
-			$posts=$query1->getResult();
-		
-		}
-		if ($filter1!='' && $filter2 != '') {
-			$query2 = $em->createQuery(
-				'SELECT p
-				FROM SpottedHomeBundle:Post p
-				WHERE p.gender=:gender
-				AND p.tags=:id
-				ORDER BY p.date DESC'
-			)->setParameters(array(
-				'gender' => $filter1,
-				'id'  => $filter2,
-			));
-			
-			$posts=$query2->getResult();
-		
-		}
-		if ($filter1 =='' && $filter2 != '') {
-			$query3 = $em->createQuery(
-				'SELECT p
-				FROM SpottedHomeBundle:Post p
-				WHERE p.tags=:id
-				ORDER BY p.date DESC'
-			)->setParameter('id', $filter2);
-			
-			$posts=$query3->getResult();
-		}
+        // Wenn der User sich auf der Watchlist-Seite befindet müssen in allen Abfragen nur seine Watchlist Posts angezeigt werden
+        $isWatchlist =$request->request->get('watchlist');
 
-        if ($filter2 == 'all') {
-            $query4 = $em->createQuery(
-                'SELECT p
-                FROM SpottedHomeBundle:Post p
-                ORDER BY p.date DESC');
+        $em = $this->getDoctrine()->getManager();
+        $qb = $em->createQueryBuilder();
 
-            $posts=$query4->getResult();
+        $qb->select('p')
+            ->from('SpottedHomeBundle:Post','p')
+            ->orderBy('p.date', 'DESC');
+
+        if ($isWatchlist == 'true') {
+            $qb->where('p.id in (:watch)')
+                ->setParameter('watch',$user->getWatchlist());
         }
+
+        if ($filter2 != 'all') {
+            if ($filter1!= '' && $filter2 == '') {
+                $qb->andWhere('p.gender = :gender')
+                    ->setParameter('gender',$filter1);
+            }
+
+            if ($filter1!='' && $filter2 != '') {
+                $qb->andWhere('p.gender = :gender')
+                    ->andWhere('p.tags = :tag')
+                    ->setParameter('gender',$filter1)
+                    ->setParameter('tag',$filter2);
+            }
+
+            if ($filter1 =='' && $filter2 != '') {
+                $qb->andWhere('p.tags = :tag')
+                    ->setParameter('tag',$filter2);
+            }
+        }
+
+
+        $posts = $qb->getQuery()->getResult();
+
 		// $response = new Response(json_encode($posts));
 		// $response->headers->set('Content-Type', 'application/json');
 		

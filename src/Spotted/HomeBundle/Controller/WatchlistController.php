@@ -39,7 +39,7 @@ class WatchlistController extends Controller
 			
         $posts=$query->getResult();
 		$notreadcomments=$query2->getResult();
-	$notifications = count($notreadcomments);
+	    $notifications = count($notreadcomments);
 
         return $this->render(
             'SpottedHomeBundle:Default:index.html.twig',
