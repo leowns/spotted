@@ -16,11 +16,6 @@ Spotted\HomeBundle\Entity\Post:
         date:
             type: datetime
             nullable: false
-        gender:
-            type: string
-            length: 45
-            fixed: false
-            nullable: false	
     manyToOne:
         location:
             targetEntity: Location

@@ -35,12 +35,6 @@ class Post
      */
     private $date;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="gender", type="string", length=45, nullable=false)
-     */
-    private $gender;
 
     /**
      * @var \Spotted\HomeBundle\Entity\Location
@@ -129,29 +123,6 @@ class Post
         return $this->date;
     }
 
-    /**
-     * Set gender
-     *
-     * @param string $gender
-     * @return Post
-     */
-    public function setGender($gender)
-    {
-        $this->gender = $gender;
-    
-        return $this;
-    }
-
-
-    /**
-     * Get gender
-     *
-     * @return string 
-     */
-    public function getGender()
-    {
-        return $this->gender;
-    }
 
     /**
      * Set location
