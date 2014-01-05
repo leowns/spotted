@@ -222,6 +222,9 @@
 						{% include "SpottedHomeBundle:Post:index.html.twig" with { 'entities': entities } %}
 
                     </div>
+                    <div class="post_navigator">
+                        {{ knp_pagination_render(entities) }}
+                    </div>
                 </div>
 
             </div>

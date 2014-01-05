@@ -25,7 +25,7 @@ class AppKernel extends Kernel
 			new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
 
             new FOS\FacebookBundle\FOSFacebookBundle(),
-
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

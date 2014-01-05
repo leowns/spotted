@@ -47,7 +47,15 @@ class DefaultController extends Controller
                 order by p.date desc'
         );
 
-        $posts= $query->getResult();
+        $paginator  = $this->get('knp_paginator');
+        $posts = $paginator->paginate(
+            $query,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+           10/*limit per page*/
+        );
+
+
+       // $posts= $query->getResult();
 
         // Get all unread comments of current user => to display them in notification popover
         $query2 = $em->createquery(
@@ -74,8 +82,6 @@ class DefaultController extends Controller
         );
 		
     }
-
-
 
     public function commentAction($id)
     {

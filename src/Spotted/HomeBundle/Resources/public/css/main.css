@@ -923,6 +923,21 @@ h2.spotted-title a {
     cursor: default;
 }
 
+.post_navigator {
+    text-align: center;
+}
+
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
+    background-color: #D9534F;
+    border-color: #D9534F;
+    color: #CCCCCC;
+    cursor: default;
+    z-index: 2;
+}
+
+.pagination > li > a, .pagination > li > span {
+    color: #D9534F;
+}
 
 .footer {
     padding: 40px 0px 10px;

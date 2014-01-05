@@ -38,8 +38,17 @@ class WatchlistController extends Controller
 				 'select c from SpottedHomeBundle:Comments c JOIN c.post p WHERE p.user=:userid AND c.rd= 0'
 			  )->setParameter('userid', $userid);
 			
-        $posts=$query->getResult();
-		$notreadcomments=$query2->getResult();
+       // $posts=$query->getResult();
+
+        $paginator  = $this->get('knp_paginator');
+        $posts = $paginator->paginate(
+            $query,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
+
+        $notreadcomments=$query2->getResult();
 	    $notifications = count($notreadcomments);
 
         return $this->render(
