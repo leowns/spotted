@@ -63,7 +63,7 @@ class CommentController extends Controller
             'SELECT c
             FROM SpottedHomeBundle:Comments c
             WHERE c.post=:id
-            ORDER BY c.date DESC'
+            ORDER BY c.date ASC'
         )->setParameter('id', $postid);
 
         $comments=$query2->getResult();

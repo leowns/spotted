@@ -298,14 +298,15 @@ $( document ).ready(function() {
 
     });
 
-	$('button[name="btncomment"]').click(function(){
-		var postid = jQuery(this).attr("id");
+    $(document).on('click','button[name="btncomment"]', function(){
+		var postid = jQuery(this).data("id");
 		$.post(
 			  Routing.generate('spotted_secured_add_comment',{ postid: postid }),
 			  {txthint: $("#txthint"+postid).val()}, 
 			  function(){
                 showComment(postid, function() {
                     reMasonry();
+                    $("#txthint"+postid).val("");
                 });
 			  });
 	});
