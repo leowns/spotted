@@ -131,6 +131,10 @@ $( document ).ready(function() {
 
         // If user has already set this kind of filter
         if (!$(this).parent().hasClass('active')) {
+
+            container.masonry( 'remove', $('.item'));
+            $('#loadingDiv').show();
+
             // If user selects a gender and "all" is checked => uncheck "all"
             if ($(this).is(':checked')) {
                 $('input:radio[id=filterrightAll]').removeAttr('checked');
@@ -148,6 +152,8 @@ $( document ).ready(function() {
 
                     container.masonry( 'appended', $('.item'));
                     reMasonry()
+
+                    $('#loadingDiv').hide();
                 });
         } else {
             $(this).prop('checked', true);
@@ -160,6 +166,11 @@ $( document ).ready(function() {
 
         // If user has already set this kind of filter
         if (!$(this).parent().hasClass('active')) {
+
+            container.masonry( 'remove', $('.item'));
+
+            $('#loadingDiv').show();
+
             // If user selected 'all' => uncheck every other radio
             if ($(this).is(':checked') && $(this).val() == 'all') {
                 $('input:radio[name=filtersleft]').removeAttr('checked');
@@ -171,12 +182,14 @@ $( document ).ready(function() {
                 Routing.generate('spotted_secured_filters'),
                 {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val(), watchlist: $("#message_filter").data('iswatchlist')},
                 function(data){
-                    container.masonry( 'remove', $('.item'));
+
 
                     container.html(data);
 
                     container.masonry( 'appended', $('.item'));
                     reMasonry()
+
+                    $('#loadingDiv').hide();
                 })
         } else {
             $(this).prop('checked', true);

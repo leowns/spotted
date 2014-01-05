@@ -212,8 +212,11 @@
                 {% endif %}
 				
                 <div  class="row">
+                    <div id="loadingDiv">
+                        <img src="{{ asset('bundles/spottedhome/images/481.png') }}" alt="Loading" class="ajax-loader"/>
+                    </div>
                     <div id="item_wrapper" class="container">
-					
+
 						{% include "SpottedHomeBundle:Post:index.html.twig" with { 'entities': entities } %}
 
                     </div>
