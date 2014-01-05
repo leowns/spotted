@@ -371,6 +371,33 @@ $('form[name="contact_form"]').submit(function(){
 		
 	 });
 
+	 
+$(document).on('click', ".more", function (event) {
+	var ID = $(this).attr("id");
+	var postid = $('#hidden'+ID).attr("name");
+	if (ID) {
+		//$("#more" + ID).html('<img src="{{ asset('bundles/spottedhome/images/481.png') }}" alt="Loading" class="ajax-loader"/>');
+
+		$.ajax({
+			type : "POST",
+			url : Routing.generate('spotted_secured_more_comments',{ postid: postid,commentid: ID  }),
+			//data : ID,
+			cache : false,
+			success : function (data) {
+				$("#comment_wrapper"+postid).append(data);
+				$("#more" + ID).remove(); // removing old more button
+				reMasonry();
+			}
+		});
+	} else {
+		$("#more" + ID).remove();
+		//$(".msg" + postid).hide();
+		//$(".morebox").html('Keine Kommentare mehr gefunden'); // no results
+	}
+
+	// return false;
+});
+
     /**
      * Style Selector
      */

@@ -63,8 +63,8 @@ class CommentController extends Controller
             'SELECT c
             FROM SpottedHomeBundle:Comments c
             WHERE c.post=:id
-            ORDER BY c.date ASC'
-        )->setParameter('id', $postid);
+            ORDER BY c.id DESC'
+        )->setParameter('id', $postid)->SetMaxResults(5);
 
         $comments=$query2->getResult();
 	
@@ -103,6 +103,24 @@ class CommentController extends Controller
                 return $this->redirect($this->generateUrl('spotted_secured_show_comment', array ('postid'    => $comment->getPost()->getId())));
     }
 	
+	public function moreAction($commentid,$postid)
+    {
+		$em = $this->getDoctrine()->getManager();
+        // Get all comments of current post order by date
+        $query2 = $em->createQuery(
+            'SELECT c
+            FROM SpottedHomeBundle:Comments c
+            WHERE c.post=:postid AND c.id<:commentid
+            ORDER BY c.id DESC'
+        )->setParameters(array(
+				'postid' => $postid,
+				'commentid'  => $commentid,
+			))->SetMaxResults(5);
+
+        $comments=$query2->getResult();
+	
+        return $this->render('SpottedHomeBundle:Comment:index.html.twig', array('comments' => $comments));
+    }
 	
 	
 }
