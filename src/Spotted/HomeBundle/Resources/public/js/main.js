@@ -116,82 +116,91 @@ $( document ).ready(function() {
 		var id= JSON.stringify(datum.id);
 		//alert(id);
 		$('#hidden').val(id);
-		 
-});
-$('#locationfilter').typeahead([
-	{	
-			valueKey: 'name',
-			prefetch: Routing.generate('spotted_secured_listlocations'),
-			template: [                                                                 
-			'<strong>{{name}}</strong> <p>{{street}}</p> <p>{{zip}} {{city}}</p>',                                                                            
-		  ].join(''),                                                                 
-		  engine: Hogan  
-	},	
-	]);
-$('#locationfilter').bind('typeahead:selected', function( obj,datum,name) {      
-		
-		var id= JSON.stringify(datum.id);
-		$('#hidden2').val(id);
-		 $('input:radio[id=filterrightAll]').removeAttr('checked');
-            // Refresh the jQuery UI buttonset.
-          $('input:radio[id=filterrightAll]').parent('label').removeClass('active');
-		$.post(
-			  Routing.generate('spotted_secured_filters'), 
-			  {locationfilter: id,filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val() }, 
-			  function(data){
-                  container.masonry( 'remove', $('.item'));
-
-                  container.html(data);
-
-                  container.masonry( 'appended', $('.item'));
-                  reMasonry()
-			  });
+		 // var n=JSON.stringify(datum.name);
+		 // var name=n.replace(/\"/g, "");
+		// var s = JSON.stringify(datum.street);
+		// var street= s.replace(/\"/g, "");
+		 // var c = JSON.stringify(datum.city);
+		 // var city= c.replace(/\"/g, "");
+		 // var z = JSON.stringify(datum.zip);
+		 // var zip= z.replace(/\"/g, "");
+		 // $('#Location').val(name+' '+street+' '+city+' '+zip);
 });
 	
-	$("input[name=filtersleft]:radio").change(function () {
-        // If user selects a gender and "all" is checked => uncheck "all"
-        if ($(this).is(':checked')) {
-            $('input:radio[id=filterrightAll]').removeAttr('checked');
-            // Refresh the jQuery UI buttonset.
-            $('input:radio[id=filterrightAll]').parent('label').removeClass('active');
+	$("input[name=filtersleft]:radio").change(function (event) {
+
+        // If user has already set this kind of filter
+        if (!$(this).parent().hasClass('active')) {
+
+            container.masonry( 'remove', $('.item'));
+            $('#loadingDiv').show();
+
+            // If user selects a gender and "all" is checked => uncheck "all"
+            if ($(this).is(':checked')) {
+                $('input:radio[id=filterrightAll]').removeAttr('checked');
+                // Refresh the jQuery UI buttonset.
+                $('input:radio[id=filterrightAll]').parent('label').removeClass('active');
+            }
+
+            $.post(
+                Routing.generate('spotted_secured_filters'),
+                {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val(), watchlist: $("#message_filter").data('iswatchlist')},
+                function(data){
+                    container.masonry( 'remove', $('.item'));
+
+                    container.html(data);
+
+                    container.masonry( 'appended', $('.item'));
+                    reMasonry()
+
+                    $('#loadingDiv').hide();
+                });
+        } else {
+            $(this).prop('checked', true);
         }
 
-		$.post(
-			  Routing.generate('spotted_secured_filters'), 
-			  {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val(),locationfilter:$("#hidden2").val() }, 
-			  function(data){
-                  container.masonry( 'remove', $('.item'));
-
-                  container.html(data);
-
-                  container.masonry( 'appended', $('.item'));
-                  reMasonry()
-			  });
 			
 	});
 
-    $("input[name=filtersright]:radio").change(function () {
-        // If user selected 'all' => uncheck every other radio
-        if ($(this).is(':checked') && $(this).val() == 'all') {
-            $('input:radio[name=filtersleft]').removeAttr('checked');
-            // Refresh the jQuery UI buttonset.
-			$('#hidden2').val('');
-			$('#locationfilter').val('');
-            $('input:radio[name=filtersleft]').parent('label').removeClass('active');
+    $("input[name=filtersright]:radio").change(function (event) {
+
+        // If user has already set this kind of filter
+        if (!$(this).parent().hasClass('active')) {
+
+            container.masonry( 'remove', $('.item'));
+
+            $('#loadingDiv').show();
+
+            // If user selected 'all' => uncheck every other radio
+            if ($(this).is(':checked') && $(this).val() == 'all') {
+                $('input:radio[name=filtersleft]').removeAttr('checked');
+                // Refresh the jQuery UI buttonset.
+                $('input:radio[name=filtersleft]').parent('label').removeClass('active');
+            }
+
+            $.post(
+                Routing.generate('spotted_secured_filters'),
+                {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val(), watchlist: $("#message_filter").data('iswatchlist')},
+                function(data){
+
+
+                    container.html(data);
+
+                    container.masonry( 'appended', $('.item'));
+                    reMasonry()
+
+                    $('#loadingDiv').hide();
+                })
+        } else {
+            $(this).prop('checked', true);
         }
 
-		$.post(
-			  Routing.generate('spotted_secured_filters'), 
-			  {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val(),locationfilter:$("#hidden2").val()}, 
-			  function(data){
-                  container.masonry( 'remove', $('.item'));
-
-                  container.html(data);
-
-                  container.masonry( 'appended', $('.item'));
-                  reMasonry()
-			  })
 	});
+
+
+    $('input:radio[name="filtersright"]').change(function(){
+
+    });
 
 
     $("#new_item_close").click(function (event) {
