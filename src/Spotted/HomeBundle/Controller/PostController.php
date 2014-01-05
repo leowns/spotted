@@ -72,7 +72,12 @@ class PostController extends Controller
 		// $response = new Response(json_encode($posts));
 		// $response->headers->set('Content-Type', 'application/json');
 		
-		return $this->render('SpottedHomeBundle:Post:index.html.twig', array('entities' => $posts, 'userWatchlist'=> $user->getWatchlist()));
+		return $this->render('SpottedHomeBundle:Post:index.html.twig',
+            array('entities' => $posts,
+                'userWatchlist'=> $user->getWatchlist(),
+                'user' => $user
+            )
+        );
 	}
 
     /**

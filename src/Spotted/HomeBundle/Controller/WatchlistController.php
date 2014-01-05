@@ -31,7 +31,8 @@ class WatchlistController extends Controller
 		$query = $em->createQuery(
 				'SELECT p
 				FROM SpottedHomeBundle:Post p
-				WHERE p.id in (:userid)'
+				WHERE p.id in (:userid)
+				order by p.date desc'
 			)->setParameter('userid',$user->getWatchlist());
 		$query2 = $em->createquery(
 				 'select c from SpottedHomeBundle:Comments c JOIN c.post p WHERE p.user=:userid AND c.rd= 0'

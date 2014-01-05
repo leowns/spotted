@@ -146,7 +146,6 @@ class DefaultController extends Controller
 				// get the Tag
 				$tags = $em->getRepository('SpottedHomeBundle:Tags')->find($request->request->get('tags'));
 				$post->setTags($tags);
-                $post->setGender($request->request->get('gender'));
 				// save the post
 				$em->persist($post);
 				$em->flush();

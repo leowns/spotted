@@ -272,10 +272,11 @@ $( document ).ready(function() {
 
 	 
     $(document).on('click', ".box.box-spotted", function (event) {
-        event.stopPropagation();
+        if (!$(this).hasClass('own_post')) {
+            event.stopPropagation();
 
-        slideBox (this,'.spotted-match');
-
+            slideBox (this,'.spotted-match');
+        }
     });
 
     $(document).on('click', ".box.comment", function (event) {

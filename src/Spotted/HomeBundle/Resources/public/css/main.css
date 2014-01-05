@@ -827,9 +827,10 @@ h2.spotted-title a {
 .spotted-details .box.wishlist.selected{
     background-color: #D9534F;
     border-color: #D43F3A;
-    color: #FFFFFF;
+    color: #CCCCCC;
     white-space: nowrap;
 }
+
 .spotted-details .box.wishlist.active{
     background-color: red;
 	width: 60px;
@@ -838,8 +839,6 @@ h2.spotted-title a {
     line-height: 50px;
 
 }
-
-
 
 .spotted-slidedown {
     background-color: #F1F1F4;
@@ -917,6 +916,13 @@ h2.spotted-title a {
     margin-left: 5px;
     margin-top: -5px;
 }
+
+
+.spotted-details .box.box-spotted.own_post {
+    background-color: #CCCCCC;
+    cursor: default;
+}
+
 
 .footer {
     padding: 40px 0px 10px;
