@@ -24,7 +24,7 @@ class DefaultController extends Controller
     }
 
 	/**
-     * Lists all Post entities.
+     * Show index action
      *
      * @Route("/home", name="index")
      * @Method("GET")
@@ -32,35 +32,36 @@ class DefaultController extends Controller
      */ 
     public function indexAction($confirmed = false)
     {
-
+        // Get current user object
         $user = $this->container->get('security.context')->getToken()->getUser();
 
         $em = $this->getDoctrine()->getManager();
 
+        // Get all tags => to display them in new post form
         $tags = $em->getRepository('SpottedHomeBundle:Tags')->findAll();
-		
-		 $query = $em->createquery(
-				 'select p
-					from SpottedHomeBundle:Post p
-					order by p.date desc'
-			  );
-		$query2 = $em->createquery(
-				 'select c from SpottedHomeBundle:Comments c JOIN c.post p WHERE p.user=:userid AND c.rd= 0 order by c.date DESC'
-			  )->setParameter('userid', $user->getId());
 
-	$posts= $query->getResult();
-	$notreadcomments=$query2->getResult();
-	$notifications = count($notreadcomments);
+        // Get all posts order by date to display them on main page
+        $query = $em->createquery(
+             'select p
+                from SpottedHomeBundle:Post p
+                order by p.date desc'
+        );
 
-        //$posts = $em->getRepository('SpottedHomeBundle:Post')->findAll();
+        $posts= $query->getResult();
 
+        // Get all unread comments of current user => to display them in notification popover
+        $query2 = $em->createquery(
+            'select c from SpottedHomeBundle:Comments c JOIN c.post p WHERE p.user=:userid AND c.rd= 0 order by c.date DESC'
+        )->setParameter('userid', $user->getId());
 
+        $notreadcomments=$query2->getResult();
 
-		//$user = $this->getUser();
+        // Count all unread comments for notification counter
+        $notifications = count($notreadcomments);
+
 
 		// $entity = new Post();
         // $form   = $this->createCreateForm($entity);
-		
 
         return array(
             'entities' => $posts,
@@ -73,6 +74,8 @@ class DefaultController extends Controller
         );
 		
     }
+
+
 
     public function commentAction($id)
     {
@@ -95,7 +98,7 @@ class DefaultController extends Controller
 		//$location= new Location();
         // $form = $this->createCreateForm($post);
         // $form->handleRequest($request);
-		 $em = $this->getDoctrine()->getManager();
+		$em = $this->getDoctrine()->getManager();
 		$loc=$request->request->get('hidden');
 		
 		$query = $em->createQuery(
@@ -132,6 +135,10 @@ class DefaultController extends Controller
            // // 'form'   => $form->createView(),
         // );
     }
+
+
+
+
 	/**
     * Creates a form to create a Post entity.
     *
@@ -152,6 +159,7 @@ class DefaultController extends Controller
     }
 	
 
+
 	public function listlocationsAction() {
 	
 	$em = $this->getDoctrine()->getManager();
@@ -167,26 +175,4 @@ class DefaultController extends Controller
 
 	}
 
-	/**
-    * Creates a user entity from fos-facebook login
-    *
-    * @param Post $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createFacebookUser ($user)
-    {
-//       $em = $this->getDoctrine()->getManager();
-//
-  //      $tags = $em->getRepository('SpottedHomeBundle:Tags')->findAll();
-	//	 $query = $em->createQuery(
-		//		 'INSERT INTO User
-			//	 (ID, username, email) VALUES
-				// (NULL, 'fb11','123@123.com')'
-	//		 );
-			
-	//	$entity= $query->getResult();
-
-
-	}
 }

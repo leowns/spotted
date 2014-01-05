@@ -29,7 +29,7 @@
                                         {{ entity.text }}
                                     </div>
                                 </div>
-                                <div class="spotted-slidedown spotted-comments">
+                                <div class="spotted-slidedown spotted-comments" {% if app.request.attributes.get('_route') == 'spotted_secured_show_post' %}style="display: block"{% endif %}>
                                     <div class="container">
                                         <div class="row" style="margin-bottom: 10px;">
                                             <div class="col-xs-12">
@@ -37,7 +37,11 @@
                                             </div>
                                         </div>
 											<div id="comment_wrapper{{ entity.id }}">
-												
+
+                                                {# If current page is "view single post"-page then display all comments from single post #}
+                                                {% if app.request.attributes.get('_route') == 'spotted_secured_show_post' %}
+                                                    {{ render(controller("SpottedHomeBundle:Comment:show", { 'postid': entity.id })) }}
+                                                {% endif %}
 
 											</div>
                                     </div>

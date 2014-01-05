@@ -14,6 +14,7 @@ use Spotted\HomeBundle\Entity\Tags;
 use Spotted\HomeBundle\Entity\Location;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\Query;
+use Doctrine\Common\Collections;
 
 class PostController extends Controller
 {
@@ -83,31 +84,80 @@ class PostController extends Controller
 		// $response->headers->set('Content-Type', 'application/json');
 		
 		return $this->render('SpottedHomeBundle:Post:index.html.twig', array('entities' => $posts, 'userWatchlist'=> $user->getWatchlist()));
-
 	}
-	public function ShowAction($postid) {
-	
+
+    /**
+     * Show single post action
+     *
+     * @Method("GET")
+     * @Template()
+     */
+    public function showAction($postid) {
+
+        // Get current user object
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
 		$em = $this->getDoctrine()->getManager();
+
+        // Get all tags => to display them in new post form
 		$tags = $em->getRepository('SpottedHomeBundle:Tags')->findAll();
-		$userid = $this->getUser()->getId();
-		$user= $this->getUser();
-		$query = $em->createQuery(
-				'SELECT p
-				FROM SpottedHomeBundle:Post p
-				WHERE p.id=:id'
-			)->setParameter('id',$postid);
+
+        // Check if post is from user and if it has unread comments
+        $query = $em->createQuery(
+            'SELECT p,c
+            FROM SpottedHomeBundle:Post p
+            JOIN SpottedHomeBundle:Comments c WITH p.id = c.post
+            WHERE p.user=:userid
+            AND c.rd = 0
+            AND p.id=:id'
+        )->setParameters(array(
+            'userid' => $user->getId(),
+            'id'  => $postid,
+        ));
+
+        $post=$query->getResult();
+
+//        var_dump(new Collections\ArrayCollection($post));
+//        echo '0';
+
+        // If post is from current user => set all comments to read
+        if (count($post)> 0)
+        {
+            $query = $em->createQuery(
+                'UPDATE SpottedHomeBundle:Comments c SET c.rd=1
+                WHERE c.post=:postid'
+            )->setParameter('postid', $postid);
+
+            $query->execute();
+        }
+
+
+
+        // Get selected post
+        $query = $em->createQuery(
+            'SELECT p
+            FROM SpottedHomeBundle:Post p
+            WHERE p.id=:id'
+        )->setParameter('id',$postid);
+
+        $post=$query->getResult();
+
+
+
+        // Get all unread comments of current user => to display them in notification popover
 		$query2 = $em->createquery(
-				 'select c from SpottedHomeBundle:Comments c JOIN c.post p WHERE p.user=:userid AND c.rd= 0'
-			  )->setParameter('userid', $userid);
-			
-        $posts=$query->getResult();
+             'select c from SpottedHomeBundle:Comments c JOIN c.post p WHERE p.user=:userid AND c.rd= 0'
+          )->setParameter('userid', $user->getId());
+
 		$notreadcomments=$query2->getResult();
+
+        // Count all unread comments for notification counter
 		$notifications = count($notreadcomments);
 
         return $this->render(
             'SpottedHomeBundle:Default:index.html.twig',
             array(
-            'entities' => $posts,
+            'entities' => $post,
             'userWatchlist' => $user->getWatchlist(),
 			'tags' => $tags,
             'confirmed' => false,
@@ -117,7 +167,4 @@ class PostController extends Controller
             )
         );
 	}
-	
-	
-
 }

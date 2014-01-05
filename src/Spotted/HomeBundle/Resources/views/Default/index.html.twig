@@ -15,25 +15,30 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-            <li id="notification_li_menu"><a id="notification_menu" href="#" data-placement="bottom"><i class="fa fa-heart"></i> Meine Neuigkeiten <span class="label label-danger">{{ notifications}}</span></a>
+            <li id="notification_li_menu"><a id="notification_menu" href="#" data-placement="bottom"><i class="fa fa-heart"></i> Meine Neuigkeiten {% if notifications > 0 %}<span class="label label-danger">{{ notifications}}</span> {% endif %}</a>
              <ul id="notification_content">
                  <li>
                      <div class="notification_header clearfix">
                          <div class="pull-left"><h1>Neuigkeiten</h1></div>
                      </div>
                      <div class="notification_content">
-                         {% for comment in comments %}
-                             <div class="notification_list clearfix" onclick="location.href='{{ path('spotted_secured_show_post',{'postid': comment.post.id}) }}'">
-                                 <div class="notification_image">
-                                     <i class="fa fa-envelope"></i>
-                                 </div>
+                         {% if notifications > 0 %}
+                             {% for comment in comments %}
+                                 <div class="notification_list clearfix" onclick="location.href='{{ path('spotted_secured_show_post',{'postid': comment.post.id}) }}'">
+                                     <div class="notification_image">
+                                         <i class="fa fa-envelope"></i>
+                                     </div>
 
-                                 <div class="notification_message">
-                                     <h2>{{ comment.post.location.name }} ({{ comment.post.location.city.name }}), {{ comment.post.tags.name }}</h2>
-                                     <p>{{ comment.user.firstname }}: {{ comment.text|length > 20 ? comment.text|slice(0, 20) ~ '...' : comment.text  }}</p>
+                                     <div class="notification_message">
+                                         <h2>{{ comment.post.location.name }} ({{ comment.post.location.city.name }}), {{ comment.post.tags.name }}</h2>
+                                         <p>{{ comment.user.firstname }}: {{ comment.text|length > 20 ? comment.text|slice(0, 20) ~ '...' : comment.text  }}</p>
+                                     </div>
                                  </div>
-                             </div>
-                         {% endfor %}
+                             {% endfor %}
+                         {% else %}
+                            <div class="no_notifications">Du hast keine Neuigkeiten zur Zeit.</div>
+                         {% endif %}
+
                      </div>
                  </li>
             </ul>
@@ -204,7 +209,7 @@
                     <div id="item_wrapper" class="container">
 					
 						{% include "SpottedHomeBundle:Post:index.html.twig" with { 'entities': entities } %}
-					
+
                     </div>
                 </div>
 
