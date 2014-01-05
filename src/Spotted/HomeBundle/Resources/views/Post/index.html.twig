@@ -1,6 +1,6 @@
 
 {% for entity in entities %}
-                            <div class="item col-xs-12 col-sm-12 col-md-6">
+                            <div class="item col-xs-12 col-sm-12 {% if app.request.attributes.get('_route') == 'spotted_secured_show_post' %}col-md-12{% else %} col-md-6{% endif %}">
                                 <div class="spotted-message">
                                     <h2 class="spotted-title">
                                         <a href="#">

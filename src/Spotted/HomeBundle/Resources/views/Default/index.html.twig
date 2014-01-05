@@ -169,41 +169,47 @@
                 </div>
 
                 <hr>
-                <div id="message_filter" class="row">
-                    <div class="container">
-                        <div class="row" style="margin-bottom: 10px;">
-                            <div class="col-xs-12">
-                                <input type="text" class="form-control" id="filter_location" placeholder="Location">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-4 col-sm-2">
-                                <div id="buttonsleft" class="btn-group-vertical" data-toggle="buttons">
-										<label class="btn">
-											<input type="radio" value="f" name="filtersleft" id="optionFilterFemale"> <i class="fa fa-female"></i> Sie sucht
-										</label>
-										<label class="btn">
-											<input type="radio" value="m" name="filtersleft" id="optionFilterMale"> <i class="fa fa-male"></i> Er sucht
-										</label>
+
+                {# Hide filter if user watches a single post #}
+                {% if app.request.attributes.get('_route') != 'spotted_secured_show_post' %}
+
+                    <div id="message_filter" class="row">
+                        <div class="container">
+                            <div class="row" style="margin-bottom: 10px;">
+                                <div class="col-xs-12">
+                                    <input type="text" class="form-control" id="filter_location" placeholder="Location">
                                 </div>
                             </div>
-                            <div class="col-xs-8 col-sm-10">
-                                <div class="btn-group" data-toggle="buttons">
-                                    <label class="btn">
-                                        <input type="radio" value="all" name="filtersright" id="filterrightAll"> <i class="fa fa-repeat"></i> Alle
-                                    </label>
-                                    {% for tag in tags %}
-										<label class="btn">
-											<input type="radio" value="{{ tag.id }}" name="filtersright" id="filterright{{ tag.id }}"> <i class="{{ tag.iconclass }}"></i> {{ tag.name }}
-										</label>
-									{% endfor %}
+                            <div class="row">
+                                <div class="col-xs-4 col-sm-2">
+                                    <div id="buttonsleft" class="btn-group-vertical" data-toggle="buttons">
+                                            <label class="btn">
+                                                <input type="radio" value="f" name="filtersleft" id="optionFilterFemale"> <i class="fa fa-female"></i> Sie sucht
+                                            </label>
+                                            <label class="btn">
+                                                <input type="radio" value="m" name="filtersleft" id="optionFilterMale"> <i class="fa fa-male"></i> Er sucht
+                                            </label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-8 col-sm-10">
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn">
+                                            <input type="radio" value="all" name="filtersright" id="filterrightAll"> <i class="fa fa-repeat"></i> Alle
+                                        </label>
+                                        {% for tag in tags %}
+                                            <label class="btn">
+                                                <input type="radio" value="{{ tag.id }}" name="filtersright" id="filterright{{ tag.id }}"> <i class="{{ tag.iconclass }}"></i> {{ tag.name }}
+                                            </label>
+                                        {% endfor %}
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
-                </div>
+
+                {% endif %}
 				
                 <div  class="row">
                     <div id="item_wrapper" class="container">

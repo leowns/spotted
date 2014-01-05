@@ -462,7 +462,7 @@ Login Page
 }
 
 .notification_header {
-    border-bottom: 1px solid #D9534F;
+    border-bottom: 1px solid #000000;
     font-size: 16px;
     font-weight: bold;
     color: #FFFFFF;
@@ -506,14 +506,20 @@ Login Page
     margin-top: 0;
 }
 
+.notification_message p {
+    color: #DDDDDD;
+    margin: 0;
+}
+
 .notification_list:hover .notification_message {
     color: #CCCCCC;
 }
 
 .notification_list {
-    border-top: 1px solid #ffffff;
-    border-bottom: 1px solid #D9534F;
+    border-bottom: 1px solid #000000;
+    border-top: 1px solid #D9534F;
     padding: 10px 0;
+
 }
 
 .notification_list:last-child {
@@ -523,6 +529,7 @@ Login Page
 .notification_list:hover {
     background-color: #D9534F;
     cursor: pointer;
+    border-bottom: 1px solid #D9534F;
 }
 
 #notification_menu .label {
