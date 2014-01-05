@@ -116,17 +116,41 @@ $( document ).ready(function() {
 		var id= JSON.stringify(datum.id);
 		//alert(id);
 		$('#hidden').val(id);
-		 // var n=JSON.stringify(datum.name);
-		 // var name=n.replace(/\"/g, "");
-		// var s = JSON.stringify(datum.street);
-		// var street= s.replace(/\"/g, "");
-		 // var c = JSON.stringify(datum.city);
-		 // var city= c.replace(/\"/g, "");
-		 // var z = JSON.stringify(datum.zip);
-		 // var zip= z.replace(/\"/g, "");
-		 // $('#Location').val(name+' '+street+' '+city+' '+zip);
+		
 });
-	
+
+$('#location_filter').typeahead([
+	{	
+			valueKey: 'name',
+			prefetch: Routing.generate('spotted_secured_listlocations'),
+			template: [                                                                 
+			'<strong>{{name}}</strong> <p>{{street}}</p> <p>{{zip}} {{city}}</p>',                                                                            
+		  ].join(''),                                                                 
+		  engine: Hogan  
+	},	
+	]);
+$('#location_filter').bind('typeahead:selected', function( obj,datum,name) {      
+		
+		var id= JSON.stringify(datum.id);
+		$('#hidden2').val(id);
+		container.masonry( 'remove', $('.item'));
+		 $('#loadingDiv').show();
+		 $('input:radio[id=filterrightAll]').removeAttr('checked');
+            // Refresh the jQuery UI buttonset.
+          $('input:radio[id=filterrightAll]').parent('label').removeClass('active');
+		$.post(
+			  Routing.generate('spotted_secured_filters'), 
+			  {locationfilter: id,filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val(), watchlist: $("#message_filter").data('iswatchlist') }, 
+			  function(data){
+                  container.masonry( 'remove', $('.item'));
+
+                  container.html(data);
+
+                  container.masonry( 'appended', $('.item'));
+                  reMasonry()
+				  $('#loadingDiv').hide();
+			  });
+});
 	$("input[name=filtersleft]:radio").change(function (event) {
 
         // If user has already set this kind of filter
@@ -144,7 +168,7 @@ $( document ).ready(function() {
 
             $.post(
                 Routing.generate('spotted_secured_filters'),
-                {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val(), watchlist: $("#message_filter").data('iswatchlist')},
+                {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val(), watchlist: $("#message_filter").data('iswatchlist'),locationfilter:$("#hidden2").val()},
                 function(data){
                     container.masonry( 'remove', $('.item'));
 
@@ -173,14 +197,17 @@ $( document ).ready(function() {
 
             // If user selected 'all' => uncheck every other radio
             if ($(this).is(':checked') && $(this).val() == 'all') {
+				$('#hidden2').val('');
+				$('#location_filter').val('');
                 $('input:radio[name=filtersleft]').removeAttr('checked');
                 // Refresh the jQuery UI buttonset.
                 $('input:radio[name=filtersleft]').parent('label').removeClass('active');
+				
             }
 
             $.post(
                 Routing.generate('spotted_secured_filters'),
-                {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val(), watchlist: $("#message_filter").data('iswatchlist')},
+                {filter1: $("[name='filtersleft']:checked").val(),filter2: $("[name='filtersright']:checked").val(), watchlist: $("#message_filter").data('iswatchlist'),locationfilter:$("#hidden2").val()},
                 function(data){
 
 
