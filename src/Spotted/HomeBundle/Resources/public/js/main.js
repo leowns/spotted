@@ -303,6 +303,12 @@ $( document ).ready(function() {
         });
     }
 
+	
+$('form[name="contact_form"]').submit(function(){
+		
+		$('#mailmodal').modal('show');
+		
+	 });
 
     /**
      * Style Selector

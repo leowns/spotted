@@ -64,6 +64,7 @@
 
                                 <div class="spotted-slidedown spotted-match">
                                     <div class="container">
+									<form name="contact_form" id="contact_form" action="{{ path('spotted_secured_sendmail',{ postid: entity.id }) }}" method="post">
                                         <div class="row" style="margin-bottom: 10px;">
                                             <div class="col-xs-12">
                                                 <h4>Ausgezeichnet! Ihr habt euch gefunden:</h4>
@@ -77,6 +78,7 @@
                                                 <button class="btn btn-danger pull-right" type="submit">E-Mail senden</button>
                                             </div>
                                         </div>
+										</form>
                                     </div>
 
                                 </div>
