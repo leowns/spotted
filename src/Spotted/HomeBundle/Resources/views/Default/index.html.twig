@@ -23,7 +23,8 @@
                      </div>
                      <div class="notification_content">
                          {% if notifications > 0 %}
-                             {% for comment in comments %}
+
+                             {% for comment in comments|slice(1, 6) %}
                                  <div class="notification_list clearfix" onclick="location.href='{{ path('spotted_secured_show_post',{'postid': comment.post.id}) }}'">
                                      <div class="notification_image">
                                          <i class="fa fa-envelope"></i>
@@ -35,6 +36,9 @@
                                      </div>
                                  </div>
                              {% endfor %}
+                             {% if notifications > 6 %}
+                                 <div class="no_notifications">{{ notifications - 6 }} weitere Neuigkeiten</div>
+                             {% endif %}
                          {% else %}
                             <div class="no_notifications">Du hast keine Neuigkeiten zur Zeit.</div>
                          {% endif %}
