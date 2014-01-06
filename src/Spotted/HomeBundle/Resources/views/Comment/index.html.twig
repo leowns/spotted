@@ -24,12 +24,13 @@
 										{% set commentid =  comment.id  %}
 										{% set postid =  comment.post.id %}
 						{% else %}
-					        <div class="msg"><span style="display:block; margin-bottom: 10px;"> <strong>Es wurden noch keine Kommentare erfasst!</strong> </span></div>
-							{% set noresult =  1 %}
-						{% endfor %} 
+					        <div class="msg"><span style="display:block; margin-bottom: 10px;"> <strong></strong> </span></div>
+                            {% set noresult =  1 %}
+						{% endfor %}
+
 						{% if noresult != 1 %}
-						<div id="more{{commentid}}" class="morebox">
-						<a href="#" class="more" id="{{commentid}}">mehr Kommentare</a>
-						<input type="hidden" id="hidden{{commentid}}" name="{{postid}}">
+                            <div id="more{{commentid}}" class="morebox">
+                                <a class="more btn btn-default" id="{{commentid}}">mehr Kommentare</a>
+                                <input type="hidden" id="hidden{{commentid}}" name="{{postid}}">
+                            </div>
 						{% endif %}
-					</div>

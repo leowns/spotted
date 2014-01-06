@@ -328,6 +328,8 @@ $('#location_filter').bind('typeahead:selected', function( obj,datum,name) {
 
     $(document).on('click','button[name="btncomment"]', function(){
 		var postid = jQuery(this).data("id");
+        var curThis = this;
+        $(curThis).button('loading');
 		$.post(
 			  Routing.generate('spotted_secured_add_comment',{ postid: postid }),
 			  {txthint: $("#txthint"+postid).val()}, 
@@ -335,6 +337,7 @@ $('#location_filter').bind('typeahead:selected', function( obj,datum,name) {
                 showComment(postid, function() {
                     reMasonry();
                     $("#txthint"+postid).val("");
+                    $(curThis).button('reset')
                 });
 			  });
 	});
