@@ -28,14 +28,36 @@ class PostController extends Controller
     public function filterAction(Request $request) {
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        //Filter 1 ist das Geschlecht, eigentlich kein Tag
-        $filter1=$request->request->get('filter1');
-        $filter2=$request->request->get('filter2');
-        $locationfilter=$request->request->get('locationfilter');
+        // Wenn user auf paginator eine neue seite aufruft werden aktuelle filter parameter über GET mitgeteilt
+        // falls der user aber einen neuen filter setzt über filter form wernden filter parameter über POST mitgeteilt
+
+        if ($request->query->get('filter1') != null) {
+            //Filter 1 ist das Geschlecht, eigentlich kein Tag
+            $filter1=$request->query->get('filter1');
+        } else {
+            //Filter 1 ist das Geschlecht, eigentlich kein Tag
+            $filter1=$request->request->get('filter1');
+        }
+
+        if ($request->query->get('filter2') != null) {
+            $filter2=$request->query->get('filter2');
+        } else {
+            $filter2=$request->request->get('filter2');
+        }
+
+        if ($request->query->get('locationfilter') != null) {
+            $locationfilter=$request->query->get('locationfilter');
+        } else {
+            $locationfilter=$request->request->get('locationfilter');
+        }
 
         // Wenn der User sich auf der Watchlist-Seite befindet müssen in allen Abfragen nur seine Watchlist Posts angezeigt werden
-        $isWatchlist =$request->request->get('watchlist');
-
+        if ($request->query->get('watchlist') != null) {
+            $isWatchlist=$request->query->get('watchlist');
+        } else {
+            $isWatchlist=$request->request->get('watchlist');
+        }
+        
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
 
@@ -66,7 +88,18 @@ class PostController extends Controller
         }
 
 
-        $posts = $qb->getQuery()->getResult();
+        $paginator  = $this->get('knp_paginator');
+        $posts = $paginator->paginate(
+            $qb->getQuery(),
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            2/*limit per page*/
+        );
+        $posts->setParam('filter1',$filter1);
+        $posts->setParam('filter2',$filter2);
+        $posts->setParam('locationfilter',$locationfilter);
+        $posts->setParam('watchlist',$isWatchlist);
+
+ //       $posts = $qb->getQuery()->getResult();
 
 		// $response = new Response(json_encode($posts));
 		// $response->headers->set('Content-Type', 'application/json');

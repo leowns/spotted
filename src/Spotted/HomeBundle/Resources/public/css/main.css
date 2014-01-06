@@ -691,7 +691,7 @@ Login Page
 #canvas {
     overflow: visible;
     margin-top: 15px;
-    margin-bottom: 70px;
+    margin-bottom: 100px;
 }
 
 #canvas .item {
@@ -924,7 +924,10 @@ h2.spotted-title a {
 }
 
 .post_navigator {
+    bottom: -80px;
+    position: absolute;
     text-align: center;
+    width: 100%;
 }
 
 .pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {

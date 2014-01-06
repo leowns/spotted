@@ -91,6 +91,10 @@ class User extends BaseUser
         foreach($this->watchlist as $watch) {
             $watches[] = $watch->getPost()->getId();
          }
+
+        if(count($watches) <= 0) {
+            $watches = array(0);
+        }
         return $watches;
     }
 

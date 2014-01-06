@@ -40,21 +40,6 @@ class DefaultController extends Controller
         // Get all tags => to display them in new post form
         $tags = $em->getRepository('SpottedHomeBundle:Tags')->findAll();
 
-        // Get all posts order by date to display them on main page
-        $query = $em->createquery(
-             'select p
-                from SpottedHomeBundle:Post p
-                order by p.date desc'
-        );
-
-        $paginator  = $this->get('knp_paginator');
-        $posts = $paginator->paginate(
-            $query,
-            $this->get('request')->query->get('page', 1)/*page number*/,
-           10/*limit per page*/
-        );
-
-
        // $posts= $query->getResult();
 
         // Get all unread comments of current user => to display them in notification popover
@@ -72,7 +57,6 @@ class DefaultController extends Controller
         // $form   = $this->createCreateForm($entity);
 
         return array(
-            'entities' => $posts,
             'userWatchlist' => $user->getWatchlist(),
 			'tags' => $tags,
             'confirmed' => $confirmed,
@@ -82,6 +66,56 @@ class DefaultController extends Controller
         );
 		
     }
+
+    /**
+     * Get posts action
+     *
+     * @Route("/secured/getPosts", name="filters")
+     *
+     * @Template("SpottedHomeBundle:Post:index.html.twig")
+     */
+    public function getPostsAction($watchlist=null) {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        $em = $this->getDoctrine()->getManager();
+
+
+        if ($watchlist == 'true') {
+            $query = $em->createQuery(
+                'SELECT p
+                FROM SpottedHomeBundle:Post p
+                WHERE p.id in (:userid)
+                order by p.date desc'
+            )->setParameter('userid',$user->getWatchlist());
+        } else {
+            // Get all posts order by date to display them on main page
+            $query = $em->createquery(
+                'select p
+                   from SpottedHomeBundle:Post p
+                   order by p.date desc'
+            );
+
+        }
+
+
+
+        $paginator  = $this->get('knp_paginator');
+        $posts = $paginator->paginate(
+            $query,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+        $posts->setUsedRoute('spotted_secured_getposts');
+
+
+        return $this->render('SpottedHomeBundle:Post:index.html.twig',
+            array('entities' => $posts,
+                'userWatchlist'=> $user->getWatchlist(),
+                'user' => $user
+            )
+        );
+    }
+
 
     public function commentAction($id)
     {

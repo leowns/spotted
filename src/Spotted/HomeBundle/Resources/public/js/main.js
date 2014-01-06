@@ -421,5 +421,19 @@ $(document).on('click', ".more", function (event) {
     });
 
 
+    $(document).on("click",".pagination li a", function(event){
+        event.preventDefault();
 
+        container.masonry( 'remove', $('.item'));
+        $('#loadingDiv').show();
+
+        $.get($(this).attr("href"), function(data) {
+            $('#loadingDiv').hide();
+            container.html(data);
+            container.masonry( 'appended', $('.item'));
+            reMasonry();
+            $('#loadingDiv').hide();
+        });
+        return false;
+    });
 });

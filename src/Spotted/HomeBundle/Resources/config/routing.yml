@@ -70,5 +70,11 @@ spotted_secured_sendmail:
     options:
         expose: true
 
+spotted_secured_getposts:
+    pattern: /secured/getposts/{watchlist}
+    defaults: { _controller: SpottedHomeBundle:Default:getPosts, watchlist: null }
+    options:
+        expose: true
+
 user_logout:
        pattern:   /logout

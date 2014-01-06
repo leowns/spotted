@@ -34,9 +34,7 @@ class WatchlistController extends Controller
 				WHERE p.id in (:userid)
 				order by p.date desc'
 			)->setParameter('userid',$user->getWatchlist());
-		$query2 = $em->createquery(
-				 'select c from SpottedHomeBundle:Comments c JOIN c.post p WHERE p.user=:userid AND c.rd= 0'
-			  )->setParameter('userid', $userid);
+
 			
        // $posts=$query->getResult();
 
@@ -47,6 +45,9 @@ class WatchlistController extends Controller
             10/*limit per page*/
         );
 
+        $query2 = $em->createquery(
+            'select c from SpottedHomeBundle:Comments c JOIN c.post p WHERE p.user=:userid AND c.rd= 0'
+        )->setParameter('userid', $userid);
 
         $notreadcomments=$query2->getResult();
 	    $notifications = count($notreadcomments);

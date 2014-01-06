@@ -24,7 +24,7 @@
                      <div class="notification_content">
                          {% if notifications > 0 %}
 
-                             {% for comment in comments|slice(1, 6) %}
+                             {% for comment in comments|slice(0, 5) %}
                                  <div class="notification_list clearfix" onclick="location.href='{{ path('spotted_secured_show_post',{'postid': comment.post.id}) }}'">
                                      <div class="notification_image">
                                          <i class="fa fa-envelope"></i>
@@ -222,13 +222,14 @@
                         <img src="{{ asset('bundles/spottedhome/images/481.png') }}" alt="Loading" class="ajax-loader"/>
                     </div>
                     <div id="item_wrapper" class="container">
-
-						{% include "SpottedHomeBundle:Post:index.html.twig" with { 'entities': entities } %}
+                        {% if app.request.attributes.get('_route') == 'spotted_secured_watchlist' %}
+                            {{ render(controller("SpottedHomeBundle:Default:getPosts", { 'watchlist': 'true' })) }}
+                        {% else %}
+                            {{ render(controller("SpottedHomeBundle:Default:getPosts")) }}
+                        {% endif %}
 
                     </div>
-                    <div class="post_navigator">
-                        {{ knp_pagination_render(entities) }}
-                    </div>
+
                 </div>
 
             </div>

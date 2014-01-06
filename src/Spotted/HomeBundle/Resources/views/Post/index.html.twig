@@ -1,157 +1,162 @@
 
 {% for entity in entities %}
-                            <div class="item col-xs-12 col-sm-12 {% if app.request.attributes.get('_route') == 'spotted_secured_show_post' %}col-md-12{% else %} col-md-6{% endif %}">
-                                <div class="spotted-message">
-                                    <h2 class="spotted-title">
-                                        <a href="#">
-                                            <strong>{{ entity.location.name }} ({{ entity.location.city.name }})</strong>, {{ entity.tags.name }}
-                                        </a>
-                                    </h2>
-                                    <div class="datum">
-                                        <i class="fa fa-clock-o"></i>{% if entity.date %}{{ entity.date|date('d.m.Y H:i') }}{% endif %}
-                                    </div>
-                                    <div class="gender">
-                                    {% if entity.user.gender =='female' %}
-                                        <img src="{{ asset('bundles/spottedhome/images/female.png') }}" alt="Female"/>
-                                    {% endif %}
-                                    {% if entity.user.gender =='male' %}
-                                        <img src="{{ asset('bundles/spottedhome/images/male.png') }}" alt="Male"/>
-                                    {% endif %}
-                                    </div>
-                                    <div style="cursor:pointer;" class="text-main">
-                                        {% if entity.user.gender =='female' %}
-                                        <span style="color: #C42EAF"><strong>Sie:</strong></span>
-                                        {% endif %}
-                                        {% if entity.user.gender =='male' %}
-                                        <span style="color: #587fd8"><strong>Er:</strong></span>
-                                        {% endif %}
+    <div class="item col-xs-12 col-sm-12 {% if app.request.attributes.get('_route') == 'spotted_secured_show_post' %}col-md-12{% else %} col-md-6{% endif %}">
+        <div class="spotted-message">
+            <h2 class="spotted-title">
+                <a href="#">
+                    <strong>{{ entity.location.name }} ({{ entity.location.city.name }})</strong>, {{ entity.tags.name }}
+                </a>
+            </h2>
+            <div class="datum">
+                <i class="fa fa-clock-o"></i>{% if entity.date %}{{ entity.date|date('d.m.Y H:i') }}{% endif %}
+            </div>
+            <div class="gender">
+            {% if entity.user.gender =='female' %}
+                <img src="{{ asset('bundles/spottedhome/images/female.png') }}" alt="Female"/>
+            {% endif %}
+            {% if entity.user.gender =='male' %}
+                <img src="{{ asset('bundles/spottedhome/images/male.png') }}" alt="Male"/>
+            {% endif %}
+            </div>
+            <div style="cursor:pointer;" class="text-main">
+                {% if entity.user.gender =='female' %}
+                <span style="color: #C42EAF"><strong>Sie:</strong></span>
+                {% endif %}
+                {% if entity.user.gender =='male' %}
+                <span style="color: #587fd8"><strong>Er:</strong></span>
+                {% endif %}
 
-                                        {{ entity.text }}
-                                    </div>
-                                </div>
-                                <div class="spotted-slidedown spotted-comments" {% if app.request.attributes.get('_route') == 'spotted_secured_show_post' %}style="display: block"{% endif %}>
-                                    <div class="container">
-                                        <div class="row" style="margin-bottom: 10px;">
-                                            <div class="col-xs-12">
-                                                <h4>Kommentare:</h4>
-                                            </div>
-                                        </div>
-											<div id="comment_wrapper{{ entity.id }}" data-id="{{ entity.id }}">
+                {{ entity.text }}
+            </div>
+        </div>
+        <div class="spotted-slidedown spotted-comments" {% if app.request.attributes.get('_route') == 'spotted_secured_show_post' %}style="display: block"{% endif %}>
+            <div class="container">
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-xs-12">
+                        <h4>Kommentare:</h4>
+                    </div>
+                </div>
+                    <div id="comment_wrapper{{ entity.id }}" data-id="{{ entity.id }}">
 
-                                                {# If current page is "view single post"-page then display all comments from single post #}
-                                                {% if app.request.attributes.get('_route') == 'spotted_secured_show_post' %}
-                                                    {{ render(controller("SpottedHomeBundle:Comment:show", { 'postid': entity.id })) }}
-                                                {% endif %}
+                        {# If current page is "view single post"-page then display all comments from single post #}
+                        {% if app.request.attributes.get('_route') == 'spotted_secured_show_post' %}
+                            {{ render(controller("SpottedHomeBundle:Comment:show", { 'postid': entity.id })) }}
+                        {% endif %}
 
-											</div>
-                                    </div>
+                    </div>
+            </div>
 
-                                    <div class="add_comment container">
-										{#<form name="comment_form" id="comment_form" action="{{ path('spotted_secured_add_comment',{ postid: entity.id }) }}" method="post">#}
-											<div class="row">
-												<textarea id="txthint{{ entity.id }}" name="txthint" required="required" placeholder="Schreibe einen Hinweis..." maxlength="255"></textarea>
-												
-											</div>
-											<div class="row" style="margin-top: 10px">
-												<div class="col-xs-12">
-													<button id="btn_comment_{{ entity.id }}" data-id="{{ entity.id }}" name="btncomment" class="btn btn-danger pull-right" type="submit">Kommentieren</button>
-												</div>
-											</div>
-										{#</form>#}
-                                    </div>
+            <div class="add_comment container">
+                {#<form name="comment_form" id="comment_form" action="{{ path('spotted_secured_add_comment',{ postid: entity.id }) }}" method="post">#}
+                    <div class="row">
+                        <textarea id="txthint{{ entity.id }}" name="txthint" required="required" placeholder="Schreibe einen Hinweis..." maxlength="255"></textarea>
 
-                                </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-xs-12">
+                            <button id="btn_comment_{{ entity.id }}" data-id="{{ entity.id }}" name="btncomment" class="btn btn-danger pull-right" type="submit">Kommentieren</button>
+                        </div>
+                    </div>
+                {#</form>#}
+            </div>
 
-                                <div class="spotted-slidedown spotted-match">
-                                    <div class="container">
-                                        {% if entity.user.id != user.id %}
-                                            <form name="contact_form" id="contact_form" action="{{ path('spotted_secured_sendmail',{ postid: entity.id }) }}" method="post">
-                                                <div class="row" style="margin-bottom: 10px;">
-                                                    <div class="col-xs-12">
-                                                        <h4>Ausgezeichnet! Ihr habt euch gefunden:</h4>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <textarea style="height: 140px;" class="message_text" required="required" placeholder="Schreibe deine Nachricht..."></textarea>
-                                                </div>
-                                                <div class="row" style="margin-top: 10px">
-                                                    <div class="col-xs-12">
-                                                        <button class="btn btn-danger pull-right" type="submit">E-Mail senden</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        {% endif %}
-                                    </div>
+        </div>
 
-                                </div>
-
-                                <div class="spotted-details container">
-                                    <div class="row">
-                                        <div class="box comment" data-placement="top" id="div_comment_{{ entity.id }}" data-id="{{ entity.id }}" data-toggle="tooltip" data-original-title="Kommentieren">
-                                            <i class="fa fa-comment"></i>
-                                        </div>
-                                        <a href="#{% if entity.id in userWatchlist %}delmodal{% else %}addmodal{% endif %}{{ entity.id}}" data-toggle="modal">
-                                            <div class="{% if entity.id in userWatchlist %}selected {% endif %}box wishlist" data-placement="top" data-toggle="tooltip" data-original-title="{% if entity.id in userWatchlist %}Von Watchlist entfernen{% else %}Auf Watchlist{% endif %}">
-                                                <i class="fa fa-eye"></i>
-                                            </div>
-                                        </a>
-
-                                        {% if entity.user.id == user.id %}
-                                            <div class="box box-spotted own_post">
-                                                Dein eigener Post
-                                            </div>
-                                        {% else %}
-                                            <div class="box box-spotted">
-                                                Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" alt="Match" />
-                                            </div>
-                                        {% endif %}
-
-
-                                    </div>
-                                </div>
+        <div class="spotted-slidedown spotted-match">
+            <div class="container">
+                {% if entity.user.id != user.id %}
+                    <form name="contact_form" id="contact_form" action="{{ path('spotted_secured_sendmail',{ postid: entity.id }) }}" method="post">
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-xs-12">
+                                <h4>Ausgezeichnet! Ihr habt euch gefunden:</h4>
                             </div>
-						<div class="modal" id="addmodal{{ entity.id}}">
-							<div class="modal-dialog">
-							  <div class="modal-content">
-								<div class="modal-header">
-								  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								  <h4 class="modal-title">Post zur Watchlist hinzügen</h4>
-								</div>
-								<div class="modal-body">
-								  Wollen Sie diesen Post zu Ihrer Watchlist hinzufügen?
-								</div>
-								<div class="modal-footer">
-								  <a href="#" data-dismiss="modal" class="btn btn-danger">Abbrechen</a>
-								  <a   href="{{ path('spotted_secured_add_watchlist', {'postid': entity.id}) }}" class="btn btn-primary">Hinzüfugen</a>
-								</div>
-							  </div>
-							</div>
-						</div> 
-						<div class="modal" id="delmodal{{ entity.id}}">
-							<div class="modal-dialog">
-							  <div class="modal-content">
-								<div class="modal-header">
-								  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								  <h4 class="modal-title">Post von Watchlist entfernen</h4>
-								</div>
-								<div class="modal-body">
-								  Wollen Sie diesen Post von Ihrer Watchlist entfernen?
-								</div>
-								<div class="modal-footer">
-								  <a href="#" data-dismiss="modal" class="btn btn-primary">Abbrechen</a>
-								  <a   href="{{ path('spotted_secured_del_watchlist', {'postid': entity.id}) }}" class="btn btn-danger">Entfernen</a>
-								</div>
-							  </div>
-							</div>
-						</div> 
-							
-							
-							{% else %}
-					<strong>Keine Posts wurden gefunden!</strong>
-					
-    
-                        {% endfor %}
-					
+                        </div>
+                        <div class="row">
+                            <textarea style="height: 140px;" class="message_text" required="required" placeholder="Schreibe deine Nachricht..."></textarea>
+                        </div>
+                        <div class="row" style="margin-top: 10px">
+                            <div class="col-xs-12">
+                                <button class="btn btn-danger pull-right" type="submit">E-Mail senden</button>
+                            </div>
+                        </div>
+                    </form>
+                {% endif %}
+            </div>
+
+        </div>
+
+        <div class="spotted-details container">
+            <div class="row">
+                <div class="box comment" data-placement="top" id="div_comment_{{ entity.id }}" data-id="{{ entity.id }}" data-toggle="tooltip" data-original-title="Kommentieren">
+                    <i class="fa fa-comment"></i>
+                </div>
+                <a href="#{% if entity.id in userWatchlist %}delmodal{% else %}addmodal{% endif %}{{ entity.id}}" data-toggle="modal">
+                    <div class="{% if entity.id in userWatchlist %}selected {% endif %}box wishlist" data-placement="top" data-toggle="tooltip" data-original-title="{% if entity.id in userWatchlist %}Von Watchlist entfernen{% else %}Auf Watchlist{% endif %}">
+                        <i class="fa fa-eye"></i>
+                    </div>
+                </a>
+
+                {% if entity.user.id == user.id %}
+                    <div class="box box-spotted own_post">
+                        Dein eigener Post
+                    </div>
+                {% else %}
+                    <div class="box box-spotted">
+                        Das bin ich! <img src="{{ asset('bundles/spottedhome/images/match.png') }}" alt="Match" />
+                    </div>
+                {% endif %}
+
+
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="addmodal{{ entity.id}}">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h4 class="modal-title">Post zur Watchlist hinzügen</h4>
+            </div>
+            <div class="modal-body">
+              Wollen Sie diesen Post zu Ihrer Watchlist hinzufügen?
+            </div>
+            <div class="modal-footer">
+              <a href="#" data-dismiss="modal" class="btn btn-danger">Abbrechen</a>
+              <a   href="{{ path('spotted_secured_add_watchlist', {'postid': entity.id}) }}" class="btn btn-primary">Hinzüfugen</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="modal" id="delmodal{{ entity.id}}">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h4 class="modal-title">Post von Watchlist entfernen</h4>
+            </div>
+            <div class="modal-body">
+              Wollen Sie diesen Post von Ihrer Watchlist entfernen?
+            </div>
+            <div class="modal-footer">
+              <a href="#" data-dismiss="modal" class="btn btn-primary">Abbrechen</a>
+              <a   href="{{ path('spotted_secured_del_watchlist', {'postid': entity.id}) }}" class="btn btn-danger">Entfernen</a>
+            </div>
+          </div>
+        </div>
+    </div>
+
+{% else %}
+    <strong>Keine Posts wurden gefunden!</strong>
+{% endfor %}
+
+
+    {# If current page is not "view single post"-page then display paginator #}
+    {% if app.request.attributes.get('_route') != 'spotted_secured_show_post' %}
+        <div class="post_navigator">
+            {{ knp_pagination_render(entities) }}
+        </div>
+    {% endif %}
+
 
 
 						
