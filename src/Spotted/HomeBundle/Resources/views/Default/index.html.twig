@@ -224,6 +224,8 @@
                     <div id="item_wrapper" class="container">
                         {% if app.request.attributes.get('_route') == 'spotted_secured_watchlist' %}
                             {{ render(controller("SpottedHomeBundle:Default:getPosts", { 'watchlist': 'true' })) }}
+                        {% elseif app.request.attributes.get('_route') == 'spotted_secured_show_post' %}
+                            {{ include( "SpottedHomeBundle:Post:index.html.twig", { 'entities': entities }) }}
                         {% else %}
                             {{ render(controller("SpottedHomeBundle:Default:getPosts")) }}
                         {% endif %}

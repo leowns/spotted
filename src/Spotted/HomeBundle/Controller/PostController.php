@@ -57,7 +57,7 @@ class PostController extends Controller
         } else {
             $isWatchlist=$request->request->get('watchlist');
         }
-        
+
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
 
