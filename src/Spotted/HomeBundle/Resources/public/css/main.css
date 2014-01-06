@@ -886,8 +886,8 @@ h2.spotted-title a {
     box-shadow: 0 0 5px #C8C8C8;
 }
 
-.add_comment {
-
+.show_comment {
+    margin-top: 20px;
 }
 
 .add_comment textarea {

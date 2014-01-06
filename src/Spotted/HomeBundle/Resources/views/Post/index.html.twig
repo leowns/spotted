@@ -30,35 +30,38 @@
             </div>
         </div>
         <div class="spotted-slidedown spotted-comments" {% if app.request.attributes.get('_route') == 'spotted_secured_show_post' %}style="display: block"{% endif %}>
-            <div class="container">
+            <div class="add_comment container">
                 <div class="row" style="margin-bottom: 10px;">
                     <div class="col-xs-12">
                         <h4>Kommentare:</h4>
                     </div>
                 </div>
-                    <div id="comment_wrapper{{ entity.id }}" data-id="{{ entity.id }}">
-
-                        {# If current page is "view single post"-page then display all comments from single post #}
-                        {% if app.request.attributes.get('_route') == 'spotted_secured_show_post' %}
-                            {{ render(controller("SpottedHomeBundle:Comment:show", { 'postid': entity.id })) }}
-                        {% endif %}
-
-                    </div>
-            </div>
-
-            <div class="add_comment container">
                 {#<form name="comment_form" id="comment_form" action="{{ path('spotted_secured_add_comment',{ postid: entity.id }) }}" method="post">#}
-                    <div class="row">
-                        <textarea id="txthint{{ entity.id }}" name="txthint" required="required" placeholder="Schreibe einen Hinweis..." maxlength="255"></textarea>
+                <div class="row">
+                    <textarea id="txthint{{ entity.id }}" name="txthint" required="required" placeholder="Schreibe einen Hinweis..." maxlength="255"></textarea>
 
+                </div>
+                <div class="row" style="margin-top: 10px">
+                    <div class="col-xs-12">
+                        <button id="btn_comment_{{ entity.id }}" data-id="{{ entity.id }}" name="btncomment" class="btn btn-danger pull-right" type="submit">Kommentieren</button>
                     </div>
-                    <div class="row" style="margin-top: 10px">
-                        <div class="col-xs-12">
-                            <button id="btn_comment_{{ entity.id }}" data-id="{{ entity.id }}" name="btncomment" class="btn btn-danger pull-right" type="submit">Kommentieren</button>
-                        </div>
-                    </div>
+                </div>
                 {#</form>#}
             </div>
+
+            <div class="show_comment container">
+
+                <div id="comment_wrapper{{ entity.id }}" data-id="{{ entity.id }}">
+
+                    {# If current page is "view single post"-page then display all comments from single post #}
+                    {% if app.request.attributes.get('_route') == 'spotted_secured_show_post' %}
+                        {{ render(controller("SpottedHomeBundle:Comment:show", { 'postid': entity.id })) }}
+                    {% endif %}
+
+                </div>
+            </div>
+
+
 
         </div>
 
