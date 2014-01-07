@@ -334,6 +334,13 @@ $('#location_filter').bind('typeahead:selected', function( obj,datum,name) {
     $(document).on('click','button[name="btncomment"]', function(){
 		var postid = jQuery(this).data("id");
         var curThis = this;
+		
+		if ($("#txthint"+postid).val()== "") {
+		alert("Füllen Sie das Kommentarfeld aus!");
+		$("#txthint"+postid).focus();
+		return false;
+		}
+		
         $(curThis).button('loading');
 		$.post(
 			  Routing.generate('spotted_secured_add_comment',{ postid: postid }),
@@ -380,20 +387,14 @@ $('form[name="contact_form"]').submit(function(){
 	 });
 	 
 	 
-// $('#btnpost').click(function(){
-		
-		// if($('#hidden').val()=="") {
-		 // alert("Bitte füllen Sie das Feld korrekt aus!");
-		
-		// }
-		
-	 // });
 
 $("#new_item_form").submit(function (e) {
 	
 	if ($('#hidden').val() == "") {
 		alert("Bitte füllen Sie die Location korrekt aus!");
-		e.preventDefault();
+		e.preventDefault(); 
+		$('.tt-hint').focus();
+
 	}
 	
 });
