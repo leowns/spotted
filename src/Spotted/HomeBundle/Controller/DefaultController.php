@@ -144,7 +144,7 @@ class DefaultController extends Controller
 			$user2=$post->getUser();
 			
 			$message = \Swift_Message::newInstance()
-				->setSubject('Kontaktanfrage Spotted ZHAW')
+				->setSubject('ZHAW-Spotted: Hier ist deine zweite Chance!')
 				->setFrom($user->getEmail())
 				->setTo($user2->getEmail())
 				->setBody($this->renderView('SpottedHomeBundle:Default:contactEmail.txt.twig', array('user' => $user,'message' => $message)));
