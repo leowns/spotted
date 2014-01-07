@@ -297,6 +297,11 @@ $('#location_filter').bind('typeahead:selected', function( obj,datum,name) {
 
     // });
 
+    $(document).on('click', ".spotted-message .text-main", function (event) {
+        var url = $(this).parents('.item').data('href');
+        window.location = url;
+    });
+
 	 
     $(document).on('click', ".box.box-spotted", function (event) {
         if (!$(this).hasClass('own_post')) {
