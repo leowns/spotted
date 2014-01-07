@@ -378,6 +378,26 @@ $('form[name="contact_form"]').submit(function(){
 		$('#mailmodal').modal('show');
 		
 	 });
+	 
+	 
+// $('#btnpost').click(function(){
+		
+		// if($('#hidden').val()=="") {
+		 // alert("Bitte füllen Sie das Feld korrekt aus!");
+		
+		// }
+		
+	 // });
+
+$("#new_item_form").submit(function (e) {
+	
+	if ($('#hidden').val() == "") {
+		alert("Bitte füllen Sie die Location korrekt aus!");
+		e.preventDefault();
+	}
+	
+});
+   
 
 	 
 $(document).on('click', ".more", function (event) {
