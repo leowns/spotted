@@ -102,11 +102,10 @@ Landing Page
     text-align: center;
 }
 
-#landing_image #companies {
-    bottom: 20px;
-    position: absolute;
+#companies {
+    display: block;
     text-align: center;
-    width: 100%;
+    margin-top: 180px;
 }
 
 #landing_image {

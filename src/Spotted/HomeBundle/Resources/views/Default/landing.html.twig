@@ -6,9 +6,7 @@
 {% block content %}
 
     <div id="landing_image">
-        <div id="companies" class="fade_slow">
-            <img src="{{ asset('bundles/spottedhome/images/zhaw.png') }}" style="height:40px" alt="ZHAW"/>
-        </div>
+
     </div>
 
     <div id="landing_wrapper" class="container fade_slow">
@@ -26,7 +24,6 @@
                         <h1 style="display: block;">Du hast die passende <span style="color: #E85C5C;">Gelegenheit</span> verpasst?</h1>
                         <h2 style="color: #FFFFFF; display: block;">Wir geben dir eine <span style="color: #E85C5C;">zweite</span> Chance!</h2>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -36,6 +33,12 @@
                 <a id="btn_login" href="{{ path('fos_user_security_login') }}" class="btn btn-danger btn-lg" style="display: inline;">Log In</a>
             </div>
         </div>
+        <div class="row">
+            <div id="companies" class="fade_slow">
+                <img src="{{ asset('bundles/spottedhome/images/zhaw.png') }}" style="height:40px" alt="ZHAW"/>
+            </div>
+        </div>
+
     </div>
 
 {% endblock %}
