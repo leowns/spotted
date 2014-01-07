@@ -111,6 +111,7 @@ class DefaultController extends Controller
             10/*limit per page*/
         );
         $posts->setUsedRoute('spotted_secured_getposts');
+        $posts->setParam('watchlist',$watchlist);
 
 
         return $this->render('SpottedHomeBundle:Post:index.html.twig',
