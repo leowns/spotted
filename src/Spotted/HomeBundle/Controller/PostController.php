@@ -92,7 +92,7 @@ class PostController extends Controller
         $posts = $paginator->paginate(
             $qb->getQuery(),
             $this->get('request')->query->get('page', 1)/*page number*/,
-            2/*limit per page*/
+            10/*limit per page*/
         );
         $posts->setParam('filter1',$filter1);
         $posts->setParam('filter2',$filter2);

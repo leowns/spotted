@@ -428,6 +428,7 @@ Login Page
     padding-top: 10px;
     font-size: 19px;
     margin-left: 0;
+    min-width: 290px;
 }
 
 .navbar #profile i {
