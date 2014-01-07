@@ -14,12 +14,17 @@ use Spotted\HomeBundle\Entity\Tags;
 use Spotted\HomeBundle\Entity\Location;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\Query;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 
 class DefaultController extends Controller
 {
 
     public function landingAction() {
+        if ($this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return new RedirectResponse($this->container->get('router')->generate('spotted_secured_homepage'));
+        }
+
         return $this->render('SpottedHomeBundle:Default:landing.html.twig');
     }
 
