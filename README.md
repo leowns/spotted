@@ -1,6 +1,6 @@
 Installationsanleitung XAMP
 ========================
-
+Check out our website http://www.yaos.ch
 1. Install and enable the intl extension (used for validators).
 
 	Open C:/xampp/php/php.ini to edit.
